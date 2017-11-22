@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6e8c6190716eb1b4089472a819eeedfc
-timeCreated: 1511307239
+timeCreated: 1511313961
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -85,11 +85,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 48
-        width: 142.66667
-        height: 79
+        y: 49
+        width: 140
+        height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -98,12 +98,12 @@ TextureImporter:
       name: Game-Boy-GBC---Batman-Return-of-the-Joker---Tank_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 48
-        width: 142.66667
-        height: 79
+        x: 161
+        y: 49
+        width: 140
+        height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,11 +113,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 313
-        y: 48
-        width: 143
-        height: 79
+        y: 49
+        width: 140
+        height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

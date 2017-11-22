@@ -19,16 +19,14 @@ public class TankController : MonoBehaviour {
     */
 
     private Rigidbody2D m_Rigidbody;
+    private SpriteRenderer m_SpriteRenderer;
     private Animator m_Animator;
     private Transform m_Transform;
-    private Vector3 m_FacingLeftScale;
-    private Vector3 m_FacingRightScale;
     private float m_MovementInputValue;
     private float m_JumpInputValue;
     private string m_TurnAxisName;
-    private float m_CurrentYRotation;
-    private bool isActive;
     private float m_FuelCurrent;
+    private bool m_IsActive;
 
     /*     
     private float m_OriginalPitch;
@@ -39,13 +37,13 @@ public class TankController : MonoBehaviour {
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         m_Transform = GetComponent<Transform>();
-        m_FacingLeftScale = new Vector3(1, 1, 1);
-        m_FacingRightScale = new Vector3(-1, 1, 1);
-        isActive = false;
-        ResetStatus();
+        m_Rigidbody = GetComponent<Rigidbody2D>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_IsActive = false;
+
+        Invoke("ResetStatus", 0.5f);
         /*
        m_OriginalPitch = m_MovementAudio.pitch;
        */
@@ -56,28 +54,30 @@ public class TankController : MonoBehaviour {
         m_FuelCurrent = m_FuelMax;
         m_JumpInputValue = 0;
         m_MovementInputValue = 0f;
-        m_ThrustersObject.Pause();
+        m_IsActive = true;
     }
 
     void OnEnable()
     {
         ResetStatus();
-        isActive = true;
     }
 
 
     void OnDisable()
     {
-        isActive = false;
+        
     }
 
     void Update()
     {
-        m_MovementInputValue = Input.GetAxis("Horizontal");
-        m_Animator.speed = Mathf.Abs(m_MovementInputValue);
-        AdjustJumpValue();
+        if (m_IsActive)
+        {
+            m_MovementInputValue = Input.GetAxis("Horizontal");
+            m_Animator.speed = Mathf.Abs(m_MovementInputValue);
+            AdjustJumpValue();
+        }
+        
         // EngineAudio();
-        //Debug.Log("Fuel Left: " + fuelCurrent);
     }
 
     /*
@@ -131,20 +131,21 @@ public class TankController : MonoBehaviour {
 
     private void ActivateThrusters (bool activate)
     {
+        var em = m_ThrustersObject.emission;
+
         if (activate && CheckFuel())
         {
-            m_ThrustersObject.Play();
+            em.enabled = true;
         }
         else
         {
-            m_ThrustersObject.Clear();
-            m_ThrustersObject.Pause();
+            em.enabled = false;
         }
     }
 
     void FixedUpdate()
     {
-        if (CheckFuel())
+        if (CheckFuel() && m_IsActive)
         {
             Move();
             Turn();
@@ -155,29 +156,24 @@ public class TankController : MonoBehaviour {
 
     private void Jump()
     {
-        Vector3 force = new Vector3(0, m_JumpInputValue, 0);
-        m_Rigidbody.AddForce(force);
+        m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
     }
 
 
     private void Move()
     {
-        // Adjust the position of the tank based on the player's input.
-        Vector3 oldPos = m_Rigidbody.position;
-        float newX = oldPos.x + m_MovementInputValue / m_Speed;
-        Vector3 newPos = new Vector3(newX, oldPos.y, oldPos.z);
-        m_Rigidbody.MovePosition(newPos);
+        m_Rigidbody.velocity = new Vector2(m_MovementInputValue * m_Speed, m_Rigidbody.velocity.y);
     }
 
     private void Turn()
     {
         if (m_MovementInputValue > 0)
         {
-            m_Transform.localScale = m_FacingRightScale;
+            m_SpriteRenderer.flipX = true;
         }
         else if (m_MovementInputValue < 0)
         {
-            m_Transform.localScale = m_FacingLeftScale;
+            m_SpriteRenderer.flipX = false;
         }
     }
 
@@ -198,5 +194,22 @@ public class TankController : MonoBehaviour {
         }
 
         return m_FuelCurrent > 0;
+    }
+
+    public bool IsActive
+    {
+        get
+        {
+            return m_IsActive;
+        }
+        set
+        {
+            m_IsActive = value;
+        }
+    }
+
+    public float GetCurrentFuel()
+    {
+        return m_FuelCurrent;
     }
 }
