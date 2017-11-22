@@ -59,11 +59,6 @@ public class TurnSystem : MonoBehaviour {
         ActivateCharacter(m_ActiveCharacter, true);
     }
 
-    public void SetActiveCharacter(TankController character)
-    {
-        m_ActiveCharacter = character;
-    }
-
     private void ActivateCharacter(TankController tankController, bool active)
     {
         if (active)

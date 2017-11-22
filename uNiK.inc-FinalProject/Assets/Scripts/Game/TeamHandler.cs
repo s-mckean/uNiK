@@ -9,7 +9,6 @@ public class TeamHandler : MonoBehaviour {
 
     private SpriteRenderer[] m_SpriteRenderers;
     private TankController[] m_TankControllers;
-    private GameCharacter[] m_GameCharacters;
 
     // Use this for initialization
     void Start()

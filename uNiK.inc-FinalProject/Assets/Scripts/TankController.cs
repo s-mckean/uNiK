@@ -21,7 +21,6 @@ public class TankController : MonoBehaviour {
     private Rigidbody2D m_Rigidbody;
     private SpriteRenderer m_SpriteRenderer;
     private Animator m_Animator;
-    private Transform m_Transform;
     private float m_MovementInputValue;
     private float m_JumpInputValue;
     private string m_TurnAxisName;
@@ -43,7 +42,7 @@ public class TankController : MonoBehaviour {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_IsActive = false;
 
-        Invoke("ResetStatus", 0.5f);
+        Invoke("ResetStatus", 1f);
         /*
        m_OriginalPitch = m_MovementAudio.pitch;
        */
