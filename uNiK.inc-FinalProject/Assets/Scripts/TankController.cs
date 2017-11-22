@@ -37,7 +37,6 @@ public class TankController : MonoBehaviour {
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
-        m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_IsActive = false;

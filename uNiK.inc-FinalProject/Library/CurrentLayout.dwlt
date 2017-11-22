@@ -131,8 +131,8 @@ MonoBehaviour:
     y: 0
     width: 539
     height: 819
-  m_MinSize: {x: 202, y: 442}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 202, y: 421}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
   controlID: 47
 --- !u!114 &7
@@ -621,10 +621,10 @@ MonoBehaviour:
     width: 374
     height: 212
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: a0fbffff000000004e280000
+    scrollPos: {x: 0, y: 32}
+    m_SelectedIDs: 0023feff
+    m_LastClickedID: -122112
+    m_ExpandedIDs: ec2afeff442bfeff962bfeff3234feff6aa6feff14a7feffd2f5ffff8efbffff00000000f02a00009a3300008e420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -685,19 +685,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Images
+    - Assets/Prefabs/Characters/Components
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Images
+  - Assets/Prefabs/Characters/Components
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\NChic\Unity Projects\COMP159\git\final-project-unik\uNiK.inc-FinalProject
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 86270000
-    m_LastClickedID: 10118
-    m_ExpandedIDs: 000000003c270000862700009c270000b62a0000b82a0000ba2a000000ca9a3bffffff7f
+    m_SelectedIDs: c4310000
+    m_LastClickedID: 12740
+    m_ExpandedIDs: 000000003427000068270000762700007e27000096270000c2270000ec270000b62a0000b82a0000ba2a0000c42c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -725,7 +725,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003c270000862700009c270000c0270000e8270000b62a0000b82a0000ba2a0000
+    m_ExpandedIDs: 00000000342700007e27000096270000b62a0000b82a0000ba2a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 622a000060260000f02d0000d0270000282e0000822e00000a2e000004280000422b0000a835000046300000623000001c29000000000000e82a0000783500008a35000034270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
