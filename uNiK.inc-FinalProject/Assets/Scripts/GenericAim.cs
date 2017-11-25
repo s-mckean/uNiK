@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenericAim : MonoBehaviour {
 
     [SerializeField] private Transform m_Crosshair;
+    [SerializeField] private GameObject cam;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class GenericAim : MonoBehaviour {
 
     private void AdjustCrosshair()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = cam.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
         Vector2 newPos = Vector2.MoveTowards(gameObject.GetComponent<Transform>().position,
             mousePos, 2f);
         m_Crosshair.position = newPos;
