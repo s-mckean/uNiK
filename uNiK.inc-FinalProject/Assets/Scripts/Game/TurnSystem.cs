@@ -73,6 +73,9 @@ public class TurnSystem : MonoBehaviour {
         tankController.IsActive = active;
         tankController.GetComponentInChildren<GameCharacter>().ActivateCharacter(active);
 
+        // Temporary fix so you can't move other tanks by moving into them
+        tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
+
         var weapSys = tankController.GetComponentInChildren<WeaponSystem>();
         if (weapSys != null)
         {

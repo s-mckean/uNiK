@@ -115,7 +115,8 @@ public class TankController : MonoBehaviour {
         bool spaceDown = Input.GetKey(KeyCode.Space);
         if (spaceDown)
         {
-            m_JumpInputValue += m_JumpAcceleration;
+            m_JumpInputValue = m_JumpAcceleration;        // Fixes the way falling and gravity works
+            //m_JumpInputValue += m_JumpAcceleration;
         }
         else
         {
@@ -154,7 +155,14 @@ public class TankController : MonoBehaviour {
 
     private void Jump()
     {
-        m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
+        float yVel = m_Rigidbody.velocity.y + m_JumpInputValue;       // Fixes the way falling and gravity works
+        if (yVel > m_JumpAccelerationMax)
+        {
+            yVel = m_JumpAccelerationMax;
+        }
+
+        m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, yVel);
+        //m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
     }
 
 
