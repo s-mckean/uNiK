@@ -37,17 +37,20 @@ public class TankController : MonoBehaviour {
 
     private void Start()
     {
-        m_IsActive = false;
-        var em = m_ThrustersObject.emission;
-        em.enabled = false;
-    }
-
-    private void Awake()
-    {
         m_Animator = GetComponent<Animator>();
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
+
+        m_IsActive = false;
+        var em = m_ThrustersObject.emission;
+        em.enabled = false;
+        m_Animator.speed = 0;
+    }
+
+    private void Awake()
+    {
+        
 
         Invoke("ResetStatus", 1f);
         /*
