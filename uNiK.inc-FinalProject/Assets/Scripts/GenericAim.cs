@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GenericAim : MonoBehaviour {
-
+    
     [SerializeField] private Transform crosshairTransform;
     [SerializeField] private GameObject cam;
     [SerializeField] private GameObject aimArrowPrefab;
@@ -12,19 +12,48 @@ public class GenericAim : MonoBehaviour {
     [SerializeField] private float yPosMod;
     [SerializeField] private float yScaleMax;
 
+    [SerializeField] private Transform firingPosition;
+    [SerializeField] private Rigidbody2D projectile;
+    [SerializeField] private float minPower = 10f;
+    [SerializeField] private float maxPower = 50f;
+    [SerializeField] private float chargeTime = 0.75f;
+
     private GameObject aimArrow;
     private bool mouseDown;
 
-	// Use this for initialization
-	void Start () {
+    private string fireButton = "Fire1";
+    private float chargeSpeed;
+    private float currentPower;
+
+    // Use this for initialization
+    void Start () {
         mouseDown = false;
-	}
+        chargeSpeed = (maxPower - minPower) / chargeTime;
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         CreateOrDestroyArrow();
         AdjustCrosshair();
         AdjustArrow();
+        ChargeAndFireShot();
+    }
+
+    private void ChargeAndFireShot()
+    {
+        if (Input.GetButtonDown(fireButton)) //checks if we have pressed the firing button or not (first time firing)
+        {
+            currentPower = minPower;
+        }
+        else if (Input.GetButtonUp(fireButton)) //checks to see if the button is released, but we have not fired yet
+        {
+            Fire();
+        }
+        else if (Input.GetButton(fireButton)) //checks if the firing button is held down, but we haven't fired yet
+        {
+            currentPower += chargeSpeed * Time.deltaTime;
+            Mathf.Clamp(currentPower, minPower, maxPower);
+        }
     }
 
     private void AdjustCrosshair()
@@ -128,5 +157,12 @@ public class GenericAim : MonoBehaviour {
             float zPos = aimArrow.transform.position.z;
             aimArrow.transform.position = new Vector3(xPos, yPos, zPos);
         }
+    }
+
+    private void Fire()
+    {
+        Vector2 direction = crosshairTransform.position - transform.position;
+        Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
+        formProjectile.velocity = currentPower * (direction / direction.magnitude);
     }
 }

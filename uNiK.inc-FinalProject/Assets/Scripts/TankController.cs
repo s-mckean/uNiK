@@ -10,6 +10,7 @@ public class TankController : MonoBehaviour {
     [SerializeField] private float m_JumpAcceleration = 1f;
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
+    [SerializeField] private Transform m_CrosshairPosition;
 
     /*
     public AudioSource m_MovementAudio;
@@ -19,6 +20,7 @@ public class TankController : MonoBehaviour {
     */
 
     private Rigidbody2D m_Rigidbody;
+    private Transform m_Transform;
     private SpriteRenderer m_SpriteRenderer;
     private Animator m_Animator;
     private float m_MovementInputValue;
@@ -43,6 +45,7 @@ public class TankController : MonoBehaviour {
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
+        m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -178,11 +181,26 @@ public class TankController : MonoBehaviour {
 
     private void Turn()
     {
+        if (m_CrosshairPosition == null)
+        {
+            return;
+        }
+        /*
         if (m_MovementInputValue > 0)
         {
             m_SpriteRenderer.flipX = true;
         }
         else if (m_MovementInputValue < 0)
+        {
+            m_SpriteRenderer.flipX = false;
+        }
+        */
+
+        if (m_CrosshairPosition.position.x - m_Transform.position.x > 0)
+        {
+            m_SpriteRenderer.flipX = true;
+        }
+        else if (m_CrosshairPosition.position.x - m_Transform.position.x < 0)
         {
             m_SpriteRenderer.flipX = false;
         }

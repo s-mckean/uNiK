@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 61146818693440882}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,6 +289,7 @@ MonoBehaviour:
   m_JumpAcceleration: 1
   m_UnlimitedFuel: 1
   m_ThrustersObject: {fileID: 198239737069330608}
+  m_CrosshairPosition: {fileID: 4939293734219758}
 --- !u!114 &114268596307837948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,6 +309,12 @@ MonoBehaviour:
   yScaleMod: 0.005
   yPosMod: 0.00015
   yScaleMax: 1
+  firingPosition: {fileID: 4964833929197512}
+  projectile: {fileID: 50201296251954364, guid: d0402c53e44f8674598d6387ff0d6f60,
+    type: 2}
+  minPower: 10
+  maxPower: 50
+  chargeTime: 0.75
 --- !u!114 &114887652358738524
 MonoBehaviour:
   m_ObjectHideFlags: 1
