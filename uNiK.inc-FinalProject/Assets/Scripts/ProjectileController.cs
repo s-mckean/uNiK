@@ -20,11 +20,17 @@ public class ProjectileController : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Impact();
         Destroy(this.gameObject);
     }
+
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    Impact();
+    //    Destroy(this.gameObject);
+    //}
 
     private void Impact()
     {
