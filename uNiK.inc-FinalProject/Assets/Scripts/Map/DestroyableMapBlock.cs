@@ -21,7 +21,6 @@ public class DestroyableMapBlock : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.CompareTag("Attack")) {
-        Debug.Log("here");
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             spawnedParticleEffects = GameObject.Instantiate(particleEffects, 
