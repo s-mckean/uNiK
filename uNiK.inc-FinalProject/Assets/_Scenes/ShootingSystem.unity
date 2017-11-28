@@ -1008,7 +1008,7 @@ Prefab:
         type: 2}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 50926163785661508, guid: e034715aa76e3cc43bd55dc19ce43bf1,
+      objectReference: {fileID: 50464883028209138, guid: 52bece847b6e33a48ad21b8993c24cc9,
         type: 2}
     - target: {fileID: 114268596307837948, guid: 1ccafb3bf05f460489a561fce11a60dd,
         type: 2}
@@ -1024,6 +1024,21 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198239737069330608, guid: 1ccafb3bf05f460489a561fce11a60dd,
+        type: 2}
+      propertyPath: ShapeModule.radius.value
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 198239737069330608, guid: 1ccafb3bf05f460489a561fce11a60dd,
+        type: 2}
+      propertyPath: randomSeed
+      value: 459982465
+      objectReference: {fileID: 0}
+    - target: {fileID: 198239737069330608, guid: 1ccafb3bf05f460489a561fce11a60dd,
+        type: 2}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ccafb3bf05f460489a561fce11a60dd, type: 2}

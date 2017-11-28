@@ -213,8 +213,8 @@ public class TankController : MonoBehaviour {
     {
         if (!m_UnlimitedFuel)
         {
-            m_FuelCurrent -= Mathf.Abs(m_MovementInputValue) / 3f;
-            m_FuelCurrent -= Mathf.Abs(m_JumpInputValue) / 60f;
+            m_FuelCurrent -= Mathf.Abs(m_MovementInputValue) / 2f;
+            m_FuelCurrent -= Mathf.Abs(m_JumpInputValue);
         }
     }
 
