@@ -155,7 +155,6 @@ public class TankController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Debug.Log(m_FuelCurrent);
         if (CheckFuel() && m_IsActive)
         {
             Move();

@@ -53,7 +53,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -101,7 +101,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 459982465
+  randomSeed: 1830401062
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -566,7 +566,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.3
+      value: 0.6
       mode: 0
       spread: 0
       speed:
@@ -661,7 +661,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1005,15 +1005,15 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0.7205882, g: 0, b: 1, a: 1}
         key1: {r: 0.9411764, g: 1, b: 0, a: 1}
-        key2: {r: 1, g: 0, b: 0, a: 0}
+        key2: {r: 0.058823526, g: 1, b: 0.91695493, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 28720
-        ctime2: 65535
+        ctime1: 10023
+        ctime2: 17348
         ctime3: 0
         ctime4: 0
         ctime5: 0
