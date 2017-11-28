@@ -1507,7 +1507,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
     enabled: 0
@@ -2469,7 +2469,7 @@ ParticleSystem:
     serializedVersion: 3
     type: 1
     collisionMode: 1
-    colliderForce: 0
+    colliderForce: 5
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
@@ -2615,7 +2615,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 1
+    enabled: 0
     collisionShape0: {fileID: 4009985526534642, guid: 61145adab178ded4b964a56c5d35bc09,
       type: 2}
     collisionShape1: {fileID: 0}

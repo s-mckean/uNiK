@@ -27,6 +27,7 @@ public class TurnSystem : MonoBehaviour {
             foreach (TankController controller in team.GetTeamMembers())
             {
                 ActivateCharacter(controller, false);
+                IgnoreCollisionsWithOtherPlayers(controller.gameObject);
             }
         }
 
@@ -34,6 +35,18 @@ public class TurnSystem : MonoBehaviour {
         m_CharactersInActiveTeam = m_ActiveTeam.GetTeamMembers();
         m_ActiveCharacter = m_CharactersInActiveTeam[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
+    }
+
+    private void IgnoreCollisionsWithOtherPlayers(GameObject player)
+    {
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        foreach (TeamHandler team in m_Teams)
+        {
+            foreach (TankController controller in team.GetTeamMembers())
+            {
+                Physics2D.IgnoreCollision(playerCollider, controller.gameObject.GetComponent<Collider2D>());
+            }
+        }
     }
 
     public void NextTurn()
@@ -64,17 +77,19 @@ public class TurnSystem : MonoBehaviour {
         if (active)
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
+            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
         } 
         else
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 0;
+            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
 
         tankController.IsActive = active;
         tankController.GetComponentInChildren<GameCharacter>().ActivateCharacter(active);
 
         // Temporary fix so you can't move other tanks by moving into them
-        tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
+        //tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
 
         var weapSys = tankController.GetComponentInChildren<WeaponSystem>();
         if (weapSys != null)
