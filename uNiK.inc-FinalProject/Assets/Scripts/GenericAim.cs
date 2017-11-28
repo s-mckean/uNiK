@@ -163,6 +163,24 @@ public class GenericAim : MonoBehaviour {
     {
         Vector2 direction = crosshairTransform.position - transform.position;
         Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
-        formProjectile.velocity = currentPower * (direction / direction.magnitude);
+        formProjectile.velocity = currentPower * CalculateAngle(direction);
+    }
+
+    private Vector2 CalculateAngle(Vector2 direction)
+    {
+        Vector2 temp = direction;
+        int xNeg = 1;
+        int yNeg = 1;
+        if (temp.x < 0)
+        {
+            xNeg = -1;
+        }
+        if (temp.y < 0)
+        {
+            yNeg = -1;
+        }
+        temp.x = temp.x * temp.x * xNeg;
+        temp.y = temp.y * temp.y * yNeg;
+        return temp / (direction.magnitude * direction.magnitude);
     }
 }

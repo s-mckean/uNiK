@@ -192,11 +192,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &237333966 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4505220067435714, guid: f3cf73d8068298344ab139ee864fb981,
-    type: 2}
-  m_PrefabInternal: {fileID: 2035838927}
 --- !u!1 &324379979
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +296,7 @@ MonoBehaviour:
   m_JumpAcceleration: 1
   m_UnlimitedFuel: 1
   m_ThrustersObject: {fileID: 1829567145}
+  m_CrosshairPosition: {fileID: 0}
 --- !u!212 &324379984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -360,10 +356,20 @@ Transform:
   - {fileID: 1829567147}
   - {fileID: 860555144}
   - {fileID: 811921091}
-  - {fileID: 237333966}
+  - {fileID: 499741734}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &495974753 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4875867479008242, guid: f3cf73d8068298344ab139ee864fb981,
+    type: 2}
+  m_PrefabInternal: {fileID: 2035838927}
+--- !u!4 &499741734 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4194184783822080, guid: f3cf73d8068298344ab139ee864fb981,
+    type: 2}
+  m_PrefabInternal: {fileID: 2035838927}
 --- !u!1001 &506605496
 Prefab:
   m_ObjectHideFlags: 0
@@ -491,11 +497,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4295096371889776, guid: e954cce895be719498e2dd96a8c3be3f,
     type: 2}
   m_PrefabInternal: {fileID: 1472316851}
---- !u!4 &1469109970 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4466842538557722, guid: f3cf73d8068298344ab139ee864fb981,
-    type: 2}
-  m_PrefabInternal: {fileID: 2035838927}
 --- !u!1001 &1472316851
 Prefab:
   m_ObjectHideFlags: 0
@@ -4111,8 +4112,28 @@ Prefab:
         type: 2}
       propertyPath: firingPosition
       value: 
-      objectReference: {fileID: 1469109970}
+      objectReference: {fileID: 0}
     - target: {fileID: 114167331949862974, guid: f3cf73d8068298344ab139ee864fb981,
+        type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 50201296251954364, guid: d0402c53e44f8674598d6387ff0d6f60,
+        type: 2}
+    - target: {fileID: 4194184783822080, guid: f3cf73d8068298344ab139ee864fb981, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 811921087}
+    - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
+        type: 2}
+      propertyPath: firingPosition
+      value: 
+      objectReference: {fileID: 495974753}
+    - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
         type: 2}
       propertyPath: projectile
       value: 
