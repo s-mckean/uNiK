@@ -139,9 +139,16 @@ public class TurnSystem : MonoBehaviour {
         float origOrthoSize = m_ActiveCamera.orthographicSize;
         float maxHeight = rb.position.y;
 
-        while (projectile.GetComponent<SpriteRenderer>().enabled)
+        while (projectile != null && rb.velocity != Vector2.zero)
         {
-            m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x * 1.1f, 0);
+            if (projectile.GetComponent<SpriteRenderer>().enabled)
+            {
+                m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x * 1.25f, 0);
+            }
+            else
+            {
+                m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
 
             if (rb.velocity.y > 0 && rb.position.y >= maxHeight)
             {
@@ -152,8 +159,7 @@ public class TurnSystem : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }
-
-        m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        
         yield return new WaitForSeconds(2.0f);
 
         m_ActiveCamera.orthographicSize = origOrthoSize;

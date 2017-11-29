@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 20115008964877132}
   - component: {fileID: 124750684920011394}
   - component: {fileID: 81253425983486340}
+  - component: {fileID: 50895117347694822}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -224,6 +225,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!50 &50895117347694822
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685031199156514}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61146818693440882
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -291,6 +312,7 @@ MonoBehaviour:
   m_UnlimitedFuel: 1
   m_ThrustersObject: {fileID: 198239737069330608}
   m_CrosshairPosition: {fileID: 4939293734219758}
+  stats: {fileID: 0}
 --- !u!114 &114268596307837948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,6 +338,8 @@ MonoBehaviour:
   minPower: 10
   maxPower: 50
   chargeTime: 0.75
+  delay: 1
+  firingPosOffset: 0.5
 --- !u!114 &114419565910261158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxScore: 99999
+  origTankSpeed: 12
 --- !u!114 &114887652358738524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +370,8 @@ MonoBehaviour:
   weaponsList: []
   weaponMenu: {fileID: 0}
   buttonPrefab: {fileID: 0}
+  RightScroll: {fileID: 0}
+  LeftScroll: {fileID: 0}
   weaponImageScaling: 75
 --- !u!124 &124750684920011394
 Behaviour:
