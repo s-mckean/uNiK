@@ -30,6 +30,8 @@ public class TankController : MonoBehaviour {
     private float m_FuelCurrent;
     private bool m_IsActive;
 
+    public SpriteRenderer c_SpriteRenderer;
+
     /*     
     private float m_OriginalPitch;
     private string m_MovementAxisName;     
@@ -203,10 +205,12 @@ public class TankController : MonoBehaviour {
         if (m_CrosshairPosition.position.x - m_Transform.position.x > 0)
         {
             m_SpriteRenderer.flipX = true;
+            c_SpriteRenderer.flipX = true;
         }
         else if (m_CrosshairPosition.position.x - m_Transform.position.x < 0)
         {
             m_SpriteRenderer.flipX = false;
+            c_SpriteRenderer.flipX = false;
         }
     }
 
