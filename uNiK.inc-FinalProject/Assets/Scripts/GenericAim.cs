@@ -165,4 +165,9 @@ public class GenericAim : MonoBehaviour {
         Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
         formProjectile.velocity = currentPower * (direction / direction.magnitude);
     }
+
+    private void SetProjectile(Rigidbody2D newProjectile)
+    {
+        projectile = newProjectile;
+    }
 }
