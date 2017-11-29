@@ -9,12 +9,12 @@ public class TeamHandler : MonoBehaviour {
 
     private SpriteRenderer[] m_SpriteRenderers;
     private TankController[] m_TankControllers;
+    private Stats[] m_Stats;
 
     // Use this for initialization
     void Start()
     {
-        m_SpriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        m_TankControllers = GetComponentsInChildren<TankController>();
+        GetActiveMembers();
 
         switch (m_Team)
         {
@@ -23,6 +23,13 @@ public class TeamHandler : MonoBehaviour {
             case Teams.RED: SetColorOfEachTeamMember(Color.red); break;
             case Teams.YELLOW: SetColorOfEachTeamMember(Color.yellow); break;
         }
+    }
+
+    private void GetActiveMembers()
+    {
+        m_SpriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        m_TankControllers = GetComponentsInChildren<TankController>();
+        m_Stats = GetComponentsInChildren<Stats>();
     }
 
     private void SetColorOfEachTeamMember(Color teamColor)
@@ -42,8 +49,13 @@ public class TeamHandler : MonoBehaviour {
         }
     }
 
-    public TankController[] GetTeamMembers()
+    public TankController[] GetTeamControllers()
     {
         return m_TankControllers;
+    }
+
+    public Stats[] GetTeamStats()
+    {
+        return m_Stats;
     }
 }

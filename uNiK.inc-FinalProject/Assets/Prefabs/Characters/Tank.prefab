@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95753169383332664}
   - component: {fileID: 50663889444464440}
   - component: {fileID: 61146818693440882}
+  - component: {fileID: 114419565910261158}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -315,6 +316,19 @@ MonoBehaviour:
   minPower: 10
   maxPower: 50
   chargeTime: 0.75
+--- !u!114 &114419565910261158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322746563887848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0de5dbf05dab594a8a2a93108ba1f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxScore: 99999
 --- !u!114 &114887652358738524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AimScript: {fileID: 114268596307837948}
   m_Crosshair: {fileID: 1961626400562170}
+  weaponsList: []
+  weaponMenu: {fileID: 0}
+  buttonPrefab: {fileID: 0}
+  weaponImageScaling: 75
 --- !u!124 &124750684920011394
 Behaviour:
   m_ObjectHideFlags: 1

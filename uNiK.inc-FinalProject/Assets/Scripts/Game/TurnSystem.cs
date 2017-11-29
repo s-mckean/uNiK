@@ -6,7 +6,8 @@ public class TurnSystem : MonoBehaviour {
 
     [SerializeField] private List<TeamHandler> m_Teams;
 
-    private TankController[] m_CharactersInActiveTeam;
+    private TankController[] m_ActiveTeamControllers;
+    private Stats[] m_ActiveTeamStats;
     private TankController m_ActiveCharacter;
     private TeamHandler m_ActiveTeam;
     private int m_ActiveTeamIndex;
@@ -24,7 +25,7 @@ public class TurnSystem : MonoBehaviour {
     {
         foreach (TeamHandler team in m_Teams)
         {
-            foreach (TankController controller in team.GetTeamMembers())
+            foreach (TankController controller in team.GetTeamControllers())
             {
                 ActivateCharacter(controller, false);
                 IgnoreCollisionsWithOtherPlayers(controller.gameObject);
@@ -32,8 +33,9 @@ public class TurnSystem : MonoBehaviour {
         }
 
         m_ActiveTeam = m_Teams[m_ActiveTeamIndex];
-        m_CharactersInActiveTeam = m_ActiveTeam.GetTeamMembers();
-        m_ActiveCharacter = m_CharactersInActiveTeam[m_ActiveCharacterIndex];
+        m_ActiveTeamControllers = m_ActiveTeam.GetTeamControllers();
+        m_ActiveTeamStats = m_ActiveTeam.GetTeamStats();
+        m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
     }
 
@@ -42,7 +44,7 @@ public class TurnSystem : MonoBehaviour {
         Collider2D playerCollider = player.GetComponent<Collider2D>();
         foreach (TeamHandler team in m_Teams)
         {
-            foreach (TankController controller in team.GetTeamMembers())
+            foreach (TankController controller in team.GetTeamControllers())
             {
                 Physics2D.IgnoreCollision(playerCollider, controller.gameObject.GetComponent<Collider2D>());
             }
@@ -53,7 +55,18 @@ public class TurnSystem : MonoBehaviour {
     {
         ActivateCharacter(m_ActiveCharacter, false);
 
-        if (m_ActiveCharacterIndex + 1 < m_ActiveTeam.GetTeamMembers().Length)
+        do
+        {
+            NextCharacter();
+        } while (!m_ActiveTeamStats[m_ActiveCharacterIndex].isAlive());
+
+        m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
+        ActivateCharacter(m_ActiveCharacter, true);
+    }
+
+    private void NextCharacter()
+    {
+        if (m_ActiveCharacterIndex + 1 < m_ActiveTeam.GetTeamControllers().Length)
         {
             m_ActiveCharacterIndex++;
         }
@@ -63,13 +76,11 @@ public class TurnSystem : MonoBehaviour {
             {
                 m_ActiveTeamIndex = (m_ActiveTeamIndex + 1) % m_Teams.Count;
                 m_ActiveTeam = m_Teams[m_ActiveTeamIndex];
-                m_CharactersInActiveTeam = m_ActiveTeam.GetTeamMembers();
+                m_ActiveTeamControllers = m_ActiveTeam.GetTeamControllers();
+                m_ActiveTeamStats = m_ActiveTeam.GetTeamStats();
                 m_ActiveCharacterIndex = 0;
-            }   while (m_CharactersInActiveTeam.Length <= 0);
+            } while (m_ActiveTeamControllers.Length <= 0);
         }
-
-        m_ActiveCharacter = m_CharactersInActiveTeam[m_ActiveCharacterIndex];
-        ActivateCharacter(m_ActiveCharacter, true);
     }
 
     private void ActivateCharacter(TankController tankController, bool active)
