@@ -166,7 +166,7 @@ public class GenericAim : MonoBehaviour {
         formProjectile.velocity = currentPower * (direction / direction.magnitude);
     }
 
-    private void SetProjectile(Rigidbody2D newProjectile)
+    public void SetProjectile(Rigidbody2D newProjectile)
     {
         projectile = newProjectile;
     }
