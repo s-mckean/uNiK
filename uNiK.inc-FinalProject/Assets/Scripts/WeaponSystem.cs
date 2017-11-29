@@ -10,9 +10,12 @@ public class WeaponSystem : MonoBehaviour {
     [SerializeField] private List<Rigidbody2D> weaponsList;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
+    [SerializeField] private GameObject RightScroll;
+    [SerializeField] private GameObject LeftScroll;
     private List<Button> buttons;
-    private bool weaponMenuIsOpen;
+    private bool weaponMenuIsOpen, scrollLShow, scrollRShow;
     public float weaponImageScaling = 75f;
+    private int showingButtons = 12;
 
     private void Start()
     {
@@ -20,6 +23,7 @@ public class WeaponSystem : MonoBehaviour {
         CreateButtons();
         weaponMenu.SetActive(false);
         weaponMenuIsOpen = false;
+        HideScrollButtons();
     }
     private void Update()
     {
@@ -53,14 +57,11 @@ public class WeaponSystem : MonoBehaviour {
 
     public void CreateButtons()
     {
-        int weaponCount = 0;
         float buttonY = 0.0f;
-        foreach (Rigidbody2D weapon in weaponsList)
+        for(int i = 0; i < 12; i++)
         {
-            float buttonX = -2.0f + ((weaponCount % 4) * 3);
-            if (weaponCount % 4 == 0 && weaponCount != 0) buttonY -= 3;
-
-            Sprite weaponSprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            float buttonX = -2.0f + ((i % 4) * 3);
+            if (i % 4 == 0 && i != 0) buttonY -= 3;
 
             Button newButton = Instantiate(buttonPrefab);
             newButton.transform.SetParent(weaponMenu.transform, false);
@@ -70,15 +71,42 @@ public class WeaponSystem : MonoBehaviour {
             weaponImage.transform.SetParent(newButton.transform, false);
             weaponImage.transform.position = new Vector2(buttonX, buttonY);
             weaponImage.AddComponent<SpriteRenderer>();
-            weaponImage.GetComponent<SpriteRenderer>().sprite = weaponSprite;
-            weaponImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            weaponImage.GetComponent<SpriteRenderer>().sortingOrder = 3;
             weaponImage.transform.localScale = new Vector2(weaponImageScaling, weaponImageScaling);
 
-            newButton.onClick.AddListener(delegate { ButtonPress(weapon); });
+            if (i <= weaponsList.Count - 1)
+            {
+                Rigidbody2D weapon = weaponsList[i];
+                weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                newButton.onClick.AddListener(delegate { ButtonPress(weapon); });
+            }
 
             buttons.Add(newButton);
+        }
+    }
 
-            weaponCount++;
+    private void HideScrollButtons()
+    {
+        if (showingButtons < weaponsList.Count)
+        {
+            RightScroll.SetActive(true);
+            scrollRShow = true;
+        }
+        else
+        {
+            RightScroll.SetActive(false);
+            scrollRShow = false;
+        }
+
+        if (showingButtons - 12 > 0)
+        {
+            LeftScroll.SetActive(true);
+            scrollLShow = true;
+        }
+        else
+        {
+            LeftScroll.SetActive(false);
+            scrollLShow = false;
         }
     }
 
@@ -86,5 +114,39 @@ public class WeaponSystem : MonoBehaviour {
     {
         GetComponent<GenericAim>().SetProjectile(weaponSelected);
         OpenWeaponMenu();
+    }
+
+    public void ScrollingButtonRight()
+    {
+        showingButtons += 12;
+        HideScrollButtons();
+        for(int i = 0; i < 12; i++)
+        {
+            if (i + (showingButtons - 12) <= weaponsList.Count - 1)
+            {
+                Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
+                buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                buttons[i].onClick.RemoveAllListeners();
+                buttons[i].onClick.AddListener(delegate { ButtonPress(weapon); });
+            }
+            else
+            {
+                buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = null;
+                buttons[i].onClick.RemoveAllListeners();
+            }
+        }
+    }
+
+    public void ScrollingButtonLeft()
+    {
+        showingButtons -= 12;
+        HideScrollButtons();
+        for (int i = 0; i < 12; i++)
+        {
+            Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
+            buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            buttons[i].onClick.RemoveAllListeners();
+            buttons[i].onClick.AddListener(delegate { ButtonPress(weapon); });
+        }
     }
 }
