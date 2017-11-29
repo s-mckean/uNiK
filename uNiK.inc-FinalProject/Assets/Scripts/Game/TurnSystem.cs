@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurnSystem : MonoBehaviour {
 
     [SerializeField] private List<TeamHandler> m_Teams;
+    [SerializeField] private Camera m_ProjectileCamera;
 
     private TankController[] m_ActiveTeamControllers;
     private Stats[] m_ActiveTeamStats;
@@ -12,7 +13,6 @@ public class TurnSystem : MonoBehaviour {
     private TeamHandler m_ActiveTeam;
     private int m_ActiveTeamIndex;
     private int m_ActiveCharacterIndex;
-    private Camera m_ActiveCamera;
 
     public static TurnSystem Instance;
 
@@ -100,7 +100,6 @@ public class TurnSystem : MonoBehaviour {
         if (active)
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
-            m_ActiveCamera = tankController.gameObject.GetComponentInChildren<Camera>();
             tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
         } 
         else
@@ -135,35 +134,50 @@ public class TurnSystem : MonoBehaviour {
 
     private IEnumerator AdjustCamera(GameObject projectile)
     {
+        if (m_ProjectileCamera != null)
+        {
+            m_ProjectileCamera.GetComponent<Transform>().SetPositionAndRotation(
+                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().position,
+                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().rotation);
+        }
+        else
+        {
+            ActivateTankControls(m_ActiveCharacter, true);
+            yield break;
+        }
+
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        float origOrthoSize = m_ActiveCamera.orthographicSize;
+        m_ProjectileCamera.depth = 10;
+        Rigidbody2D camBdy = m_ProjectileCamera.GetComponent<Rigidbody2D>();
+        float origOrthoSize = m_ProjectileCamera.orthographicSize;
         float maxHeight = rb.position.y;
 
         while (projectile != null && rb.velocity != Vector2.zero)
         {
+            Debug.Log(rb.velocity.x + " " + camBdy.velocity.x);
             if (projectile.GetComponent<SpriteRenderer>().enabled)
             {
-                m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x * 1.25f, 0);
+                camBdy.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.75f);
             }
             else
             {
-                m_ActiveCamera.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                camBdy.velocity = Vector2.zero;
             }
 
             if (rb.velocity.y > 0 && rb.position.y >= maxHeight)
             {
-                float newOrthoSize = m_ActiveCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 100f;
-                m_ActiveCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 8f);
+                float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 100f;
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 8f);
                 maxHeight = rb.position.y;
             }
 
             yield return new WaitForFixedUpdate();
         }
-        
+
+        camBdy.velocity = Vector2.zero;
         yield return new WaitForSeconds(2.0f);
 
-        m_ActiveCamera.orthographicSize = origOrthoSize;
-        m_ActiveCamera.transform.localPosition = new Vector3(0, 0, -10);
+        m_ProjectileCamera.depth = 0;
         ActivateTankControls(m_ActiveCharacter, true);
     }
 }
