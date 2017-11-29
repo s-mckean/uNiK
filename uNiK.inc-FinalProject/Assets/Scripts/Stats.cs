@@ -6,6 +6,7 @@ public class Stats : MonoBehaviour {
 
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
+    public float origTankSpeed = 12f;
 
     private int score;
     private int health;
@@ -16,6 +17,7 @@ public class Stats : MonoBehaviour {
         score = 0;
         health = maxHealth;
         alive = true;
+        ResetTankSpeed();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +56,13 @@ public class Stats : MonoBehaviour {
         {
             health = 0;
             alive = false;
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
     }
 
     public void ModScore(int value)
@@ -78,5 +86,15 @@ public class Stats : MonoBehaviour {
         {
             score = maxScore;
         }
+    }
+
+    public void ModTankSpeed(float speed)
+    {
+        GetComponent<TankController>().ModTankSpeed(speed);
+    }
+
+    public void ResetTankSpeed()
+    {
+        ModTankSpeed(origTankSpeed);
     }
 }
