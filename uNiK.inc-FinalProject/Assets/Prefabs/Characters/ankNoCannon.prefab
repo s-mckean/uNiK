@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 50566155209243478}
   - component: {fileID: 61786023430629020}
   m_Layer: 0
-  m_Name: TankNoCannon
+  m_Name: ankNoCannon
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
