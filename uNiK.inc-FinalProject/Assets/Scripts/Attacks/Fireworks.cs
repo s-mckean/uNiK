@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Fireworks : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField] private GameObject explosion;
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Instantiate(explosion, other.transform.position, Quaternion.identity);
+    }
 }
