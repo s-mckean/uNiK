@@ -6,10 +6,12 @@ public class ProjectileController : MonoBehaviour {
 
     public GameObject hitbox;       // Moved from ProjectileImpact to here
     private bool rotateRound;
+    private bool active;
 
 	// Use this for initialization
 	void Start () {
         rotateRound = true;
+        active = false;
 	}
 	
 	// Update is called once per frame
@@ -26,10 +28,9 @@ public class ProjectileController : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    //private void OnTriggerEnter2D(Collider2D other)
+    //private void OnCollisionExit2D(Collision2D collision)
     //{
-    //    Impact();
-    //    Destroy(this.gameObject);
+    //    active = true;
     //}
 
     private void Impact()

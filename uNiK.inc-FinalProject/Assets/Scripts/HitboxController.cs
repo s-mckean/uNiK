@@ -22,7 +22,7 @@ public class HitboxController : MonoBehaviour {
             explosionDuration = particles.GetComponent<ParticleSystem>().main.duration;
             SetupExplosion();
         }
-        Destroy(this.gameObject, lifetime);
+        Destroy(this.gameObject, explosionDuration);
     }
 	
 	// Update is called once per frame
@@ -48,7 +48,7 @@ public class HitboxController : MonoBehaviour {
 
     private int CalculateSplashDamage(Collider2D other)
     {
-        float distanceFromCenter = (transform.position - other.transform.position).magnitude - other.GetComponent<CircleCollider2D>().radius;
+        float distanceFromCenter = Mathf.Abs(GetComponent<CircleCollider2D>().Distance(other).distance);
         return (int)(damage * outerDmgMod * ((radius - distanceFromCenter) / radius));
     }
 
@@ -64,11 +64,11 @@ public class HitboxController : MonoBehaviour {
             }
             else
             {
-                if (other.bounds.Intersects(innerHitbox.GetComponent<SphereCollider>().bounds))
+                if (other.bounds.Intersects(innerHitbox.GetComponent<CircleCollider2D>().bounds))
                 {
                     other.gameObject.GetComponent<Stats>().ModHealth(-damage);
                 }
-                else if (other.bounds.Intersects(GetComponent<SphereCollider>().bounds))
+                else if (other.bounds.Intersects(GetComponent<CircleCollider2D>().bounds))
                 {
                     other.gameObject.GetComponent<Stats>().ModHealth(CalculateSplashDamage(other));
                 }
