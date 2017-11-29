@@ -194,4 +194,9 @@ public class GenericAim : MonoBehaviour {
         temp.y = Mathf.Sqrt(temp.y) * yNeg;
         return temp;
     }
+
+    public void SetProjectile(Rigidbody2D newProjectile)
+    {
+        projectile = newProjectile;
+    }
 }
