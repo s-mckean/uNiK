@@ -17,6 +17,8 @@ public class GenericAim : MonoBehaviour {
     [SerializeField] private float minPower = 10f;
     [SerializeField] private float maxPower = 50f;
     [SerializeField] private float chargeTime = 0.75f;
+    [SerializeField] private float delay = 1.0f;
+    [SerializeField] private float firingPosOffset = 0.5f;      // Testing firing position
 
     private GameObject aimArrow;
     private bool mouseDown;
@@ -24,11 +26,13 @@ public class GenericAim : MonoBehaviour {
     private string fireButton = "Fire1";
     private float chargeSpeed;
     private float currentPower;
+    private float lastShot;
 
     // Use this for initialization
     void Start () {
         mouseDown = false;
         chargeSpeed = (maxPower - minPower) / chargeTime;
+        lastShot = 0f;
     }
 	
 	// Update is called once per frame
@@ -45,9 +49,10 @@ public class GenericAim : MonoBehaviour {
         {
             currentPower = minPower;
         }
-        else if (Input.GetButtonUp(fireButton)) //checks to see if the button is released, but we have not fired yet
+        else if (Input.GetButtonUp(fireButton) && (Time.time - lastShot) > delay) //checks to see if the button is released, but we have not fired yet
         {
             Fire();
+            lastShot = Time.time;
         }
         else if (Input.GetButton(fireButton)) //checks if the firing button is held down, but we haven't fired yet
         {
@@ -162,7 +167,10 @@ public class GenericAim : MonoBehaviour {
     private void Fire()
     {
         Vector2 direction = crosshairTransform.position - transform.position;
-        Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
+        // Part of testing firing position
+        Vector2 tempFiringPos = Vector2.MoveTowards(transform.position, crosshairTransform.position, firingPosOffset);
+        Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, firingPosition.rotation) as Rigidbody2D;
+        //Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
         formProjectile.velocity = currentPower * CalculateAngle(direction);
     }
 
@@ -179,8 +187,11 @@ public class GenericAim : MonoBehaviour {
         {
             yNeg = -1;
         }
-        temp.x = temp.x * temp.x * xNeg;
-        temp.y = temp.y * temp.y * yNeg;
-        return temp / (direction.magnitude * direction.magnitude);
+        temp.x = temp.x * temp.x;
+        temp.y = temp.y * temp.y;
+        temp = temp / (direction.magnitude * direction.magnitude);
+        temp.x = Mathf.Sqrt(temp.x) * xNeg;
+        temp.y = Mathf.Sqrt(temp.y) * yNeg;
+        return temp;
     }
 }

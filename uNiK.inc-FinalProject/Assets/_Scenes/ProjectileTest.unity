@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 324379982}
   - component: {fileID: 324379981}
   - component: {fileID: 324379980}
+  - component: {fileID: 324379986}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -297,6 +298,7 @@ MonoBehaviour:
   m_UnlimitedFuel: 1
   m_ThrustersObject: {fileID: 1829567145}
   m_CrosshairPosition: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!212 &324379984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -358,60 +360,27 @@ Transform:
   - {fileID: 811921091}
   - {fileID: 499741734}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &495974753 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4875867479008242, guid: f3cf73d8068298344ab139ee864fb981,
-    type: 2}
-  m_PrefabInternal: {fileID: 2035838927}
+--- !u!114 &324379986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 324379979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0de5dbf05dab594a8a2a93108ba1f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxScore: 99999
+  origTankSpeed: 12
 --- !u!4 &499741734 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4194184783822080, guid: f3cf73d8068298344ab139ee864fb981,
     type: 2}
   m_PrefabInternal: {fileID: 2035838927}
---- !u!1001 &506605496
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561481009194038, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d0402c53e44f8674598d6387ff0d6f60, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &811921087
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +587,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -601214339
+  randomSeed: 1357375437
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4132,13 +4101,18 @@ Prefab:
         type: 2}
       propertyPath: firingPosition
       value: 
-      objectReference: {fileID: 495974753}
+      objectReference: {fileID: 324379985}
     - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
         type: 2}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 50201296251954364, guid: d0402c53e44f8674598d6387ff0d6f60,
         type: 2}
+    - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
+        type: 2}
+      propertyPath: infiniteFire
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3cf73d8068298344ab139ee864fb981, type: 2}
   m_IsPrefabParent: 0

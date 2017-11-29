@@ -11,6 +11,7 @@ public class TankController : MonoBehaviour {
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
+    [SerializeField] private Stats stats;
 
     /*
     public AudioSource m_MovementAudio;
@@ -243,5 +244,10 @@ public class TankController : MonoBehaviour {
     public float GetCurrentFuel()
     {
         return m_FuelCurrent;
+    }
+
+    public void ModTankSpeed(float speed)
+    {
+        m_Speed = speed;
     }
 }
