@@ -551,6 +551,31 @@ MonoBehaviour:
   m_ComponentObjects:
   - {fileID: 251398512}
   - {fileID: 967770586}
+--- !u!1 &163909150 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1685031199156514, guid: 1ccafb3bf05f460489a561fce11a60dd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1302724675}
+--- !u!50 &163909155
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163909150}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &173511470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,7 +2968,7 @@ Prefab:
         type: 2}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 50926163785661508, guid: e034715aa76e3cc43bd55dc19ce43bf1,
+      objectReference: {fileID: 50464883028209138, guid: 52bece847b6e33a48ad21b8993c24cc9,
         type: 2}
     - target: {fileID: 114268596307837948, guid: 1ccafb3bf05f460489a561fce11a60dd,
         type: 2}

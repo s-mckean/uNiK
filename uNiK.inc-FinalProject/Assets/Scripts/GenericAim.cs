@@ -172,6 +172,11 @@ public class GenericAim : MonoBehaviour {
         Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, firingPosition.rotation) as Rigidbody2D;
         //Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
         formProjectile.velocity = currentPower * CalculateAngle(direction);
+
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.ShotFired(formProjectile.gameObject);
+        }
     }
 
     private Vector2 CalculateAngle(Vector2 direction)
