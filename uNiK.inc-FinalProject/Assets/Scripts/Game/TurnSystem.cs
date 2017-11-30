@@ -154,8 +154,10 @@ public class TurnSystem : MonoBehaviour {
 
         while (projectile != null && rb.velocity != Vector2.zero)
         {
-            Debug.Log(rb.velocity.x + " " + camBdy.velocity.x);
-            if (projectile.GetComponent<SpriteRenderer>().enabled)
+            if ((projectile.GetComponent<SpriteRenderer>() != null &&
+                projectile.GetComponent<SpriteRenderer>().enabled) ||
+                (projectile.GetComponent<ParticleSystem>() != null &&
+                projectile.GetComponent<ParticleSystem>().isEmitting))
             {
                 camBdy.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.75f);
             }
