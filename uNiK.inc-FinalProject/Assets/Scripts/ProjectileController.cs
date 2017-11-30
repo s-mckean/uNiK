@@ -37,11 +37,8 @@ public class ProjectileController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Time.time - timeSpawned > 0.1f)
-        {
-            Impact();
-            Destroy(this.gameObject);
-        }
+        Impact();
+        Destroy(this.gameObject);
     }
 
     //private void OnCollisionExit2D(Collision2D collision)

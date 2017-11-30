@@ -11,7 +11,6 @@ public class TankController : MonoBehaviour {
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
-    [SerializeField] private Stats stats;
 
     /*
     public AudioSource m_MovementAudio;

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 58684871043285266}
   - component: {fileID: 50061830340969822}
   m_Layer: 0
-  m_Name: Star_03
+  m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
 --- !u!114 &114092467376265318
 MonoBehaviour:
   m_ObjectHideFlags: 1
