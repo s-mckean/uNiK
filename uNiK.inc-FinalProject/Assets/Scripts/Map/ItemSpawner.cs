@@ -10,14 +10,10 @@ public class ItemSpawner : MonoBehaviour {
     void Start () {
         itemsList = Resources.LoadAll<Rigidbody2D>("Items");
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    private void spawnItem()
+    public void SpawnItem()
     {
-        
+        int itemPos = Random.Range(0, itemsList.Length);
+        Instantiate(itemsList[itemPos], transform.position, Quaternion.identity);
     }
 }
