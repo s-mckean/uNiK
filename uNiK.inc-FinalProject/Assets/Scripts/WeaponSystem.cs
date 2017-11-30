@@ -7,7 +7,7 @@ public class WeaponSystem : MonoBehaviour {
 
     [SerializeField] private MonoBehaviour m_AimScript;
     [SerializeField] private GameObject m_Crosshair;
-    [SerializeField] private List<Rigidbody2D> weaponsList;
+    /*[SerializeField]*/ private Rigidbody2D[] weaponsList;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private GameObject RightScroll;
@@ -19,6 +19,7 @@ public class WeaponSystem : MonoBehaviour {
 
     private void Start()
     {
+        weaponsList = Resources.LoadAll<Rigidbody2D>("Projectile Prefabs");
         buttons = new List<Button>();
         CreateButtons();
         weaponMenu.SetActive(false);
@@ -74,10 +75,11 @@ public class WeaponSystem : MonoBehaviour {
             weaponImage.GetComponent<SpriteRenderer>().sortingOrder = 3;
             weaponImage.transform.localScale = new Vector2(weaponImageScaling, weaponImageScaling);
 
-            if (i <= weaponsList.Count - 1)
+            if (i <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i];
                 weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                weaponImage.GetComponent<SpriteRenderer>().color = weapon.GetComponent<SpriteRenderer>().color;
                 newButton.onClick.AddListener(delegate { ButtonPress(weapon); });
             }
 
@@ -87,7 +89,7 @@ public class WeaponSystem : MonoBehaviour {
 
     private void HideScrollButtons()
     {
-        if (showingButtons < weaponsList.Count)
+        if (showingButtons < weaponsList.Length)
         {
             RightScroll.SetActive(true);
             scrollRShow = true;
@@ -122,7 +124,7 @@ public class WeaponSystem : MonoBehaviour {
         HideScrollButtons();
         for(int i = 0; i < 12; i++)
         {
-            if (i + (showingButtons - 12) <= weaponsList.Count - 1)
+            if (i + (showingButtons - 12) <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
                 buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
