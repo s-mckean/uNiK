@@ -79,7 +79,7 @@ public class TurnSystem : MonoBehaviour {
         {
             if (CheckAllDead())
             {
-                return;
+                Event_GameOver(null);
             }
             NextCharacter();
         } while (!m_ActiveTeamStats[m_ActiveCharacterIndex].IsAlive());
@@ -88,6 +88,13 @@ public class TurnSystem : MonoBehaviour {
         ActivateCharacter(m_ActiveCharacter, true);
 
         TurnTimer.Instance.ResetTimer();
+
+        TeamHandler lastTeam = CheckLastTeamAlive();
+        if (lastTeam != null)
+        {
+            Event_GameOver(lastTeam);
+        }
+
         TurnTimer.Instance.RunTimer();
     }
 
@@ -208,7 +215,7 @@ public class TurnSystem : MonoBehaviour {
         NextTurn();
     }
 
-    private bool CheckLastTeamAlive()
+    private TeamHandler CheckLastTeamAlive()
     {
         bool AtLeastOneTeamAlive = false;
 
@@ -222,12 +229,12 @@ public class TurnSystem : MonoBehaviour {
                 }
                 else if (charStat.IsAlive() && AtLeastOneTeamAlive)
                 {
-                    return false;
+                    return team;
                 }
             }
         }
 
-        return true;
+        return null;
     }
 
     public List<TeamHandler> GetTeams()
@@ -251,5 +258,13 @@ public class TurnSystem : MonoBehaviour {
     {
         ActivateTankControls(m_ActiveCharacter, false);
         TurnTimer.Instance.PauseTimer();
+    }
+
+    public void Event_GameOver(TeamHandler winningTeam)
+    {
+        if (winningTeam == null)
+        {
+
+        }
     }
 }
