@@ -67,15 +67,17 @@ public class WeaponMenu : MonoBehaviour {
 
         while (true)
         {
+            Debug.Log(m_Image.color.a);
             if (m_Image.color.a - m_FadeTarget == 0.0f)
             {
+                
                 m_MenuInTransition = false;
                 CheckClosedMenu();
                 yield break;
             }
             else
             {
-                float alpha = m_Image.color.a + m_FadeDeltaAlpha;
+                float alpha = Mathf.Clamp01(m_Image.color.a + m_FadeDeltaAlpha);
                 float red = m_Image.color.r;
                 float green = m_Image.color.g;
                 float blue = m_Image.color.b;
