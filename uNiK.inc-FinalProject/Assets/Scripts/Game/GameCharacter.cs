@@ -17,7 +17,7 @@ public class GameCharacter : MonoBehaviour {
         m_PlayerName = "Player";
     }
 
-    public void ActivateCharacter(bool activate)
+    public void ActivatePlayerBar(bool activate)
     {
         foreach (GameObject obj in m_ComponentObjects)
         {

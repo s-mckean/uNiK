@@ -134,7 +134,7 @@ public class TurnSystem : MonoBehaviour {
     private void ActivateTankControls(TankController tankController, bool active)
     {
         tankController.IsActive = active;
-        tankController.GetComponentInChildren<GameCharacter>().ActivateCharacter(active);
+        tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
 
         // Temporary fix so you can't move other tanks by moving into them
         //tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
@@ -177,7 +177,7 @@ public class TurnSystem : MonoBehaviour {
             if ((projectile.GetComponent<SpriteRenderer>() != null &&
                 projectile.GetComponent<SpriteRenderer>().enabled) ||
                 (projectile.GetComponent<ParticleSystem>() != null &&
-                projectile.GetComponent<ParticleSystem>().isEmitting))
+                projectile.GetComponent<ParticleSystem>().isPlaying))
             {
                 camBdy.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.75f);
             }
