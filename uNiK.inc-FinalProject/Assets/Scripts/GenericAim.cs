@@ -201,4 +201,12 @@ public class GenericAim : MonoBehaviour {
     {
         projectile = newProjectile;
     }
+
+    public void ResetShot()
+    {
+        DestroyArrow();
+        currentPower = minPower;
+        lastShot = Time.time;
+        mouseDown = false;
+    }
 }

@@ -169,6 +169,12 @@ public class TurnSystem : MonoBehaviour {
         {
             weapSys.ActivateSystem(active);
         }
+
+        var aimSys = tankController.GetComponentInChildren<GenericAim>();
+        if (aimSys != null)
+        {
+            aimSys.ResetShot();
+        }
     }
 
     private IEnumerator AdjustCamera(GameObject projectile)
