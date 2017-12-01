@@ -20,17 +20,41 @@ public class Healthbar : MonoBehaviour {
         m_Slider.interactable = false;
 	}
 
+    private void Awake()
+    {
+        StartCoroutine(UpdateHealthbar());
+    }
+
     private void Update()
     {
-        if (m_Character != null)
-        {
-            Stats m_Stats = m_Character.GetStats();
-            float currHealth = (float)m_Stats.GetHealth();
-            float maxHealth = (float)m_Stats.GetMaxHealth();
-            float newValue = (currHealth / maxHealth) * m_MaxValue;
+        //if (m_Character != null)
+        //{
+        //    Stats m_Stats = m_Character.GetStats();
+        //    float currHealth = (float)m_Stats.GetHealth();
+        //    float maxHealth = (float)m_Stats.GetMaxHealth();
+        //    float newValue = (currHealth / maxHealth) * m_MaxValue;
 
-            m_Slider.value = newValue;
-            CheckZero();
+        //    m_Slider.value = newValue;
+        //    CheckZero();
+        //}
+    }
+
+    private IEnumerator UpdateHealthbar()
+    {
+        while (true)
+        {
+            if (m_Character != null)
+            {
+                Stats m_Stats = m_Character.GetStats();
+                float currHealth = (float)m_Stats.GetHealth();
+                float maxHealth = (float)m_Stats.GetMaxHealth();
+                float newValue = (currHealth / maxHealth) * m_MaxValue;
+
+                m_Slider.value = newValue;
+                CheckZero();
+            }
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

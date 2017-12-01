@@ -20,8 +20,40 @@ public class TimerAndFuelController : MonoBehaviour {
         
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(UpdateTimerText());
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(UpdateTimerText());
+    }
+
     public void SetBarColor(Color newColor)
     {
         m_SpriteRenderer.color = newColor;
+    }
+
+    private IEnumerator UpdateTimerText()
+    {
+        TurnTimer m_Timer = TurnTimer.Instance;
+
+        if (m_Timer == null)
+        {
+            yield break;
+        }
+
+        while (true)
+        {
+            m_TimerText.text = "Timer: " + m_Timer.GetCurrentTime();
+
+            if (m_Timer.FreezeTimer)
+            {
+                m_TimerText.text += " (frozen)";
+            }
+
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 }

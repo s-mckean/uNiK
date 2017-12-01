@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (TurnTimer))]
+
 public class TurnSystem : MonoBehaviour {
+
 
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
@@ -18,6 +21,14 @@ public class TurnSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        m_ActiveTeamIndex = 0;
+        m_ActiveCharacterIndex = 0;
+
+        Invoke("Setup", 1f);
+	}
+
+    private void Awake()
+    {
         if (Instance == null)
         {
             Instance = this;
@@ -26,12 +37,7 @@ public class TurnSystem : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        m_ActiveTeamIndex = 0;
-        m_ActiveCharacterIndex = 0;
-
-        Invoke("Setup", 1f);
-	}
+    }
 
     private void Setup()
     {
@@ -49,6 +55,8 @@ public class TurnSystem : MonoBehaviour {
         m_ActiveTeamStats = m_ActiveTeam.GetTeamStats();
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
+
+        StartCoroutine(TurnTimer.Instance.StartTimer());
     }
 
     private void IgnoreCollisionsWithOtherPlayers(GameObject player)
@@ -78,6 +86,9 @@ public class TurnSystem : MonoBehaviour {
 
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
+
+        TurnTimer.Instance.ResetTimer();
+        TurnTimer.Instance.RunTimer();
     }
 
     private void NextCharacter()
@@ -146,12 +157,6 @@ public class TurnSystem : MonoBehaviour {
         }
     }
 
-    public void ShotFired(GameObject projectile)
-    {
-        ActivateTankControls(m_ActiveCharacter, false);
-        StartCoroutine(AdjustCamera(projectile));
-    }
-
     private IEnumerator AdjustCamera(GameObject projectile)
     {
         if (m_ProjectileCamera != null)
@@ -203,8 +208,48 @@ public class TurnSystem : MonoBehaviour {
         NextTurn();
     }
 
+    private bool CheckLastTeamAlive()
+    {
+        bool AtLeastOneTeamAlive = false;
+
+        foreach (TeamHandler team in m_Teams)
+        {
+            foreach (Stats charStat in team.GetTeamStats())
+            {
+                if (charStat.IsAlive() && !AtLeastOneTeamAlive)
+                {
+                    AtLeastOneTeamAlive = true;
+                }
+                else if (charStat.IsAlive() && AtLeastOneTeamAlive)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public List<TeamHandler> GetTeams()
     {
         return this.m_Teams;
+    }
+
+    public void Event_ShotFired(GameObject projectile)
+    {
+        EndTurn();
+        StartCoroutine(AdjustCamera(projectile));
+    }
+
+    public void Event_TimeRanOut()
+    {
+        EndTurn();
+        Invoke("NextTurn", 2.0f);
+    }
+
+    private void EndTurn()
+    {
+        ActivateTankControls(m_ActiveCharacter, false);
+        TurnTimer.Instance.PauseTimer();
     }
 }

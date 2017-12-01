@@ -175,7 +175,7 @@ public class GenericAim : MonoBehaviour {
 
         if (TurnSystem.Instance != null)
         {
-            TurnSystem.Instance.ShotFired(formProjectile.gameObject);
+            TurnSystem.Instance.Event_ShotFired(formProjectile.gameObject);
         }
     }
 
