@@ -78,8 +78,9 @@ public class WeaponSystem : MonoBehaviour {
             if (i <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i];
-                weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-                weaponImage.GetComponent<SpriteRenderer>().color = weapon.GetComponent<SpriteRenderer>().color;
+                //weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                //weaponImage.GetComponent<SpriteRenderer>().color = weapon.GetComponent<SpriteRenderer>().color;
+                newButton.GetComponentInChildren<Text>().text = weapon.name;
                 newButton.onClick.AddListener(delegate { ButtonPress(weapon); });
             }
 
