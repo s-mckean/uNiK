@@ -37,6 +37,11 @@ public class Stats : MonoBehaviour {
         return alive;
     }
 
+    public void ModName(string name)
+    {
+        this.name = name;
+    }
+
     public void ModHealth(int value)
     {
         health += value;
