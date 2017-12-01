@@ -9,6 +9,7 @@ public class TurnSystem : MonoBehaviour {
 
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
+    [SerializeField] private bool m_Freeplay = true;
 
     private TankController[] m_ActiveTeamControllers;
     private Stats[] m_ActiveTeamStats;
@@ -16,6 +17,7 @@ public class TurnSystem : MonoBehaviour {
     private TeamHandler m_ActiveTeam;
     private int m_ActiveTeamIndex;
     private int m_ActiveCharacterIndex;
+    private Coroutine m_TimerCoroutine;
 
     public static TurnSystem Instance;
 
@@ -56,7 +58,7 @@ public class TurnSystem : MonoBehaviour {
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
 
-        StartCoroutine(TurnTimer.Instance.StartTimer());
+        m_TimerCoroutine = StartCoroutine(TurnTimer.Instance.StartTimer());
         m_ProjectileCamera.depth = -10;
     }
 
@@ -83,6 +85,7 @@ public class TurnSystem : MonoBehaviour {
                 Event_GameOver(null);
             }
             NextCharacter();
+
         } while (!m_ActiveTeamStats[m_ActiveCharacterIndex].IsAlive());
 
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
@@ -90,12 +93,15 @@ public class TurnSystem : MonoBehaviour {
 
         TurnTimer.Instance.ResetTimer();
 
-        TeamHandler lastTeam = CheckLastTeamAlive();
-        if (lastTeam != null)
+        if (!m_Freeplay)
         {
-            Event_GameOver(lastTeam);
+            TeamHandler lastTeam = CheckLastTeamAlive();
+            if (lastTeam != null)
+            {
+                Event_GameOver(lastTeam);
+            }
         }
-
+        
         TurnTimer.Instance.RunTimer();
     }
 
@@ -254,7 +260,7 @@ public class TurnSystem : MonoBehaviour {
 
     public void Event_TimeRanOut()
     {
-        EndTurn();
+        ActivateTankControls(m_ActiveCharacter, false);
         Invoke("NextTurn", 2.0f);
     }
 
@@ -266,7 +272,8 @@ public class TurnSystem : MonoBehaviour {
 
     public void Event_GameOver(TeamHandler winningTeam)
     {
-        TurnTimer.Instance.StopCoroutine(TurnTimer.Instance.StartTimer());
+        ActivateTankControls(m_ActiveCharacter, false);
+        StopCoroutine(m_TimerCoroutine);
         LargeCenterText centerText = LargeCenterText.Instance;
 
         if (winningTeam != null)

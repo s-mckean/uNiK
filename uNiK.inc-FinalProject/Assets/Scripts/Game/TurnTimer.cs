@@ -39,6 +39,7 @@ public class TurnTimer : MonoBehaviour {
 
             if (CheckZero())
             {
+                ResetTimer();
                 TurnSystem.Instance.Event_TimeRanOut();
             }
 
