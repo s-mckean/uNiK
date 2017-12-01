@@ -69,8 +69,12 @@ public class TurnSystem : MonoBehaviour {
 
         do
         {
+            if (CheckAllDead())
+            {
+                return;
+            }
             NextCharacter();
-        } while (!m_ActiveTeamStats[m_ActiveCharacterIndex].isAlive());
+        } while (!m_ActiveTeamStats[m_ActiveCharacterIndex].IsAlive());
 
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
@@ -93,6 +97,22 @@ public class TurnSystem : MonoBehaviour {
                 m_ActiveCharacterIndex = 0;
             } while (m_ActiveTeamControllers.Length <= 0);
         }
+    }
+
+    private bool CheckAllDead()
+    {
+        foreach (TeamHandler team in m_Teams)
+        {
+            foreach (Stats stats in team.GetTeamStats())
+            {
+                if (stats.IsAlive())
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private void ActivateCharacter(TankController tankController, bool active)
@@ -154,8 +174,10 @@ public class TurnSystem : MonoBehaviour {
 
         while (projectile != null && rb.velocity != Vector2.zero)
         {
-            Debug.Log(rb.velocity.x + " " + camBdy.velocity.x);
-            if (projectile.GetComponent<SpriteRenderer>().enabled)
+            if ((projectile.GetComponent<SpriteRenderer>() != null &&
+                projectile.GetComponent<SpriteRenderer>().enabled) ||
+                (projectile.GetComponent<ParticleSystem>() != null &&
+                projectile.GetComponent<ParticleSystem>().isEmitting))
             {
                 camBdy.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.75f);
             }
@@ -178,6 +200,11 @@ public class TurnSystem : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         m_ProjectileCamera.depth = 0;
-        ActivateTankControls(m_ActiveCharacter, true);
+        NextTurn();
+    }
+
+    public List<TeamHandler> GetTeams()
+    {
+        return this.m_Teams;
     }
 }

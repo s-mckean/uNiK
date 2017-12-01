@@ -11,7 +11,6 @@ public class TankController : MonoBehaviour {
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
-    [SerializeField] private Stats stats;
 
     /*
     public AudioSource m_MovementAudio;
@@ -29,6 +28,8 @@ public class TankController : MonoBehaviour {
     private string m_TurnAxisName;
     private float m_FuelCurrent;
     private bool m_IsActive;
+
+    public SpriteRenderer c_SpriteRenderer;
 
     /*     
     private float m_OriginalPitch;
@@ -203,10 +204,12 @@ public class TankController : MonoBehaviour {
         if (m_CrosshairPosition.position.x - m_Transform.position.x > 0)
         {
             m_SpriteRenderer.flipX = true;
+            c_SpriteRenderer.flipX = true;
         }
         else if (m_CrosshairPosition.position.x - m_Transform.position.x < 0)
         {
             m_SpriteRenderer.flipX = false;
+            c_SpriteRenderer.flipX = false;
         }
     }
 
@@ -249,5 +252,10 @@ public class TankController : MonoBehaviour {
     public void ModTankSpeed(float speed)
     {
         m_Speed = speed;
+    }
+
+    public void AddFuel(float fuel)
+    {
+        m_FuelCurrent += fuel;
     }
 }

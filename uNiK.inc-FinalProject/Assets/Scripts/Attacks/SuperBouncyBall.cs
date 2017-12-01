@@ -24,4 +24,5 @@ public class SuperBouncyBall : MonoBehaviour {
             collision.gameObject.GetComponent<DestroyableMapBlock>().DestroyBlock();
         }
     }
+
 }

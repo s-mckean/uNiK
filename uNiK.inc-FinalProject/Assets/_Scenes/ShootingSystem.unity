@@ -3809,6 +3809,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1691333657163884, guid: 686d5955b9b004745829dbd4054a0469, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494137020648032, guid: 686d5955b9b004745829dbd4054a0469,
+        type: 2}
+      propertyPath: c_SpriteRenderer
+      value: 
+      objectReference: {fileID: 1204520178}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 686d5955b9b004745829dbd4054a0469, type: 2}
   m_IsPrefabParent: 0
@@ -7180,6 +7189,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4321179022737998, guid: 00074fcdd347b654784a81e01d76b369,
     type: 2}
   m_PrefabInternal: {fileID: 236519498}
+--- !u!212 &1204520178 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212873261533468118, guid: 686d5955b9b004745829dbd4054a0469,
+    type: 2}
+  m_PrefabInternal: {fileID: 587429897}
 --- !u!1 &1215650894
 GameObject:
   m_ObjectHideFlags: 0

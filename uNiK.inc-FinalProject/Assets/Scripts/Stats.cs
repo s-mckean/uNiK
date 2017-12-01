@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour {
 
+    [SerializeField] private GameObject explosion;
+
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
     public float origTankSpeed = 12f;
@@ -19,18 +21,18 @@ public class Stats : MonoBehaviour {
         alive = true;
         ResetTankSpeed();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public int GetHealth()
     {
         return health;
     }
 
-    public bool isAlive()
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public bool IsAlive()
     {
         return alive;
     }
@@ -40,6 +42,23 @@ public class Stats : MonoBehaviour {
         health += value;
         CheckOverHealth();
         CheckDead();
+    }
+    
+    public void ModScore(int value)
+    {
+        score += value;
+        CheckMinScore();
+        CheckMaxScore();
+    }
+
+    public void ModTankSpeed(float speed)
+    {
+        GetComponent<TankController>().ModTankSpeed(speed);
+    }
+
+    public void ResetTankSpeed()
+    {
+        ModTankSpeed(origTankSpeed);
     }
 
     private void CheckOverHealth()
@@ -62,17 +81,19 @@ public class Stats : MonoBehaviour {
     private void Die()
     {
         alive = false;
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Rigidbody2D>().isKinematic = true;
-        GetComponent<Collider2D>().enabled = false;
+        //GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<Rigidbody2D>().isKinematic = true;
+        //GetComponent<Collider2D>().enabled = false;
         //Destroy(this.gameObject);
-    }
-
-    public void ModScore(int value)
-    {
-        score += value;
-        CheckMinScore();
-        CheckMaxScore();
+        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.enabled = false;
+        }
+        foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
+        {
+            collider.enabled = false;
+        }
+        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
     }
 
     private void CheckMinScore()
@@ -89,15 +110,5 @@ public class Stats : MonoBehaviour {
         {
             score = maxScore;
         }
-    }
-
-    public void ModTankSpeed(float speed)
-    {
-        GetComponent<TankController>().ModTankSpeed(speed);
-    }
-
-    public void ResetTankSpeed()
-    {
-        ModTankSpeed(origTankSpeed);
     }
 }

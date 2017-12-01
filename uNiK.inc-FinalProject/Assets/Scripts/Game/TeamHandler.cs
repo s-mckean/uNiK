@@ -10,6 +10,7 @@ public class TeamHandler : MonoBehaviour {
     private SpriteRenderer[] m_SpriteRenderers;
     private TankController[] m_TankControllers;
     private Stats[] m_Stats;
+    private GameCharacter[] m_GameCharacters;
 
     // Use this for initialization
     void Start()
@@ -30,6 +31,7 @@ public class TeamHandler : MonoBehaviour {
         m_SpriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         m_TankControllers = GetComponentsInChildren<TankController>();
         m_Stats = GetComponentsInChildren<Stats>();
+        m_GameCharacters = GetComponentsInChildren<GameCharacter>();
     }
 
     private void SetColorOfEachTeamMember(Color teamColor)
@@ -37,6 +39,10 @@ public class TeamHandler : MonoBehaviour {
         foreach (SpriteRenderer spriteRenderer in m_SpriteRenderers)
         {
             spriteRenderer.color = teamColor;
+        }
+        foreach (GameCharacter gameChar in m_GameCharacters)
+        {
+            gameChar.PlayerTeam = m_Team;
         }
     }
 
@@ -57,5 +63,10 @@ public class TeamHandler : MonoBehaviour {
     public Stats[] GetTeamStats()
     {
         return m_Stats;
+    }
+
+    public GameCharacter[] GetGameCharacters()
+    {
+        return m_GameCharacters;
     }
 }
