@@ -55,14 +55,17 @@ public class Stats : MonoBehaviour {
         if (health < 1)
         {
             health = 0;
-            alive = false;
             Die();
         }
     }
 
     private void Die()
     {
-        Destroy(this.gameObject);
+        alive = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Collider2D>().enabled = false;
+        //Destroy(this.gameObject);
     }
 
     public void ModScore(int value)

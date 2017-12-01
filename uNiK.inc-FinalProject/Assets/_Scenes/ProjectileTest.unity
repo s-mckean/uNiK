@@ -4113,6 +4113,11 @@ Prefab:
       propertyPath: infiniteFire
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114924647167695130, guid: f3cf73d8068298344ab139ee864fb981,
+        type: 2}
+      propertyPath: firingPosOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3cf73d8068298344ab139ee864fb981, type: 2}
   m_IsPrefabParent: 0
