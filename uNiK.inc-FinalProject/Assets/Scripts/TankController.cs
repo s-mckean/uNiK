@@ -253,4 +253,9 @@ public class TankController : MonoBehaviour {
     {
         m_Speed = speed;
     }
+
+    public void AddFuel(float fuel)
+    {
+        m_FuelCurrent += fuel;
+    }
 }

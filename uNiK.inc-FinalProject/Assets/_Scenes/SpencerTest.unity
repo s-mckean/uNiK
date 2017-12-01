@@ -3958,7 +3958,7 @@ Prefab:
         type: 2}
       propertyPath: buttonPrefab
       value: 
-      objectReference: {fileID: 114157616239166196, guid: 4b257a9555815214fbfd30f9405d1e7e,
+      objectReference: {fileID: 114059678994618572, guid: 4b257a9555815214fbfd30f9405d1e7e,
         type: 2}
     - target: {fileID: 114302374890645024, guid: 686d5955b9b004745829dbd4054a0469,
         type: 2}
@@ -7569,7 +7569,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214402518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0.55, z: -0.16867301}
+  m_LocalPosition: {x: 0.8, y: 4.7, z: -0.16867301}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

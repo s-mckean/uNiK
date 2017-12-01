@@ -45,14 +45,12 @@ public class GenericAim : MonoBehaviour {
 
     private void ChargeAndFireShot()
     {
-        if (Input.GetButtonDown(fireButton)) //checks if we have pressed the firing button or not (first time firing)
-        {
-            currentPower = minPower;
-        }
-        else if (Input.GetButtonUp(fireButton) && (Time.time - lastShot) > delay) //checks to see if the button is released, but we have not fired yet
+        if (!Input.GetButton(fireButton) && mouseDown && (Time.time - lastShot) > delay) //checks to see if the button is released, but we have not fired yet
         {
             Fire();
+            currentPower = minPower;
             lastShot = Time.time;
+            mouseDown = false;
         }
         else if (Input.GetButton(fireButton)) //checks if the firing button is held down, but we haven't fired yet
         {
@@ -126,7 +124,7 @@ public class GenericAim : MonoBehaviour {
         if (aimArrow != null)
         {
             Destroy(aimArrow);
-            mouseDown = false;
+            //mouseDown = false;
         }
     }
 
@@ -170,7 +168,6 @@ public class GenericAim : MonoBehaviour {
         // Part of testing firing position
         Vector2 tempFiringPos = Vector2.MoveTowards(transform.position, crosshairTransform.position, firingPosOffset);
         Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, firingPosition.rotation) as Rigidbody2D;
-        //Rigidbody2D formProjectile = Instantiate(projectile, firingPosition.position, firingPosition.rotation) as Rigidbody2D;
         formProjectile.velocity = currentPower * CalculateAngle(direction);
 
         if (TurnSystem.Instance != null)

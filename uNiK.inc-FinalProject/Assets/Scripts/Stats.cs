@@ -37,6 +37,11 @@ public class Stats : MonoBehaviour {
         return alive;
     }
 
+    public void ModName(string name)
+    {
+        this.name = name;
+    }
+
     public void ModHealth(int value)
     {
         health += value;
@@ -74,19 +79,22 @@ public class Stats : MonoBehaviour {
         if (health < 1)
         {
             health = 0;
-            alive = false;
             Die();
         }
     }
 
     private void Die()
     {
+        alive = false;
+        //GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<Rigidbody2D>().isKinematic = true;
+        //GetComponent<Collider2D>().enabled = false;
         //Destroy(this.gameObject);
-        foreach(SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
+        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.enabled = false;
         }
-        foreach(Collider2D collider in GetComponentsInChildren<Collider2D>())
+        foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
         {
             collider.enabled = false;
         }
