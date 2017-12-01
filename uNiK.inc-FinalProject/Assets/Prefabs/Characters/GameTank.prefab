@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4773886632595506}
   - component: {fileID: 212315313172043496}
   - component: {fileID: 114376322268267600}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TimerAndFuelBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,9 +123,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4314829567461570}
   - component: {fileID: 114034177045416016}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameCharacter
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

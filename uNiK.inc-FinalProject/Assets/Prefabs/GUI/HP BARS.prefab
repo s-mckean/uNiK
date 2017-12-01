@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 114674308233592712}
   m_Layer: 5
   m_Name: HP BARS
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

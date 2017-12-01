@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent (typeof (TurnTimer))]
 
 public class TurnSystem : MonoBehaviour {
-
 
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
@@ -57,6 +57,7 @@ public class TurnSystem : MonoBehaviour {
         ActivateCharacter(m_ActiveCharacter, true);
 
         StartCoroutine(TurnTimer.Instance.StartTimer());
+        m_ProjectileCamera.depth = -10;
     }
 
     private void IgnoreCollisionsWithOtherPlayers(GameObject player)
@@ -218,6 +219,7 @@ public class TurnSystem : MonoBehaviour {
     private TeamHandler CheckLastTeamAlive()
     {
         bool AtLeastOneTeamAlive = false;
+        TeamHandler lastTeam = null;
 
         foreach (TeamHandler team in m_Teams)
         {
@@ -226,15 +228,17 @@ public class TurnSystem : MonoBehaviour {
                 if (charStat.IsAlive() && !AtLeastOneTeamAlive)
                 {
                     AtLeastOneTeamAlive = true;
+                    lastTeam = team;
+                    break;
                 }
                 else if (charStat.IsAlive() && AtLeastOneTeamAlive)
                 {
-                    return team;
+                    return null;
                 }
             }
         }
 
-        return null;
+        return lastTeam;
     }
 
     public List<TeamHandler> GetTeams()
@@ -262,9 +266,35 @@ public class TurnSystem : MonoBehaviour {
 
     public void Event_GameOver(TeamHandler winningTeam)
     {
-        if (winningTeam == null)
-        {
+        TurnTimer.Instance.StopCoroutine(TurnTimer.Instance.StartTimer());
+        LargeCenterText centerText = LargeCenterText.Instance;
 
+        if (winningTeam != null)
+        {
+            Enum team = winningTeam.Team;
+            centerText.Text = team.ToString() + " Team Won";
+            
         }
+        else
+        {
+            centerText.Text = "Game Over";
+        }
+
+        switch (winningTeam.Team)
+        {
+            case unikincTanks.Teams.BLUE: centerText.TextColor = Color.blue; break;
+            case unikincTanks.Teams.GREEN: centerText.TextColor = Color.green; break;
+            case unikincTanks.Teams.RED: centerText.TextColor = Color.red; break;
+            case unikincTanks.Teams.YELLOW: centerText.TextColor = Color.yellow; break;
+            default: centerText.TextColor = Color.white; break;
+        }
+
+        foreach (GameObject gObj in GameObject.FindGameObjectsWithTag("GameUI"))
+        {
+            gObj.SetActive(false);
+        }
+
+        centerText.ShowWidescreenBars(true);
+        centerText.ShowText(true);
     }
 }
