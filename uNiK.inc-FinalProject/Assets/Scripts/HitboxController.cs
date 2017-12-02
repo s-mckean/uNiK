@@ -70,7 +70,7 @@ public class HitboxController : MonoBehaviour {
                 }
                 else if (other.bounds.Intersects(GetComponent<CircleCollider2D>().bounds))
                 {
-                    other.gameObject.GetComponent<Stats>().ModHealth(CalculateSplashDamage(other));
+                    other.gameObject.GetComponent<Stats>().ModHealth(-CalculateSplashDamage(other));
                 }
             }
         }
