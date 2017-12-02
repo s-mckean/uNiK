@@ -76,7 +76,7 @@ public class TankController : MonoBehaviour {
 
     void OnDisable()
     {
-        
+        ActivateThrusters(false);
     }
 
     void Update()
@@ -241,6 +241,10 @@ public class TankController : MonoBehaviour {
         set
         {
             m_IsActive = value;
+
+            if (!m_IsActive) {
+                ActivateThrusters(false);
+            }
         }
     }
 

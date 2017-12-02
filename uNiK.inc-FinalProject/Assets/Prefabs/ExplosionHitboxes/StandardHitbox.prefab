@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   innerHitbox: {fileID: 1140987370494524, guid: 15c87104eb721ea468b62ea1fc2c4f9d,
     type: 2}
-  particles: {fileID: 1638380947381366, guid: 2a91be06cf4d3c64099c2816ca1aeb16, type: 2}
+  particles: {fileID: 1328728526056830, guid: 06a93e34a8092f949b53b902384f84fe, type: 2}
   radius: 1.5
   outerDmgMod: 0.7
   innerHitboxRadius: 0.5
