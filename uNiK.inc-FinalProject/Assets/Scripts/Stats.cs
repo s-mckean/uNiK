@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stats : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class Stats : MonoBehaviour {
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
     public float origTankSpeed = 12f;
+    public Text dmgPopup;
+    public int dmgPopupIterations = 5;
+    public float iterationDelay = 0.1f;
 
     private int score;
     private int health;
@@ -45,6 +49,7 @@ public class Stats : MonoBehaviour {
     public void ModHealth(int value)
     {
         health += value;
+        StartCoroutine(PopupDamage(value));
         CheckOverHealth();
         CheckDead();
     }
@@ -64,6 +69,38 @@ public class Stats : MonoBehaviour {
     public void ResetTankSpeed()
     {
         ModTankSpeed(origTankSpeed);
+    }
+
+    private IEnumerator PopupDamage(int value)
+    {
+        dmgPopup.text = "";
+        int displayedValue = 0;
+        int targetValue = Mathf.Abs(value);
+        int remainder = targetValue % dmgPopupIterations;
+
+        if (value < 0)
+        {
+            dmgPopup.color = Color.red;
+        }
+        else if (value > 0)
+        {
+            dmgPopup.color = Color.green;
+        }
+
+        while (displayedValue < Mathf.Abs(value))
+        {
+            displayedValue += (targetValue / dmgPopupIterations);
+            if ((targetValue - displayedValue) == remainder) {
+                displayedValue += remainder;
+                remainder = 0;
+            }
+            dmgPopup.text = displayedValue.ToString();
+            yield return new WaitForSeconds(iterationDelay);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        dmgPopup.text = "";
     }
 
     private void CheckOverHealth()
