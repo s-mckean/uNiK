@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DeathFloor : MonoBehaviour {
 
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class DeathFloor : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Death floor hit!");
+            //GetComponent<Stats>().ModHealth(-200);
         }
     }
 }
