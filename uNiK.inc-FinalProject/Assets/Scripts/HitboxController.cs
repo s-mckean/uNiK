@@ -48,7 +48,7 @@ public class HitboxController : MonoBehaviour {
 
     private int CalculateSplashDamage(Collider2D other)
     {
-        float distanceFromCenter = Mathf.Abs(GetComponent<CircleCollider2D>().Distance(other).distance);
+        float distanceFromCenter = (GetComponent<CircleCollider2D>().transform.position - other.bounds.ClosestPoint(transform.position)).magnitude;
         return (int)(damage * outerDmgMod * ((radius - distanceFromCenter) / radius));
     }
 
