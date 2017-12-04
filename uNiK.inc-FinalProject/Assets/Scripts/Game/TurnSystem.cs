@@ -45,13 +45,23 @@ public class TurnSystem : MonoBehaviour {
     {
         foreach (TeamHandler team in m_Teams)
         {
+            // Based on the number of players chosen in the lobby screen, this will remove the tanks from the current game
+            if (GameManager.instance != null)
+            {
+                for (int x = team.GetTeamControllers().Length; x > GameManager.instance.teamInfos[team.Team]; x--)
+                {
+                    team.GetTeamControllers()[x - 1].gameObject.GetComponent<Stats>().SetAlive(false);
+                    team.GetTeamControllers()[x - 1].gameObject.SetActive(false);
+                }
+            }
+
             foreach (TankController controller in team.GetTeamControllers())
             {
                 ActivateCharacter(controller, false);
                 IgnoreCollisionsWithOtherPlayers(controller.gameObject);
             }
         }
-
+        
         m_ActiveTeam = m_Teams[m_ActiveTeamIndex];
         m_ActiveTeamControllers = m_ActiveTeam.GetTeamControllers();
         m_ActiveTeamStats = m_ActiveTeam.GetTeamStats();

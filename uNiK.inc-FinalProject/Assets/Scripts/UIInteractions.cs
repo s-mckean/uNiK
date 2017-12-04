@@ -13,16 +13,4 @@ public class UIInteractions : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void NewPlayerButton(GameObject playerPanel)
-    {
-        playerPanel.SetActive(true);
-        GameManager.playerCount++;
-    }
-
-    public void RemoveButton(GameObject playerPanel)
-    {
-        playerPanel.SetActive(false);
-        GameManager.playerCount--;
-    }
 }
