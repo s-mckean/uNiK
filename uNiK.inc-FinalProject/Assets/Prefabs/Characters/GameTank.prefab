@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99264705, g: 0, b: 0.14376245, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.10344792, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -743,7 +743,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 41130f9dfe4e55b419063875e046e0a6, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -789,6 +789,7 @@ MonoBehaviour:
   origTankSpeed: 12
   dmgPopup: {fileID: 114664470067017482}
   dmgPopupIterations: 5
+  iterationDelay: 0.1
 --- !u!124 &124892322372353128
 Behaviour:
   m_ObjectHideFlags: 1

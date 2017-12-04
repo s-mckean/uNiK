@@ -11,9 +11,14 @@ public class Stats : MonoBehaviour {
     public int maxScore = 99999;
     public float origTankSpeed = 12f;
     public Text dmgPopup;
+    [Tooltip("Total delay is number of iterations x iteration delay")]
     public int dmgPopupIterations = 5;
+    [Tooltip("Used for the 1st function for damage popping up")]
     public float iterationDelay = 0.1f;
+    [Tooltip("Used for the 2nd function for damage popping up")]
+    public float totalDelay = 0.5f;
 
+    private Transform dmgPopupPos;
     private int score;
     private int health;
     private bool alive;
@@ -41,6 +46,11 @@ public class Stats : MonoBehaviour {
         return alive;
     }
 
+    public void SetAlive(bool alive)
+    {
+        this.alive = alive;
+    }
+
     public void ModName(string name)
     {
         this.name = name;
@@ -49,7 +59,7 @@ public class Stats : MonoBehaviour {
     public void ModHealth(int value)
     {
         health += value;
-        StartCoroutine(PopupDamage(value));
+        StartCoroutine(PopupDamage2(value));
         CheckOverHealth();
         CheckDead();
     }
@@ -73,6 +83,7 @@ public class Stats : MonoBehaviour {
 
     private IEnumerator PopupDamage(int value)
     {
+        dmgPopupPos = dmgPopup.transform;
         dmgPopup.text = "";
         int displayedValue = 0;
         int targetValue = Mathf.Abs(value);
@@ -95,7 +106,36 @@ public class Stats : MonoBehaviour {
                 remainder = 0;
             }
             dmgPopup.text = displayedValue.ToString();
+            //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
             yield return new WaitForSeconds(iterationDelay);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        dmgPopup.text = "";
+    }
+
+    private IEnumerator PopupDamage2(int value)
+    {
+        dmgPopup.text = "";
+        int displayedValue = 0;
+        int targetValue = Mathf.Abs(value);
+
+        if (value < 0)
+        {
+            dmgPopup.color = Color.red;
+        }
+        else if (value > 0)
+        {
+            dmgPopup.color = Color.green;
+        }
+
+        while (displayedValue < Mathf.Abs(value))
+        {
+            displayedValue++;
+            dmgPopup.text = displayedValue.ToString();
+            //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
+            yield return new WaitForSeconds(iterationDelay / targetValue);
         }
 
         yield return new WaitForSeconds(2.0f);
