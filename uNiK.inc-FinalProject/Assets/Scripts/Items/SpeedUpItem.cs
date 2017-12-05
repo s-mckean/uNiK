@@ -12,7 +12,7 @@ public class SpeedUpItem : MonoBehaviour {
         {
             var stats = collision.gameObject.GetComponent<Stats>();
             stats.ModTankSpeed(stats.origTankSpeed + addedSpeed);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

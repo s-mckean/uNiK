@@ -11,7 +11,7 @@ public class HealthItem : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Stats>().ModHealth(addedHealth);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
