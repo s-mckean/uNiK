@@ -68,11 +68,6 @@ public class GameManager : MonoBehaviour {
     {
 
     }
-    
-    void Test()
-    {
-
-    }
 
     public void Play()
     {
