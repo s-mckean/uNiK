@@ -7,10 +7,12 @@ public class FireworksInitial : MonoBehaviour {
     [SerializeField] private GameObject fireworksObj;
     [SerializeField] private float duration;
     [SerializeField] private bool isSprite;
+    [SerializeField] private Camera projectileCam;
 
     private void Awake()
     {
         Invoke("SpawnFireworks", duration);
+        projectileCam = GameObject.FindGameObjectsWithTag("ProjectileCamera")[0].GetComponent<Camera>();
     }
 
     private void SpawnFireworks()
@@ -29,8 +31,22 @@ public class FireworksInitial : MonoBehaviour {
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
         
-        GameObject.Instantiate(fireworksObj, transform.position, Quaternion.identity);
+        GameObject fireworks = GameObject.Instantiate(fireworksObj, transform.position, Quaternion.identity);
 
-        Destroy(this.gameObject, 2.0f);
+        if (projectileCam)
+        {
+            TurnSystem.Instance.Event_ForceStopProjectileCamera();
+            Vector2 vel = new Vector2(0, -27f);
+            projectileCam.GetComponent<Rigidbody2D>().velocity = vel;
+            projectileCam.orthographicSize = 20f;
+            Invoke("NextTurn", 5.0f);
+        }
+
+        Destroy(this.gameObject, 6.0f);
+    }
+
+    private void NextTurn()
+    {
+        TurnSystem.Instance.NextTurn();
     }
 }

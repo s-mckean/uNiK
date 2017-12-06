@@ -172,6 +172,7 @@ public class GenericAim : MonoBehaviour {
 
         if (TurnSystem.Instance != null)
         {
+            transform.parent.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
             TurnSystem.Instance.Event_ShotFired(formProjectile.gameObject);
         }
     }

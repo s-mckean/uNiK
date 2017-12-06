@@ -156,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4323470554852858}
   - component: {fileID: 212101494835259096}
+  - component: {fileID: 114173137764428470}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -194,7 +195,6 @@ GameObject:
   - component: {fileID: 50792050157664222}
   - component: {fileID: 61432958420748514}
   - component: {fileID: 114845250195672294}
-  - component: {fileID: 114211562807276922}
   m_Layer: 0
   m_Name: GameTank
   m_TagString: Player
@@ -342,7 +342,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836965555722900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9596572, y: -1.6023695, z: 0}
+  m_LocalPosition: {x: -86.1, y: -1.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4323470554852858}
@@ -486,19 +486,19 @@ MonoBehaviour:
   - {fileID: 1349884088676742}
   - {fileID: 1387568611397880}
   m_Stats: {fileID: 114845250195672294}
---- !u!114 &114211562807276922
+--- !u!114 &114173137764428470
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1836965555722900}
+  m_GameObject: {fileID: 1574151956567980}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25ad5a2f16241bc419b2e7008a0d9e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairTransform: {fileID: 0}
-  cannon: {fileID: 0}
+  crosshairTransform: {fileID: 4918277411159298}
+  cannon: {fileID: 212101494835259096}
 --- !u!114 &114224121296540598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,7 +571,7 @@ MonoBehaviour:
   yPosMod: 0.00015
   yScaleMax: 1
   firingPosition: {fileID: 4900117282460350}
-  projectile: {fileID: 50061830340969822, guid: 07e990a2074949d4db061986c22be037,
+  projectile: {fileID: 50212070134120624, guid: 93d228cad3a8f49469aef86959d031f1,
     type: 2}
   minPower: 1
   maxPower: 10
@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
-  maxHealth: 15
+  maxHealth: 100
   maxScore: 99999
   origTankSpeed: 12
   dmgPopup: {fileID: 114664470067017482}

@@ -18,6 +18,7 @@ public class TurnSystem : MonoBehaviour {
     private int m_ActiveTeamIndex;
     private int m_ActiveCharacterIndex;
     private Coroutine m_TimerCoroutine;
+    private Coroutine m_ProjectileCamCoroutine;
 
     public static TurnSystem Instance;
 
@@ -113,6 +114,11 @@ public class TurnSystem : MonoBehaviour {
         }
         
         TurnTimer.Instance.RunTimer();
+
+        if (m_ProjectileCamera && m_ProjectileCamera.depth > 0)
+        {
+            m_ProjectileCamera.depth = 0;
+        }
     }
 
     private void NextCharacter()
@@ -155,21 +161,30 @@ public class TurnSystem : MonoBehaviour {
         if (active)
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
-            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+            foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.sortingOrder = 3;
+            }
+
+            tankController.gameObject.transform.rotation = Quaternion.identity;
         } 
         else
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 0;
-            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.sortingOrder = 1;
+            }
         }
 
+        tankController.gameObject.GetComponent<Rigidbody2D>().freezeRotation = active;
         ActivateTankControls(tankController, active);
     }
 
     private void ActivateTankControls(TankController tankController, bool active)
     {
         tankController.IsActive = active;
-        tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
+        //tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
 
         // Temporary fix so you can't move other tanks by moving into them
         //tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
@@ -191,9 +206,11 @@ public class TurnSystem : MonoBehaviour {
     {
         if (m_ProjectileCamera != null)
         {
+            Camera activeTankCam = m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>();
             m_ProjectileCamera.GetComponent<Transform>().SetPositionAndRotation(
-                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().position,
-                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().rotation);
+               activeTankCam.GetComponent<Transform>().position,
+               activeTankCam.GetComponent<Transform>().rotation);
+            m_ProjectileCamera.orthographicSize = activeTankCam.orthographicSize;
         }
         else
         {
@@ -206,8 +223,9 @@ public class TurnSystem : MonoBehaviour {
         Rigidbody2D camBdy = m_ProjectileCamera.GetComponent<Rigidbody2D>();
         float origOrthoSize = m_ProjectileCamera.orthographicSize;
         float maxHeight = rb.position.y;
+        float startHeight = rb.position.y;
 
-        while (projectile != null && rb.velocity != Vector2.zero)
+        while (projectile != null)
         {
             if ((projectile.GetComponent<SpriteRenderer>() != null &&
                 projectile.GetComponent<SpriteRenderer>().enabled) ||
@@ -223,9 +241,16 @@ public class TurnSystem : MonoBehaviour {
 
             if (rb.velocity.y > 0 && rb.position.y >= maxHeight)
             {
-                float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 100f;
-                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 8f);
+                float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 50f;
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 40f);
                 maxHeight = rb.position.y;
+            }
+            else if (rb.velocity.y < 0)
+            {
+                float newOrthoSize = m_ProjectileCamera.orthographicSize - Mathf.Abs(rb.velocity.y) / 80f;
+                float minOrthoSize = origOrthoSize * Mathf.Abs(maxHeight - startHeight) / 50f;
+                minOrthoSize = Mathf.Clamp(minOrthoSize, origOrthoSize, 999f);
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, minOrthoSize, 999f);
             }
 
             yield return new WaitForFixedUpdate();
@@ -271,7 +296,13 @@ public class TurnSystem : MonoBehaviour {
     public void Event_ShotFired(GameObject projectile)
     {
         EndTurn();
-        StartCoroutine(AdjustCamera(projectile));
+        m_ProjectileCamCoroutine = StartCoroutine(AdjustCamera(projectile));
+    }
+
+    public void Event_ForceStopProjectileCamera()
+    {
+        StopCoroutine(m_ProjectileCamCoroutine);
+        m_ProjectileCamera.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     public void Event_TimeRanOut()

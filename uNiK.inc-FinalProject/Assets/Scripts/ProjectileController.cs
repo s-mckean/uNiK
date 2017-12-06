@@ -23,11 +23,8 @@ public class ProjectileController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //Vector2 veloc = GetComponent<Rigidbody2D>().velocity;
-        //if (rotateRound)
-        //    transform.rotation = Quaternion.LookRotation(veloc, Vector2.up);
 
-        if (Time.time - timeSpawned > 5.0f)
+        if (Time.time - timeSpawned > 15.0f)
         {
             Impact();
             Destroy(this.gameObject);
@@ -40,11 +37,6 @@ public class ProjectileController : MonoBehaviour {
         Impact();
         Destroy(this.gameObject);
     }
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    active = true;
-    //}
 
     private void Impact()
     {

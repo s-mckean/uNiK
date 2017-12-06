@@ -164,7 +164,7 @@ public class Stats : MonoBehaviour {
     {
         alive = false;
         //GetComponent<SpriteRenderer>().enabled = false;
-        //GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Rigidbody2D>().isKinematic = true;
         //GetComponent<Collider2D>().enabled = false;
         //Destroy(this.gameObject);
         foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
@@ -175,6 +175,13 @@ public class Stats : MonoBehaviour {
         {
             collider.enabled = false;
         }
+        foreach (Canvas canvas in GetComponentsInChildren<Canvas>())
+        {
+            canvas.enabled = false;
+        }
+        GetComponent<TankController>().enabled = false;
+        GetComponentInChildren<GenericAim>().enabled = false;
+        GetComponentInChildren<WeaponSystem>().enabled = false;
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
     }
 
