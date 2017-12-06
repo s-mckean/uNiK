@@ -24,10 +24,14 @@ public class BeginPanCamera : MonoBehaviour {
 
     private IEnumerator BeginPanEvent()
     {
+        yield return new WaitForSeconds(1.15f);
+        TurnSystem.Instance.ActivateCharacter(TurnSystem.Instance.m_ActiveCharacter, false);
+
         yield return new WaitForSeconds(14.0f);
         m_Cam.depth = 0;
         hpBars.SetActive(true);
         bars.SetActive(false);
         TurnTimer.Instance.RunTimer();
+        TurnSystem.Instance.ActivateCharacter(TurnSystem.Instance.m_ActiveCharacter, true);
     }
 }

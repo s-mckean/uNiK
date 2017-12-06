@@ -163,7 +163,7 @@ public class TurnSystem : MonoBehaviour {
         return true;
     }
 
-    private void ActivateCharacter(TankController tankController, bool active)
+    public void ActivateCharacter(TankController tankController, bool active)
     {
         if (active)
         {
@@ -255,7 +255,7 @@ public class TurnSystem : MonoBehaviour {
             if (rb.velocity.y > 0 && rb.position.y >= maxHeight)
             {
                 float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 50f;
-                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 40f);
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 50f);
                 maxHeight = rb.position.y;
             }
             else if (rb.velocity.y < 0)
