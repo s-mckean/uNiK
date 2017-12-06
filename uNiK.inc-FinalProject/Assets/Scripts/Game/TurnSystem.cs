@@ -10,7 +10,7 @@ public class TurnSystem : MonoBehaviour {
 
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
-    [SerializeField] private bool m_Freeplay = true;
+    [SerializeField] private bool m_Freeplay = false;
 
     private TankController[] m_ActiveTeamControllers;
     private Stats[] m_ActiveTeamStats;
@@ -100,7 +100,7 @@ public class TurnSystem : MonoBehaviour {
         {
             if (CheckAllDead())
             {
-                Event_GameOver(null);
+                StartCoroutine(Event_GameOver(null));
             }
             NextCharacter();
 
@@ -116,7 +116,7 @@ public class TurnSystem : MonoBehaviour {
             TeamHandler lastTeam = CheckLastTeamAlive();
             if (lastTeam != null)
             {
-                Event_GameOver(lastTeam);
+                StartCoroutine(Event_GameOver(lastTeam));
             }
         }
         
@@ -297,7 +297,7 @@ public class TurnSystem : MonoBehaviour {
                 }
             }
         }
-
+        
         return lastTeam;
     }
 

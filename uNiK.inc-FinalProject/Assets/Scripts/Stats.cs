@@ -184,6 +184,7 @@ public class Stats : MonoBehaviour {
         {
             Invoke("Event_DieOnTurn", 2.0f);
             GetComponent<TankController>().enabled = false;
+            GetComponent<Rigidbody2D>().isKinematic = true;
         }
         
         GetComponentInChildren<GenericAim>().enabled = false;

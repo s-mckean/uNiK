@@ -245,6 +245,10 @@ public class TankController : MonoBehaviour {
             if (!m_IsActive) {
                 ActivateThrusters(false);
             }
+            else
+            {
+                ResetStatus();
+            }
         }
     }
 
