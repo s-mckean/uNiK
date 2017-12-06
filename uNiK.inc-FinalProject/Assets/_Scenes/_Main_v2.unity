@@ -4898,7 +4898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TurnTimerDuration: 20
-  m_FreezeTimer: 1
+  m_FreezeTimer: 0
 --- !u!114 &494265635
 MonoBehaviour:
   m_ObjectHideFlags: 0

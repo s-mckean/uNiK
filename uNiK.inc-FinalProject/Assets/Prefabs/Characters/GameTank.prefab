@@ -301,7 +301,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574151956567980}
-  m_LocalRotation: {x: -0.07137919, y: 0.7034949, z: 0.07137919, w: 0.7034949}
+  m_LocalRotation: {x: -0.065026425, y: 0.7041105, z: 0.065026425, w: 0.7041105}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_FuelMax: 100
   m_JumpAccelerationMax: 10
   m_JumpAcceleration: 1
-  m_UnlimitedFuel: 1
+  m_UnlimitedFuel: 0
   m_ThrustersObject: {fileID: 198345528364828878}
   m_CrosshairPosition: {fileID: 4918277411159298}
   c_SpriteRenderer: {fileID: 212101494835259096}
