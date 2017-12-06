@@ -13,11 +13,12 @@ public class TurnSystem : MonoBehaviour {
 
     private TankController[] m_ActiveTeamControllers;
     private Stats[] m_ActiveTeamStats;
-    private TankController m_ActiveCharacter;
+    public TankController m_ActiveCharacter;
     private TeamHandler m_ActiveTeam;
     private int m_ActiveTeamIndex;
     private int m_ActiveCharacterIndex;
     private Coroutine m_TimerCoroutine;
+    public GameObject weaponSelect;
 
     public static TurnSystem Instance;
 
@@ -184,6 +185,12 @@ public class TurnSystem : MonoBehaviour {
         if (aimSys != null)
         {
             aimSys.ResetShot();
+        }
+
+        var menuSys = weaponSelect.GetComponent<WeaponSelect>();
+        if (menuSys != null && active)
+        {
+            menuSys.ChangeActiveTank();
         }
     }
 
