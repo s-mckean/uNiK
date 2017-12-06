@@ -9,17 +9,13 @@ public class TimerAndFuelController : MonoBehaviour {
     [SerializeField] private Text m_TimerText;
 
     private SpriteRenderer m_SpriteRenderer;
-	
-	// Update is called once per frame
-	void Update () {
-        
-    }
 
     private IEnumerator Start()
     {
         m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(UpdateTimerText());
+        StartCoroutine(UpdateFuelText());
     }
 
     private void OnDisable()
@@ -58,6 +54,29 @@ public class TimerAndFuelController : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    private IEnumerator UpdateFuelText()
+    {
+        TankController controller = transform.parent.transform.parent.gameObject.GetComponent<TankController>();
+        while (true)
+        {
+            if (controller.IsActive)
+            {
+                m_FuelText.text = "Fuel: " + (int)controller.GetCurrentFuel();
+
+                if (controller.UnlimitedFuel)
+                {
+                    m_FuelText.text += " (Unlimited)";
+                }
+            }
+            else
+            {
+                m_FuelText.text = "Fuel: ";
+            }
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

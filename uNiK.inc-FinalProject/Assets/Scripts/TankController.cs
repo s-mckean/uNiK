@@ -262,4 +262,16 @@ public class TankController : MonoBehaviour {
     {
         m_FuelCurrent += fuel;
     }
+
+    public bool UnlimitedFuel
+    {
+        get
+        {
+            return this.m_UnlimitedFuel;
+        }
+        set
+        {
+            this.m_UnlimitedFuel = value;
+        }
+    }
 }

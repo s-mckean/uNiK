@@ -9,7 +9,7 @@ public class LoadingScreen : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         m_CamAnim.speed = 0;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(7.0f);
         m_CamAnim.speed = 1;
         Destroy(this.gameObject);
 	}
