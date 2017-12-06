@@ -212,6 +212,7 @@ public class TurnSystem : MonoBehaviour {
         if (menuSys != null && active)
         {
             menuSys.ChangeActiveTank();
+            menuSys.CloseMenu();
         }
     }
 

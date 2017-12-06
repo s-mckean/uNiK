@@ -51,16 +51,21 @@ public class WeaponSelect : MonoBehaviour
         }
         else
         {
-            weaponMenuIsOpen = false;
-            m_AimScript.enabled = true;
-            m_Controller.enabled = true;
-            weaponMenu.SetActive(false);
+            CloseMenu();
         }
 
         foreach(Button b in buttons)
         {
             b.gameObject.SetActive(weaponMenuIsOpen);
         }
+    }
+
+    public void CloseMenu()
+    {
+        weaponMenuIsOpen = false;
+        m_AimScript.enabled = true;
+        m_Controller.enabled = true;
+        weaponMenu.SetActive(false);
     }
 
     public void CreateButtons()
