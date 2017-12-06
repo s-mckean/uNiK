@@ -8,10 +8,11 @@ public class SpeedUpItem : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             var stats = collision.gameObject.GetComponent<Stats>();
             stats.ModTankSpeed(stats.origTankSpeed + addedSpeed);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -20,11 +20,33 @@ public class CannonController : MonoBehaviour {
     private void adjustCannon()
     {
         Vector3 direction = crosshairTransform.position - cannon.GetComponent<Transform>().position;
+        direction.Normalize();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+
+        if (angle > 0f && angle < 90f)
+        {
+            Quaternion rot = Quaternion.Euler(-angle, 90f, 0f);
+            cannon.transform.rotation = rot;
+        }
+        else if (angle > 90f && angle < 180f)
+        {
+            Quaternion rot = Quaternion.Euler(-angle, 90f, 180f);
+            cannon.transform.rotation = rot;
+        }
+        else if (angle < 0f && angle > -45f)
+        {
+            Quaternion rot = Quaternion.Euler(-angle, 90f, 0f);
+            cannon.transform.rotation = rot;
+        }
+        else if (angle < -135f && angle > -180f)
+        {
+            Quaternion rot = Quaternion.Euler(-angle, 90f, 180f);
+            cannon.transform.rotation = rot;
+        }
+        //Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         //Quaternion rotation = Quaternion.Euler(angle - 90f, angle + 90f, 0);
         //rotation = Mathf.Clamp(rotation, 90, -90);
-        cannon.transform.rotation = rotation;
+        
         //rotation = Mathf.Clamp(rotation, 90, -90);
     }
 }

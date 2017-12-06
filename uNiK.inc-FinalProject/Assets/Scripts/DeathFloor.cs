@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathFloor : MonoBehaviour {
 
+public class DeathFloor : MonoBehaviour {
+    public GameObject tank;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +20,10 @@ public class DeathFloor : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Death floor hit!");
+            
+            tank.GetComponent<Stats>().ModHealth(-200);
+            //Destroy(this.gameObject);
+            //gameObject.GetComponent<Stats>().ModHealth(-200);
         }
     }
 }

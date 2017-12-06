@@ -8,10 +8,11 @@ public class FuelItem : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             var tankController = collision.gameObject.GetComponent<TankController>();
             tankController.AddFuel(addedFuel);
+            Destroy(this.gameObject);
         }
     }
 }

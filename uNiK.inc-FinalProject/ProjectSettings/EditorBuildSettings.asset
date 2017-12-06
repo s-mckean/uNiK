@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/GameLobby.unity
     guid: ee1cd47e5dc06634bbf520250dbd1082
   - enabled: 1
-    path: Assets/_Scenes/ShootingSystem.unity
-    guid: bc3618329804350439eae966205b3802
-  - enabled: 1
     path: Assets/_Scenes/HUD.unity
     guid: e513aa7e3eec9354eb5b761dd615c5c7
+  - enabled: 1
+    path: Assets/_Scenes/ShootingSystem.unity
+    guid: bc3618329804350439eae966205b3802
