@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (TurnTimer))]
 
@@ -151,7 +152,7 @@ public class TurnSystem : MonoBehaviour {
         {
             foreach (Stats stats in team.GetTeamStats())
             {
-                if (stats.IsAlive())
+                if (stats.IsAlive() && stats.gameObject.activeInHierarchy)
                 {
                     return false;
                 }
@@ -328,7 +329,7 @@ public class TurnSystem : MonoBehaviour {
         TurnTimer.Instance.PauseTimer();
     }
 
-    public void Event_GameOver(TeamHandler winningTeam)
+    public IEnumerator Event_GameOver(TeamHandler winningTeam)
     {
         ActivateTankControls(m_ActiveCharacter, false);
         StopCoroutine(m_TimerCoroutine);
@@ -338,21 +339,20 @@ public class TurnSystem : MonoBehaviour {
         {
             Enum team = winningTeam.Team;
             centerText.Text = team.ToString() + " Team Won";
-            
+
+            switch (winningTeam.Team)
+            {
+                case unikincTanks.Teams.BLUE: centerText.TextColor = Color.blue; break;
+                case unikincTanks.Teams.GREEN: centerText.TextColor = Color.green; break;
+                case unikincTanks.Teams.RED: centerText.TextColor = Color.red; break;
+                case unikincTanks.Teams.YELLOW: centerText.TextColor = Color.yellow; break;
+                default: centerText.TextColor = Color.white; break;
+            }
         }
         else
         {
             centerText.Text = "Game Over";
-        }
-
-        switch (winningTeam.Team)
-        {
-            case unikincTanks.Teams.BLUE: centerText.TextColor = Color.blue; break;
-            case unikincTanks.Teams.GREEN: centerText.TextColor = Color.green; break;
-            case unikincTanks.Teams.RED: centerText.TextColor = Color.red; break;
-            case unikincTanks.Teams.YELLOW: centerText.TextColor = Color.yellow; break;
-            default: centerText.TextColor = Color.white; break;
-        }
+        }        
 
         foreach (GameObject gObj in GameObject.FindGameObjectsWithTag("GameUI"))
         {
@@ -361,5 +361,9 @@ public class TurnSystem : MonoBehaviour {
 
         centerText.ShowWidescreenBars(true);
         centerText.ShowText(true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        SceneManager.LoadScene("Main Menu");
     }
 }

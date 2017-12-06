@@ -174,7 +174,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2482,7 +2482,7 @@ ParticleSystem:
     serializedVersion: 3
     type: 1
     collisionMode: 1
-    colliderForce: 20
+    colliderForce: 15
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TurnTimer : MonoBehaviour {
     
-    [SerializeField] private int m_TurnTimerDuration = 10;
+    [SerializeField] private int m_TurnTimerDuration = 20;
     [SerializeField] private bool m_FreezeTimer = false;
 
     private int m_CurrentTimerTime;
