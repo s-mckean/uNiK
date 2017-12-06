@@ -11,7 +11,7 @@ public class HealthbarsManager : MonoBehaviour
     void Start()
     {
         m_Healthbars = GetComponentsInChildren<Healthbar>();
-        Invoke("Setup", 1.0f);
+        Invoke("Setup", 1.2f);
     }
 
     private void Setup()
@@ -24,8 +24,12 @@ public class HealthbarsManager : MonoBehaviour
             GameCharacter[] m_TeamCharacters = m_Teams[teamNum].GetGameCharacters();
             for (int charNum = 0; charNum < m_TeamCharacters.Length; charNum++)
             {
-                m_Healthbars[healthbarIndex].Character = m_TeamCharacters[charNum];
-                healthbarIndex++;
+                if (m_TeamCharacters[charNum].isActiveAndEnabled)
+                {
+                    m_Healthbars[healthbarIndex].Character = m_TeamCharacters[charNum];
+                    healthbarIndex++;
+                }
+                
             }
         }
 

@@ -94,6 +94,6 @@ MonoBehaviour:
   radius: 1.5
   outerDmgMod: 0.7
   innerHitboxRadius: 0.5
-  damage: 10
+  damage: 35
   explosion: 1
   lifetime: 1

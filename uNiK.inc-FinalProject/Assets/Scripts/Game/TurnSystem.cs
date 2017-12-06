@@ -60,7 +60,11 @@ public class TurnSystem : MonoBehaviour {
             foreach (TankController controller in team.GetTeamControllers())
             {
                 ActivateCharacter(controller, false);
-                IgnoreCollisionsWithOtherPlayers(controller.gameObject);
+                if (controller.isActiveAndEnabled)
+                {
+                    IgnoreCollisionsWithOtherPlayers(controller.gameObject);
+                }
+                
             }
         }
         
