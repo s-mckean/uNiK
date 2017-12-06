@@ -76,6 +76,7 @@ public class TurnSystem : MonoBehaviour {
         ActivateCharacter(m_ActiveCharacter, true);
 
         m_TimerCoroutine = StartCoroutine(TurnTimer.Instance.StartTimer());
+        TurnTimer.Instance.PauseTimer();
         m_ProjectileCamera.depth = -10;
     }
 

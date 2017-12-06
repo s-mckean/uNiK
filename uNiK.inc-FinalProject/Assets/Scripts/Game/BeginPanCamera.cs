@@ -28,5 +28,6 @@ public class BeginPanCamera : MonoBehaviour {
         m_Cam.depth = 0;
         hpBars.SetActive(true);
         bars.SetActive(false);
+        TurnTimer.Instance.RunTimer();
     }
 }

@@ -179,10 +179,22 @@ public class Stats : MonoBehaviour {
         {
             canvas.enabled = false;
         }
-        GetComponent<TankController>().enabled = false;
+
+        if (GetComponent<TankController>() && GetComponent<TankController>().enabled)
+        {
+            Invoke("Event_DieOnTurn", 2.0f);
+            GetComponent<TankController>().enabled = false;
+        }
+        
         GetComponentInChildren<GenericAim>().enabled = false;
         GetComponentInChildren<WeaponSystem>().enabled = false;
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+
+    }
+
+    private void Event_DieOnTurn()
+    {
+        TurnSystem.Instance.NextTurn();
     }
 
     private void CheckMinScore()

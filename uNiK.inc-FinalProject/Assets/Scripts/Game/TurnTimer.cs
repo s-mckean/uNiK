@@ -14,8 +14,9 @@ public class TurnTimer : MonoBehaviour {
 
     public static TurnTimer Instance;
 
-    private void Awake()
+    private void Start()
     {
+        
         if (Instance == null)
         {
             Instance = this;
@@ -24,12 +25,13 @@ public class TurnTimer : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        
     }
 
     public IEnumerator StartTimer()
     {
         ResetTimer();
-
+        
         while (true)
         {
             if (!m_FreezeTimer && !m_Paused)
