@@ -301,7 +301,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574151956567980}
-  m_LocalRotation: {x: 0.26839143, y: 0.6541912, z: -0.26839143, w: 0.6541912}
+  m_LocalRotation: {x: -0.06222376, y: 0.7043637, z: 0.06222376, w: 0.7043637}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -512,11 +512,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AimScript: {fileID: 114412630762301026}
   m_Crosshair: {fileID: 1500563818019158}
-  weaponMenu: {fileID: 0}
-  buttonPrefab: {fileID: 0}
-  RightScroll: {fileID: 0}
-  LeftScroll: {fileID: 0}
-  weaponImageScaling: 75
 --- !u!114 &114372143799968908
 MonoBehaviour:
   m_ObjectHideFlags: 1
