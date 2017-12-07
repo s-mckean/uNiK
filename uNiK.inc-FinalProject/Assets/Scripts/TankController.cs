@@ -137,10 +137,12 @@ public class TankController : MonoBehaviour {
     private void AdjustJumpValue()
     {
         bool spaceDown = Input.GetKey(KeyCode.Space);
+        AudioSource thrusters = GetComponent<AudioSource>();
         if (spaceDown)
         {
             m_JumpInputValue = m_JumpAcceleration;        // Fixes the way falling and gravity works
             //m_JumpInputValue += m_JumpAcceleration;
+            thrusters.Play();
         }
         else
         {
@@ -149,6 +151,7 @@ public class TankController : MonoBehaviour {
 
         ActivateThrusters(spaceDown);
         m_JumpInputValue = Mathf.Clamp(m_JumpInputValue, 0, m_JumpAccelerationMax);
+       
 
     }
 
@@ -179,7 +182,7 @@ public class TankController : MonoBehaviour {
 
     private void Jump()
     {
-        AudioSource thrusters = GetComponent<AudioSource>();
+        
         float yVel = m_Rigidbody.velocity.y + m_JumpInputValue;       // Fixes the way falling and gravity works
         if (yVel > m_JumpAccelerationMax)
         {
@@ -187,7 +190,7 @@ public class TankController : MonoBehaviour {
         }
 
         m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, yVel);
-        thrusters.Play();
+    
         
         //m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
     }
