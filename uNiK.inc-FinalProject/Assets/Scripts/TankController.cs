@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(AudioSource))]
 
 public class TankController : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class TankController : MonoBehaviour {
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
-    
+
 
     /*
     public AudioSource m_MovementAudio;
@@ -48,6 +49,7 @@ public class TankController : MonoBehaviour {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_Camera = GetComponentInChildren<Camera>();
         m_OrigCamOrthoSize = m_Camera.orthographicSize;
+        
 
         m_IsActive = false;
         var em = m_ThrustersObject.emission;
@@ -177,6 +179,7 @@ public class TankController : MonoBehaviour {
 
     private void Jump()
     {
+        AudioSource thrusters = GetComponent<AudioSource>();
         float yVel = m_Rigidbody.velocity.y + m_JumpInputValue;       // Fixes the way falling and gravity works
         if (yVel > m_JumpAccelerationMax)
         {
@@ -184,6 +187,8 @@ public class TankController : MonoBehaviour {
         }
 
         m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, yVel);
+        thrusters.Play();
+        
         //m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
     }
 
