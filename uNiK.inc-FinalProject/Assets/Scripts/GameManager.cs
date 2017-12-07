@@ -72,6 +72,6 @@ public class GameManager : MonoBehaviour {
     public void Play()
     {
         playerCount = teamInfos[Teams.RED] + teamInfos[Teams.BLUE] + teamInfos[Teams.GREEN] + teamInfos[Teams.YELLOW];
-        SceneManager.LoadScene("_Main");
+        SceneManager.LoadScene("_Main_v2");
     }
 }

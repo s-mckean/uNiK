@@ -19,6 +19,7 @@ public class WeaponSelect : MonoBehaviour
     private bool weaponMenuIsOpen, scrollLShow, scrollRShow;
     public float weaponImageScaling = 75f;
     private int showingButtons = 12;
+    private TankController m_Controller;
 
     private void Start()
     {
@@ -40,18 +41,31 @@ public class WeaponSelect : MonoBehaviour
 
     public void OpenWeaponMenu()
     {
+        ChangeActiveTank();
         if (!weaponMenuIsOpen)
         {
             weaponMenuIsOpen = true;
             m_AimScript.enabled = false;
+            m_Controller.enabled = false;
             weaponMenu.SetActive(true);
         }
         else
         {
-            weaponMenuIsOpen = false;
-            m_AimScript.enabled = true;
-            weaponMenu.SetActive(false);
+            CloseMenu();
         }
+
+        foreach(Button b in buttons)
+        {
+            b.gameObject.SetActive(weaponMenuIsOpen);
+        }
+    }
+
+    public void CloseMenu()
+    {
+        weaponMenuIsOpen = false;
+        m_AimScript.enabled = true;
+        m_Controller.enabled = true;
+        weaponMenu.SetActive(false);
     }
 
     public void CreateButtons()
@@ -114,7 +128,7 @@ public class WeaponSelect : MonoBehaviour
 
     public void ButtonPress(Rigidbody2D weaponSelected)
     {
-        GetComponent<GenericAim>().SetProjectile(weaponSelected);
+        m_AimScript.GetComponent<GenericAim>().SetProjectile(weaponSelected);
         OpenWeaponMenu();
     }
 
@@ -156,6 +170,7 @@ public class WeaponSelect : MonoBehaviour
     {
         var aiming = turnSystem.GetComponent<TurnSystem>().m_ActiveCharacter;
         m_AimScript = aiming.gameObject.GetComponentInChildren<GenericAim>();
-        m_Crosshair = m_AimScript.gameObject.transform.GetChild(0).gameObject;
+        m_Crosshair = aiming.gameObject.transform.GetChild(0).gameObject;
+        m_Controller = aiming.gameObject.GetComponentInChildren<TankController>();
     }
 }

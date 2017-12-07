@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114743498462638060}
   - component: {fileID: 198765905741649966}
   - component: {fileID: 199246000328668024}
+  - component: {fileID: 114851105657543300}
   m_Layer: 0
   m_Name: ExplosionParticleSystem2
   m_TagString: Untagged
@@ -53,6 +54,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6a6a8b4a7eea741b6304d1af8e4d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114851105657543300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196220595955814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6f2f27964d05c4282e6fc70e9801ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BaseDamage: 70
 --- !u!198 &198765905741649966
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -161,7 +174,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -266,7 +279,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 2
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -307,7 +320,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 2
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -348,7 +361,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 2
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1513,7 +1526,7 @@ ParticleSystem:
     enabled: 0
     multiplier: 1
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2469,7 +2482,7 @@ ParticleSystem:
     serializedVersion: 3
     type: 1
     collisionMode: 1
-    colliderForce: 5
+    colliderForce: 15
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TurnTimer : MonoBehaviour {
     
-    [SerializeField] private int m_TurnTimerDuration = 10;
+    [SerializeField] private int m_TurnTimerDuration = 20;
     [SerializeField] private bool m_FreezeTimer = false;
 
     private int m_CurrentTimerTime;
@@ -14,8 +14,9 @@ public class TurnTimer : MonoBehaviour {
 
     public static TurnTimer Instance;
 
-    private void Awake()
+    private void Start()
     {
+        
         if (Instance == null)
         {
             Instance = this;
@@ -24,12 +25,13 @@ public class TurnTimer : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        
     }
 
     public IEnumerator StartTimer()
     {
         ResetTimer();
-
+        
         while (true)
         {
             if (!m_FreezeTimer && !m_Paused)

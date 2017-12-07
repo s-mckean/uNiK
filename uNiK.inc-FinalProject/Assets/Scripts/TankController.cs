@@ -11,6 +11,7 @@ public class TankController : MonoBehaviour {
     [SerializeField] private bool m_UnlimitedFuel = true;
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
+    
 
     /*
     public AudioSource m_MovementAudio;
@@ -28,6 +29,8 @@ public class TankController : MonoBehaviour {
     private string m_TurnAxisName;
     private float m_FuelCurrent;
     private bool m_IsActive;
+    private float m_OrigCamOrthoSize;
+    private Camera m_Camera;
 
     public SpriteRenderer c_SpriteRenderer;
 
@@ -43,6 +46,8 @@ public class TankController : MonoBehaviour {
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_Camera = GetComponentInChildren<Camera>();
+        m_OrigCamOrthoSize = m_Camera.orthographicSize;
 
         m_IsActive = false;
         var em = m_ThrustersObject.emission;
@@ -86,6 +91,10 @@ public class TankController : MonoBehaviour {
             m_MovementInputValue = Input.GetAxis("Horizontal");
             m_Animator.speed = Mathf.Abs(m_MovementInputValue);
             AdjustJumpValue();
+
+            float newOrthoSize = m_Camera.orthographicSize + 15*Input.GetAxis("Mouse ScrollWheel");
+            newOrthoSize = Mathf.Clamp(newOrthoSize, m_OrigCamOrthoSize, 40f);
+            m_Camera.orthographicSize = newOrthoSize;
         }
         
         // EngineAudio();
@@ -243,7 +252,12 @@ public class TankController : MonoBehaviour {
             m_IsActive = value;
 
             if (!m_IsActive) {
+                m_Camera.orthographicSize = m_OrigCamOrthoSize;
                 ActivateThrusters(false);
+            }
+            else
+            {
+                ResetStatus();
             }
         }
     }
@@ -261,5 +275,17 @@ public class TankController : MonoBehaviour {
     public void AddFuel(float fuel)
     {
         m_FuelCurrent += fuel;
+    }
+
+    public bool UnlimitedFuel
+    {
+        get
+        {
+            return this.m_UnlimitedFuel;
+        }
+        set
+        {
+            this.m_UnlimitedFuel = value;
+        }
     }
 }

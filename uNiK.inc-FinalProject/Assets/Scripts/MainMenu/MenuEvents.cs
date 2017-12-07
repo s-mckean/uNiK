@@ -19,12 +19,12 @@ public class MenuEvents : MonoBehaviour {
 
     public void PlayButton()
     {
+        StartCoroutine(FadeToWhite());
         option = 2;
     }
 
     public void TutorialButton()
     {
-        StartCoroutine(FadeToWhite());
         option = 3;
     }
 
@@ -42,8 +42,8 @@ public class MenuEvents : MonoBehaviour {
         switch(option)
         {
             case 1: Application.Quit(); break;
-            case 2: break;
-            case 3: SceneManager.LoadScene(1); break;
+            case 2: SceneManager.LoadScene("GameLobby"); break;
+            case 3: break;
             default: break;
         }
     }

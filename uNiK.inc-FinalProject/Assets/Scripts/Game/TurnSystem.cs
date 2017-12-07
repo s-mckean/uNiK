@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (TurnTimer))]
 
@@ -9,7 +10,7 @@ public class TurnSystem : MonoBehaviour {
 
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
-    [SerializeField] private bool m_Freeplay = true;
+    [SerializeField] private bool m_Freeplay = false;
 
     private TankController[] m_ActiveTeamControllers;
     private Stats[] m_ActiveTeamStats;
@@ -18,9 +19,10 @@ public class TurnSystem : MonoBehaviour {
     private int m_ActiveTeamIndex;
     private int m_ActiveCharacterIndex;
     private Coroutine m_TimerCoroutine;
-    public GameObject weaponSelect;
+    private Coroutine m_ProjectileCamCoroutine;
 
     public static TurnSystem Instance;
+    public GameObject weaponSelect;
 
 	// Use this for initialization
 	void Start () {
@@ -59,7 +61,11 @@ public class TurnSystem : MonoBehaviour {
             foreach (TankController controller in team.GetTeamControllers())
             {
                 ActivateCharacter(controller, false);
-                IgnoreCollisionsWithOtherPlayers(controller.gameObject);
+                if (controller.isActiveAndEnabled)
+                {
+                    IgnoreCollisionsWithOtherPlayers(controller.gameObject);
+                }
+                
             }
         }
         
@@ -70,6 +76,7 @@ public class TurnSystem : MonoBehaviour {
         ActivateCharacter(m_ActiveCharacter, true);
 
         m_TimerCoroutine = StartCoroutine(TurnTimer.Instance.StartTimer());
+        TurnTimer.Instance.PauseTimer();
         m_ProjectileCamera.depth = -10;
     }
 
@@ -93,7 +100,7 @@ public class TurnSystem : MonoBehaviour {
         {
             if (CheckAllDead())
             {
-                Event_GameOver(null);
+                StartCoroutine(Event_GameOver(null));
             }
             NextCharacter();
 
@@ -109,11 +116,16 @@ public class TurnSystem : MonoBehaviour {
             TeamHandler lastTeam = CheckLastTeamAlive();
             if (lastTeam != null)
             {
-                Event_GameOver(lastTeam);
+                StartCoroutine(Event_GameOver(lastTeam));
             }
         }
         
         TurnTimer.Instance.RunTimer();
+
+        if (m_ProjectileCamera && m_ProjectileCamera.depth > 0)
+        {
+            m_ProjectileCamera.depth = 0;
+        }
     }
 
     private void NextCharacter()
@@ -141,7 +153,7 @@ public class TurnSystem : MonoBehaviour {
         {
             foreach (Stats stats in team.GetTeamStats())
             {
-                if (stats.IsAlive())
+                if (stats.IsAlive() && stats.gameObject.activeInHierarchy)
                 {
                     return false;
                 }
@@ -151,26 +163,35 @@ public class TurnSystem : MonoBehaviour {
         return true;
     }
 
-    private void ActivateCharacter(TankController tankController, bool active)
+    public void ActivateCharacter(TankController tankController, bool active)
     {
         if (active)
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
-            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+            foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.sortingOrder = 3;
+            }
+
+            tankController.gameObject.transform.rotation = Quaternion.identity;
         } 
         else
         {
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 0;
-            tankController.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.sortingOrder = 1;
+            }
         }
 
+        tankController.gameObject.GetComponent<Rigidbody2D>().freezeRotation = active;
         ActivateTankControls(tankController, active);
     }
 
     private void ActivateTankControls(TankController tankController, bool active)
     {
         tankController.IsActive = active;
-        tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
+        //tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
 
         // Temporary fix so you can't move other tanks by moving into them
         //tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
@@ -191,6 +212,7 @@ public class TurnSystem : MonoBehaviour {
         if (menuSys != null && active)
         {
             menuSys.ChangeActiveTank();
+            menuSys.CloseMenu();
         }
     }
 
@@ -198,9 +220,11 @@ public class TurnSystem : MonoBehaviour {
     {
         if (m_ProjectileCamera != null)
         {
+            Camera activeTankCam = m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>();
             m_ProjectileCamera.GetComponent<Transform>().SetPositionAndRotation(
-                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().position,
-                m_ActiveCharacter.gameObject.GetComponentInChildren<Camera>().GetComponent<Transform>().rotation);
+               activeTankCam.GetComponent<Transform>().position,
+               activeTankCam.GetComponent<Transform>().rotation);
+            m_ProjectileCamera.orthographicSize = activeTankCam.orthographicSize;
         }
         else
         {
@@ -213,8 +237,9 @@ public class TurnSystem : MonoBehaviour {
         Rigidbody2D camBdy = m_ProjectileCamera.GetComponent<Rigidbody2D>();
         float origOrthoSize = m_ProjectileCamera.orthographicSize;
         float maxHeight = rb.position.y;
+        float startHeight = rb.position.y;
 
-        while (projectile != null && rb.velocity != Vector2.zero)
+        while (projectile != null)
         {
             if ((projectile.GetComponent<SpriteRenderer>() != null &&
                 projectile.GetComponent<SpriteRenderer>().enabled) ||
@@ -230,9 +255,16 @@ public class TurnSystem : MonoBehaviour {
 
             if (rb.velocity.y > 0 && rb.position.y >= maxHeight)
             {
-                float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 100f;
-                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 8f);
+                float newOrthoSize = m_ProjectileCamera.orthographicSize + Mathf.Abs(rb.velocity.y) / 50f;
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, origOrthoSize, 50f);
                 maxHeight = rb.position.y;
+            }
+            else if (rb.velocity.y < 0)
+            {
+                float newOrthoSize = m_ProjectileCamera.orthographicSize - Mathf.Abs(rb.velocity.y) / 80f;
+                float minOrthoSize = origOrthoSize * Mathf.Abs(maxHeight - startHeight) / 50f;
+                minOrthoSize = Mathf.Clamp(minOrthoSize, origOrthoSize, 999f);
+                m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, minOrthoSize, 999f);
             }
 
             yield return new WaitForFixedUpdate();
@@ -266,7 +298,7 @@ public class TurnSystem : MonoBehaviour {
                 }
             }
         }
-
+        
         return lastTeam;
     }
 
@@ -278,7 +310,13 @@ public class TurnSystem : MonoBehaviour {
     public void Event_ShotFired(GameObject projectile)
     {
         EndTurn();
-        StartCoroutine(AdjustCamera(projectile));
+        m_ProjectileCamCoroutine = StartCoroutine(AdjustCamera(projectile));
+    }
+
+    public void Event_ForceStopProjectileCamera()
+    {
+        StopCoroutine(m_ProjectileCamCoroutine);
+        m_ProjectileCamera.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     public void Event_TimeRanOut()
@@ -293,7 +331,7 @@ public class TurnSystem : MonoBehaviour {
         TurnTimer.Instance.PauseTimer();
     }
 
-    public void Event_GameOver(TeamHandler winningTeam)
+    public IEnumerator Event_GameOver(TeamHandler winningTeam)
     {
         ActivateTankControls(m_ActiveCharacter, false);
         StopCoroutine(m_TimerCoroutine);
@@ -303,21 +341,20 @@ public class TurnSystem : MonoBehaviour {
         {
             Enum team = winningTeam.Team;
             centerText.Text = team.ToString() + " Team Won";
-            
+
+            switch (winningTeam.Team)
+            {
+                case unikincTanks.Teams.BLUE: centerText.TextColor = Color.blue; break;
+                case unikincTanks.Teams.GREEN: centerText.TextColor = Color.green; break;
+                case unikincTanks.Teams.RED: centerText.TextColor = Color.red; break;
+                case unikincTanks.Teams.YELLOW: centerText.TextColor = Color.yellow; break;
+                default: centerText.TextColor = Color.white; break;
+            }
         }
         else
         {
             centerText.Text = "Game Over";
-        }
-
-        switch (winningTeam.Team)
-        {
-            case unikincTanks.Teams.BLUE: centerText.TextColor = Color.blue; break;
-            case unikincTanks.Teams.GREEN: centerText.TextColor = Color.green; break;
-            case unikincTanks.Teams.RED: centerText.TextColor = Color.red; break;
-            case unikincTanks.Teams.YELLOW: centerText.TextColor = Color.yellow; break;
-            default: centerText.TextColor = Color.white; break;
-        }
+        }        
 
         foreach (GameObject gObj in GameObject.FindGameObjectsWithTag("GameUI"))
         {
@@ -326,5 +363,9 @@ public class TurnSystem : MonoBehaviour {
 
         centerText.ShowWidescreenBars(true);
         centerText.ShowText(true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        SceneManager.LoadScene("Main Menu");
     }
 }
