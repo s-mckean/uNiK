@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(AudioSource))]
 
 public class FireworksInitial : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class FireworksInitial : MonoBehaviour {
 
     private void SpawnFireworks()
     {
+        AudioSource audio = GetComponent<AudioSource>();
         if (isSprite)
         {
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -32,6 +34,7 @@ public class FireworksInitial : MonoBehaviour {
         }
         
         GameObject fireworks = GameObject.Instantiate(fireworksObj, transform.position, Quaternion.identity);
+        audio.Play();
 
         if (projectileCam)
         {

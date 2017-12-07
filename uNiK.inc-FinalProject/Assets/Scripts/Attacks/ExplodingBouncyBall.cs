@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class ExplodingBouncyBall : MonoBehaviour {
 
     [SerializeField] private float m_ExplosionTimer;
@@ -26,10 +26,12 @@ public class ExplodingBouncyBall : MonoBehaviour {
 
     private void Explode()
     {
+        AudioSource boom = GetComponent<AudioSource>();
+
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         m_SpawnedExplosionObj = GameObject.Instantiate(m_ExplosionObject, transform.position, Quaternion.identity);
         ParticleSystem explosion = m_ExplosionObject.GetComponent<ParticleSystem>();
-
+        boom.Play();
         Destroy(m_SpawnedExplosionObj, explosion.main.duration);
         Destroy(this.gameObject, explosion.main.duration);
     }
