@@ -167,7 +167,7 @@ public class GenericAim : MonoBehaviour {
         Vector2 direction = crosshairTransform.position - transform.position;
         // Part of testing firing position
         Vector2 tempFiringPos = Vector2.MoveTowards(transform.position, crosshairTransform.position, firingPosOffset);
-        Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, firingPosition.rotation) as Rigidbody2D;
+        Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, Quaternion.FromToRotation(Vector3.forward, crosshairTransform.position - firingPosition.position)) as Rigidbody2D;
         formProjectile.velocity = currentPower * CalculateAngle(direction);
 
         if (TurnSystem.Instance != null)
