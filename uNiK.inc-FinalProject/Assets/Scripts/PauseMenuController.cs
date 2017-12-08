@@ -36,7 +36,8 @@ public class PauseMenuController : MonoBehaviour {
             Time.timeScale = 1;
             TurnTimer.Instance.RunTimer();
         }
-        TurnSystem.Instance.ActivateCharacter(TurnSystem.Instance.m_ActiveCharacter, !paused);
+        TurnSystem.Instance.m_ActiveCharacter.GetComponentInChildren<GenericAim>().enabled = !paused;
+        TurnSystem.Instance.m_ActiveCharacter.GetComponentInChildren<TankController>().IsActive = !paused;
     }
 
     public void ResumeButton()
