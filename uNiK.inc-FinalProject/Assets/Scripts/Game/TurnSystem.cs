@@ -314,6 +314,21 @@ public class TurnSystem : MonoBehaviour {
         m_ProjectileCamCoroutine = StartCoroutine(AdjustCamera(projectile));
     }
 
+    // Needed to not track the projectile because shooting the railgun makes it go crazy fast
+    // Inserted Code begins here - Kevin
+    public void Event_ShotFiredNoTracking()
+    {
+        EndTurn();
+        StartCoroutine(Wait(2.0f));
+    }
+
+    private IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        NextTurn();
+    }
+    // Inserted Code ends here
+
     public void Event_ForceStopProjectileCamera()
     {
         StopCoroutine(m_ProjectileCamCoroutine);

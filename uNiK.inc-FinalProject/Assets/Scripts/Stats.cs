@@ -144,7 +144,7 @@ public class Stats : MonoBehaviour {
         {
             displayedValue++;
             dmgPopup.text = displayedValue.ToString();
-            Vector3 newPos = (dmgPopup.transform.position + new Vector3(0, 0.05f / targetValue, 0));
+            Vector3 newPos = (dmgPopup.transform.position + new Vector3(0, 0.1f / targetValue, 0));
             dmgPopup.transform.position = newPos;
             yield return new WaitForSeconds(totalDelay / targetValue);
         }
@@ -152,6 +152,7 @@ public class Stats : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         dmgPopup.text = "";
+        dmgPopup.transform.position = dmgPopupPos.position;
         totalValue = 0;
     }
 

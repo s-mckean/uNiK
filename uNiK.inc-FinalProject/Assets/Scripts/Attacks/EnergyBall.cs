@@ -41,7 +41,7 @@ public class EnergyBall : Attack {
 
     private int CalculateSplashDamage(Collider2D other)
     {
-        float distanceFromCenter = Vector2.Distance(transform.position, other.bounds.ClosestPoint(transform.position));//(GetComponent<CircleCollider2D>().transform.position - other.bounds.ClosestPoint(transform.position)).magnitude;
+        float distanceFromCenter = Vector2.Distance(transform.position, other.bounds.ClosestPoint(transform.position));
         return (int)(baseDamage * ((radius - distanceFromCenter) / radius));
     }
 }
