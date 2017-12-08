@@ -109,6 +109,7 @@ public class TurnSystem : MonoBehaviour {
 
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
+        m_ActiveCharacter.ReFuel();
 
         TurnTimer.Instance.ResetTimer();
 
