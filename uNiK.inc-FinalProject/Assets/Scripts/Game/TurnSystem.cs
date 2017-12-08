@@ -23,6 +23,7 @@ public class TurnSystem : MonoBehaviour {
 
     public static TurnSystem Instance;
     public GameObject weaponSelect;
+    public GameObject weaponSelectMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -193,9 +194,6 @@ public class TurnSystem : MonoBehaviour {
         tankController.IsActive = active;
         //tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
 
-        // Temporary fix so you can't move other tanks by moving into them
-        //tankController.gameObject.GetComponent<Rigidbody2D>().isKinematic = !active;
-
         var weapSys = tankController.GetComponentInChildren<WeaponSystem>();
         if (weapSys != null)
         {
@@ -209,11 +207,16 @@ public class TurnSystem : MonoBehaviour {
         }
 
         var menuSys = weaponSelect.GetComponent<WeaponSelect>();
-        if (menuSys != null && active)
+        if (menuSys != null)
         {
-            menuSys.ChangeActiveTank();
-            menuSys.CloseMenu();
-            menuSys.DisableWeaponButtons();
+            menuSys.Interactable(active);
+
+            if (active)
+            {
+                menuSys.ChangeActiveTank();
+                menuSys.CloseMenu();
+                menuSys.DisableWeaponButtons();
+            }
         }
     }
 

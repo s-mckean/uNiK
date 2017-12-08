@@ -17,7 +17,7 @@ public class WeaponSelect : MonoBehaviour
     [SerializeField] private GameObject turnSystem;
 
     private List<Button> buttons;
-    private bool weaponMenuIsOpen, scrollLShow, scrollRShow;
+    private bool weaponMenuIsOpen, scrollLShow, scrollRShow, interactableMenu;
     public float weaponImageScaling = 75f;
     private int showingButtons = 12;
     private TankController m_Controller;
@@ -31,15 +31,21 @@ public class WeaponSelect : MonoBehaviour
         CreateButtons();
         weaponMenu.SetActive(false);
         weaponMenuIsOpen = false;
+        interactableMenu = false;
         HideScrollButtons();
     }
     private void Update()
     {
         //Debug.Log(m_AimScript, m_Crosshair);
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("e") && interactableMenu)
         {
             OpenWeaponMenu();
         }
+    }
+
+    public void Interactable(bool active)
+    {
+        interactableMenu = active;
     }
 
     public void OpenWeaponMenu()
