@@ -6,7 +6,7 @@ public class Railgun : Attack {
 
     private void Start()
     {
-        
+        StartEvent();
     }
 
     private void Update()
