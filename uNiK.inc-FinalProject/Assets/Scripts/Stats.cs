@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Stats : MonoBehaviour {
 
     [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject weaponSelect;
 
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
@@ -60,7 +61,10 @@ public class Stats : MonoBehaviour {
     public void ModHealth(int value)
     {
         health += value;
-        Debug.Log(value);
+        if(value < 0)
+        {
+            weaponSelect.GetComponent<WeaponSelect>().AddPoints((value * -1) / 10);
+        }
         StartCoroutine(PopupDamage2(value));
         CheckOverHealth();
         CheckDead();

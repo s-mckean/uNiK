@@ -302,7 +302,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574151956567980}
-  m_LocalRotation: {x: 0.02624633, y: 0.7066195, z: -0.02624633, w: 0.7066195}
+  m_LocalRotation: {x: -0.026177231, y: 0.70662206, z: 0.026177231, w: 0.70662206}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  weaponSelect: {fileID: 0}
   maxHealth: 100
   maxScore: 99999
   origTankSpeed: 12
