@@ -9,16 +9,18 @@ public class FireworksInitial : MonoBehaviour {
     [SerializeField] private float duration;
     [SerializeField] private bool isSprite;
     [SerializeField] private Camera projectileCam;
+    private AudioSource audio;
 
     private void Awake()
     {
         Invoke("SpawnFireworks", duration);
+        audio = GetComponent<AudioSource>();
         projectileCam = GameObject.FindGameObjectsWithTag("ProjectileCamera")[0].GetComponent<Camera>();
     }
 
     private void SpawnFireworks()
     {
-        AudioSource audio = GetComponent<AudioSource>();
+        
         if (isSprite)
         {
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;

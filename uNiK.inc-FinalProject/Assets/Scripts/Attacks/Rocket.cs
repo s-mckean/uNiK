@@ -10,10 +10,13 @@ public class Rocket : MonoBehaviour {
 
     private float timeSpawned;
 
+    private AudioSource boom;
+
 	// Use this for initialization
 	void Start () {
         rotateRound = true;
         active = false;
+        boom = GetComponent<AudioSource>();
 	}
 
     private void Awake()
@@ -41,5 +44,6 @@ public class Rocket : MonoBehaviour {
     private void Impact()
     {
         Instantiate(hitbox, transform.position, Quaternion.identity);
+        boom.Play();
     }
 }
