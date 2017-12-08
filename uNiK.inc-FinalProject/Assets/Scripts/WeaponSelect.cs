@@ -225,7 +225,7 @@ public class WeaponSelect : MonoBehaviour
         m_Crosshair = aiming.gameObject.transform.GetChild(0).gameObject;
         m_Controller = aiming.gameObject.GetComponentInChildren<TankController>();
         m_Stats = aiming.gameObject.GetComponentInChildren<Stats>();
-        //m_AimScript.GetComponent<GenericAim>().SetProjectile(defaultWeapon);
+        m_AimScript.GetComponent<GenericAim>().SetProjectile(defaultWeapon);
     }
 
     private void CreateHashtable()

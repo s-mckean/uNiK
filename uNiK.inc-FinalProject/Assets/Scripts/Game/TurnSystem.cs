@@ -109,7 +109,6 @@ public class TurnSystem : MonoBehaviour {
 
         m_ActiveCharacter = m_ActiveTeamControllers[m_ActiveCharacterIndex];
         ActivateCharacter(m_ActiveCharacter, true);
-        m_ActiveCharacter.ReFuel();
 
         TurnTimer.Instance.ResetTimer();
 
@@ -169,6 +168,7 @@ public class TurnSystem : MonoBehaviour {
     {
         if (active)
         {
+            m_ActiveCharacter.ReFuel();
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
             foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
             {
