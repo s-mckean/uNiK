@@ -87,7 +87,6 @@ public class TimerAndFuelController : MonoBehaviour {
         while (true)
         {
             TankController controller = transform.parent.transform.parent.gameObject.GetComponent<TankController>();
-            Debug.Log(controller.gameObject.GetComponent<Stats>().points);
             if (controller.IsActive)
             {
                 m_PointsText.text = "Points: " + controller.gameObject.GetComponent<Stats>().points;

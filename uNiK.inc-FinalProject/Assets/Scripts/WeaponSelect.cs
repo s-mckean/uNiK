@@ -172,6 +172,7 @@ public class WeaponSelect : MonoBehaviour
                 buttons[i].onClick.RemoveAllListeners();
             }
         }
+        DisableWeaponButtons();
     }
 
     public void ScrollingButtonLeft()
@@ -193,6 +194,7 @@ public class WeaponSelect : MonoBehaviour
             buttons[i].onClick.RemoveAllListeners();
             buttons[i].onClick.AddListener(delegate { ButtonPress(weapon, buttons[i]); });
         }
+        DisableWeaponButtons();
     }
 
     public void ChangeActiveTank()

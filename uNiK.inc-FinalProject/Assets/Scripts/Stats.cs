@@ -60,6 +60,7 @@ public class Stats : MonoBehaviour {
     public void ModHealth(int value)
     {
         health += value;
+        Debug.Log(value);
         StartCoroutine(PopupDamage2(value));
         CheckOverHealth();
         CheckDead();
