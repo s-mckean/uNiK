@@ -217,7 +217,8 @@ public class WeaponSelect : MonoBehaviour
             { "Grenade", 3 },
             { "Railgun", 1 },
             { "Rocket", 0 },
-            { "spikyBall", 2 }
+            { "spikyBall", 2 },
+            { "EnergyBall", 15 }
         };
     }
 
