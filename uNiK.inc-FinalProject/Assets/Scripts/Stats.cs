@@ -180,10 +180,10 @@ public class Stats : MonoBehaviour {
             canvas.enabled = false;
         }
 
-        if (GetComponent<TankController>() && GetComponent<TankController>().enabled)
+        if (GetComponent<TankController>() && GetComponent<TankController>().IsActive)
         {
             Invoke("Event_DieOnTurn", 2.0f);
-            GetComponent<TankController>().enabled = false;
+            GetComponent<TankController>().IsActive = false;
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
         
