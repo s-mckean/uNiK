@@ -43,7 +43,7 @@ public class Rocket : MonoBehaviour {
     private void Impact()
     {
         Instantiate(hitbox, transform.position, Quaternion.identity);
-        boom.Play();
+        //boom.Play();
         Destroy(this.gameObject);
     }
 }
