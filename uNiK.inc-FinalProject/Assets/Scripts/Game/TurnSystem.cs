@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent (typeof (TurnTimer))]
 
 public class TurnSystem : MonoBehaviour {
-
+    [SerializeField] private float noTrackingWaitTime = 2.0f;
     [SerializeField] private List<TeamHandler> m_Teams;
     [SerializeField] private Camera m_ProjectileCamera;
     [SerializeField] private bool m_Freeplay = false;
@@ -322,7 +322,7 @@ public class TurnSystem : MonoBehaviour {
     public void Event_ShotFiredNoTracking()
     {
         EndTurn();
-        StartCoroutine(Wait(2.0f));
+        StartCoroutine(Wait(noTrackingWaitTime));
     }
 
     private IEnumerator Wait(float time)

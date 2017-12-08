@@ -9,9 +9,11 @@ public class WeaponSelect : MonoBehaviour
     /*[SerializeField]*/ private MonoBehaviour m_AimScript;
     /*[SerializeField]*/ private GameObject m_Crosshair;
     /*[SerializeField]*/ private Rigidbody2D[] weaponsList;
+    private Rigidbody2D defaultWeapon;
     private Dictionary<string, int> weaponCosts;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
+    [SerializeField] private string defaultWeaponName = "Rocket";
     [SerializeField] private GameObject RightScroll;
     [SerializeField] private GameObject LeftScroll;
     [SerializeField] private GameObject turnSystem;
@@ -27,6 +29,7 @@ public class WeaponSelect : MonoBehaviour
     {
         CreateHashtable();
         weaponsList = Resources.LoadAll<Rigidbody2D>("Projectile Prefabs");
+        SetDefaultWeapon(defaultWeaponName);
         buttons = new List<Button>();
         CreateButtons();
         weaponMenu.SetActive(false);
@@ -40,6 +43,17 @@ public class WeaponSelect : MonoBehaviour
         if (Input.GetKeyDown("e") && interactableMenu)
         {
             OpenWeaponMenu();
+        }
+    }
+
+    private void SetDefaultWeapon(string name)
+    {
+        foreach (Rigidbody2D weapon in weaponsList)
+        {
+            if (weapon.name == name)
+            {
+                defaultWeapon = weapon;
+            }
         }
     }
 
@@ -210,6 +224,7 @@ public class WeaponSelect : MonoBehaviour
         m_Crosshair = aiming.gameObject.transform.GetChild(0).gameObject;
         m_Controller = aiming.gameObject.GetComponentInChildren<TankController>();
         m_Stats = aiming.gameObject.GetComponentInChildren<Stats>();
+        m_AimScript.GetComponent<GenericAim>().SetProjectile(defaultWeapon);
     }
 
     private void CreateHashtable()
