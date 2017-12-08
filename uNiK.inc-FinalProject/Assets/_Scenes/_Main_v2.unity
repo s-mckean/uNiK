@@ -4955,6 +4955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355a6673e49c8834dba1cb1f2c08f419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noTrackingWaitTime: 2
   m_Teams:
   - {fileID: 1598701220}
   - {fileID: 1450112987}
@@ -4964,6 +4965,7 @@ MonoBehaviour:
   m_Freeplay: 0
   m_ActiveCharacter: {fileID: 0}
   weaponSelect: {fileID: 1593018395}
+  weaponSelectMenu: {fileID: 0}
 --- !u!4 &494265636
 Transform:
   m_ObjectHideFlags: 0
@@ -14636,6 +14638,53 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd4201d7133b4434e95f4fb195ecb559, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1332439495
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2144452962}
+    m_Modifications:
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -384
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0c291de05f5ef00409e1ca32c1a33239, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1332439496 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4275897672015620, guid: 0c291de05f5ef00409e1ca32c1a33239,
+    type: 2}
+  m_PrefabInternal: {fileID: 1332439495}
 --- !u!1001 &1336433459
 Prefab:
   m_ObjectHideFlags: 0
@@ -17044,6 +17093,7 @@ MonoBehaviour:
   weaponMenu: {fileID: 1384049300}
   buttonPrefab: {fileID: 114465509506289678, guid: 4b257a9555815214fbfd30f9405d1e7e,
     type: 2}
+  defaultWeaponName: PlasmaRocket
   RightScroll: {fileID: 1118455025892682, guid: 4b257a9555815214fbfd30f9405d1e7e,
     type: 2}
   LeftScroll: {fileID: 1118455025892682, guid: 4b257a9555815214fbfd30f9405d1e7e, type: 2}
@@ -23323,6 +23373,7 @@ RectTransform:
   - {fileID: 1384049304}
   - {fileID: 1972679946}
   - {fileID: 1614060165}
+  - {fileID: 1332439496}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -46,6 +46,7 @@ public class PauseMenuController : MonoBehaviour {
 
     public void SwitchScene(string sceneName)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 }

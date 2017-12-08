@@ -206,8 +206,6 @@ GameObject:
   - component: {fileID: 224138779799834616}
   - component: {fileID: 222461685560072650}
   - component: {fileID: 114895779784108872}
-  - component: {fileID: 95825648335947500}
-  - component: {fileID: 114933495219404102}
   m_Layer: 5
   m_Name: PauseScreen
   m_TagString: Untagged
@@ -277,23 +275,6 @@ Transform:
   m_Father: {fileID: 4275897672015620}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95825648335947500
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1837214382704782}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a82f283a6ab87524c9f23195ef659189, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114041653804950838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -755,18 +736,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &114933495219404102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1837214382704782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa2ccbb04d6590419382f1a2bd5c6a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CamAnim: {fileID: 0}
 --- !u!114 &114973671081137008
 MonoBehaviour:
   m_ObjectHideFlags: 1
