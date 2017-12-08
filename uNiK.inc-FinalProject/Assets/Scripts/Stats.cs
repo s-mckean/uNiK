@@ -23,6 +23,7 @@ public class Stats : MonoBehaviour {
     private Transform dmgPopupPos;
     private int score;
     private int health;
+    private int totalValue;
     private bool alive;
 
 	// Use this for initialization
@@ -30,6 +31,7 @@ public class Stats : MonoBehaviour {
         score = 0;
         health = maxHealth;
         alive = true;
+        totalValue = 0;
         ResetTankSpeed();
 	}
 
@@ -61,11 +63,12 @@ public class Stats : MonoBehaviour {
     public void ModHealth(int value)
     {
         health += value;
+        totalValue += value;
         if(value < 0)
         {
             weaponSelect.GetComponent<WeaponSelect>().AddPoints((value * -1) / 10);
         }
-        StartCoroutine(PopupDamage2(value));
+        StartCoroutine(PopupDamage2(totalValue));
         CheckOverHealth();
         CheckDead();
     }
@@ -104,7 +107,7 @@ public class Stats : MonoBehaviour {
             dmgPopup.color = Color.green;
         }
 
-        while (displayedValue < Mathf.Abs(value))
+        while (displayedValue < targetValue)
         {
             displayedValue += (targetValue / dmgPopupIterations);
             if ((targetValue - displayedValue) == remainder) {
@@ -123,6 +126,7 @@ public class Stats : MonoBehaviour {
 
     private IEnumerator PopupDamage2(int value)
     {
+        dmgPopupPos = dmgPopup.transform;
         dmgPopup.text = "";
         int displayedValue = 0;
         int targetValue = Mathf.Abs(value);
@@ -136,17 +140,19 @@ public class Stats : MonoBehaviour {
             dmgPopup.color = Color.green;
         }
 
-        while (displayedValue < Mathf.Abs(value))
+        while (displayedValue < targetValue)
         {
             displayedValue++;
             dmgPopup.text = displayedValue.ToString();
-            //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
-            yield return new WaitForSeconds(iterationDelay / targetValue);
+            Vector3 newPos = (dmgPopup.transform.position + new Vector3(0, 0.05f / targetValue, 0));
+            dmgPopup.transform.position = newPos;
+            yield return new WaitForSeconds(totalDelay / targetValue);
         }
 
         yield return new WaitForSeconds(2.0f);
 
         dmgPopup.text = "";
+        totalValue = 0;
     }
 
     private void CheckOverHealth()
