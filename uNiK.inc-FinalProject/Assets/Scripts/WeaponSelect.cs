@@ -64,7 +64,7 @@ public class WeaponSelect : MonoBehaviour
 
     public void OpenWeaponMenu()
     {
-        ChangeActiveTank();
+        //ChangeActiveTank();
         if (!weaponMenuIsOpen)
         {
             weaponMenuIsOpen = true;

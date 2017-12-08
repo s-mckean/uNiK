@@ -38,12 +38,12 @@ public class Rocket : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Impact();
-        Destroy(this.gameObject);
     }
 
     private void Impact()
     {
         Instantiate(hitbox, transform.position, Quaternion.identity);
         boom.Play();
+        Destroy(this.gameObject);
     }
 }
