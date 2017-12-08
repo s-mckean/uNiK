@@ -262,8 +262,8 @@ public class TurnSystem : MonoBehaviour {
             }
             else if (rb.velocity.y < 0)
             {
-                float newOrthoSize = m_ProjectileCamera.orthographicSize - Mathf.Abs(rb.velocity.y) / 80f;
-                float minOrthoSize = origOrthoSize * Mathf.Abs(maxHeight - startHeight) / 50f;
+                float newOrthoSize = m_ProjectileCamera.orthographicSize - Mathf.Abs(rb.velocity.y) / 50f;
+                float minOrthoSize = origOrthoSize * Mathf.Abs(maxHeight - startHeight) / 100f;
                 minOrthoSize = Mathf.Clamp(minOrthoSize, origOrthoSize, 999f);
                 m_ProjectileCamera.orthographicSize = Mathf.Clamp(newOrthoSize, minOrthoSize, 999f);
             }
