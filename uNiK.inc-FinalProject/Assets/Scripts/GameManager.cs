@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public Dictionary<Teams, int> teamInfos;
     public Dictionary<int, string> stages;      // Unused
 
+    private int firstStageIndex;
+
 	// Use this for initialization
 	void Start () {
         if (instance == null)
@@ -21,6 +23,9 @@ public class GameManager : MonoBehaviour {
 
         teamInfos = new Dictionary<Teams, int>();
         stages = new Dictionary<int, string>();
+        StoreStages();
+        firstStageIndex = 2;
+        stageIndex = firstStageIndex;
 
         playerCount = 0;
         teamInfos[Teams.RED] = 0;
@@ -37,6 +42,15 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+    }
+
+    private void StoreStages()
+    {
+        for (int x = 0; x < SceneManager.sceneCountInBuildSettings; x++)
+        {
+            stages[x] = SceneManager.GetSceneByBuildIndex(x).name;
+            Debug.Log(x + " loading " + stages[x]);
+        }
     }
 
     public void RedTeamPlayerCount(int value)
@@ -61,12 +75,27 @@ public class GameManager : MonoBehaviour {
 
     public void NextStage()
     {
+        if (stageIndex + 1 > SceneManager.sceneCountInBuildSettings - 1)
+        {
+            stageIndex = firstStageIndex;
+        }
+        else
+        {
+            stageIndex++;
+        }
 
     }
 
     public void PreviousStage()
     {
-
+        if (stageIndex - 1 < firstStageIndex)
+        {
+            stageIndex = SceneManager.sceneCountInBuildSettings - 1;
+        }
+        else
+        {
+            stageIndex--;
+        }
     }
 
     public void Play()
