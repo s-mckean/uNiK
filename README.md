@@ -10,4 +10,8 @@ Release MOUSE1 to shoot your shot and watch your projectile obliterate the poor 
 
 Keep damaging your opponents with your projectiles until their health reaches 0 or they fall into the white blocks which kill the player that falls into them.
 
+Features:
 
+Multiple Weapons: Selectable by a weapon menu system that can be opened during the player's turn. Weapons purchasable by points earned by damaging opponents (Issues: 5, 11, 27, and 37)
+
+Turn System: Game is turn-based so a system is implemented to change turns after a shot or timer runs out or player dies during their turn. (Issues:
