@@ -9,6 +9,7 @@ TagManager:
   - DestroyableBlock
   - ProjectileCamera
   - GameUI
+  - PassThrough
   layers:
   - Default
   - TransparentFX
