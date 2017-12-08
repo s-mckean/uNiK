@@ -1147,6 +1147,16 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -1631,6 +1641,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -2588,6 +2608,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -2904,6 +2934,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -8973,6 +9013,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -9286,6 +9336,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -11318,8 +11378,13 @@ Prefab:
     - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
         type: 2}
       propertyPath: points
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -13437,6 +13502,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -13820,6 +13895,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -13942,6 +14027,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -16143,6 +16238,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -17853,6 +17958,16 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -18110,6 +18225,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -18421,6 +18546,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -19429,6 +19564,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -22041,6 +22186,16 @@ Prefab:
     - target: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
       propertyPath: m_Name
       value: GameTank (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: weaponSelect
+      value: 
+      objectReference: {fileID: 1593018395}
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: points
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}

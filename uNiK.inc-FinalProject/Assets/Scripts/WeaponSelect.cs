@@ -172,6 +172,7 @@ public class WeaponSelect : MonoBehaviour
                 buttons[i].onClick.RemoveAllListeners();
             }
         }
+        DisableWeaponButtons();
     }
 
     public void ScrollingButtonLeft()
@@ -193,6 +194,7 @@ public class WeaponSelect : MonoBehaviour
             buttons[i].onClick.RemoveAllListeners();
             buttons[i].onClick.AddListener(delegate { ButtonPress(weapon, buttons[i]); });
         }
+        DisableWeaponButtons();
     }
 
     public void ChangeActiveTank()
@@ -210,12 +212,12 @@ public class WeaponSelect : MonoBehaviour
         weaponCosts = new Dictionary<string, int>
         {
             //weapon name (as it is writen in resource folder) , point value
-            { "BouncyBall", 1000 },
-            { "FireworkBomb", 1000 },
-            { "Grenade", 1000 },
-            { "Railgun", 1000 },
+            { "BouncyBall", 5 },
+            { "FireworkBomb", 15 },
+            { "Grenade", 3 },
+            { "Railgun", 1 },
             { "Rocket", 0 },
-            { "spikyBall", 1000 }
+            { "spikyBall", 2 }
         };
     }
 
@@ -234,5 +236,10 @@ public class WeaponSelect : MonoBehaviour
                 weaponButton.interactable = true;
             }
         }
+    }
+
+    public void AddPoints(int value)
+    {
+        m_Stats.points += value;
     }
 }
