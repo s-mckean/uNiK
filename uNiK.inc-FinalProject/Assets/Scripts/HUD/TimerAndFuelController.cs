@@ -7,6 +7,7 @@ public class TimerAndFuelController : MonoBehaviour {
 
     [SerializeField] private Text m_FuelText;
     [SerializeField] private Text m_TimerText;
+    [SerializeField] private Text m_PointsText;
 
     private SpriteRenderer m_SpriteRenderer;
 
@@ -16,6 +17,7 @@ public class TimerAndFuelController : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(UpdateTimerText());
         StartCoroutine(UpdateFuelText());
+        StartCoroutine(UpdatePointsText());
     }
 
     private void OnDisable()
@@ -74,6 +76,25 @@ public class TimerAndFuelController : MonoBehaviour {
             else
             {
                 m_FuelText.text = "Fuel: ";
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private IEnumerator UpdatePointsText()
+    {
+        while (true)
+        {
+            TankController controller = transform.parent.transform.parent.gameObject.GetComponent<TankController>();
+            Debug.Log(controller.gameObject.GetComponent<Stats>().points);
+            if (controller.IsActive)
+            {
+                m_PointsText.text = "Points: " + controller.gameObject.GetComponent<Stats>().points;
+            }
+            else
+            {
+                m_PointsText.text = "Points: ";
             }
 
             yield return new WaitForSeconds(0.2f);

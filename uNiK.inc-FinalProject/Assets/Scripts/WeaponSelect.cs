@@ -9,6 +9,7 @@ public class WeaponSelect : MonoBehaviour
     /*[SerializeField]*/ private MonoBehaviour m_AimScript;
     /*[SerializeField]*/ private GameObject m_Crosshair;
     /*[SerializeField]*/ private Rigidbody2D[] weaponsList;
+    private Dictionary<string, int> weaponCosts;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private GameObject RightScroll;
@@ -20,9 +21,11 @@ public class WeaponSelect : MonoBehaviour
     public float weaponImageScaling = 75f;
     private int showingButtons = 12;
     private TankController m_Controller;
+    private Stats m_Stats;
 
     private void Start()
     {
+        CreateHashtable();
         weaponsList = Resources.LoadAll<Rigidbody2D>("Projectile Prefabs");
         buttons = new List<Button>();
         CreateButtons();
@@ -93,8 +96,15 @@ public class WeaponSelect : MonoBehaviour
                 Rigidbody2D weapon = weaponsList[i];
                 //weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
                 //weaponImage.GetComponent<SpriteRenderer>().color = weapon.GetComponent<SpriteRenderer>().color;
-                newButton.GetComponentInChildren<Text>().text = weapon.name;
-                newButton.onClick.AddListener(delegate { ButtonPress(weapon); });
+                newButton.transform.GetChild(0).GetComponent<Text>().text = weapon.name;
+                foreach (KeyValuePair<string, int> kvp in weaponCosts)
+                {
+                    if(kvp.Key == weapon.name)
+                    {
+                        newButton.transform.GetChild(1).GetComponent<Text>().text = kvp.Value.ToString();
+                    }
+                }
+                newButton.onClick.AddListener(delegate { ButtonPress(weapon, newButton); });
             }
 
             buttons.Add(newButton);
@@ -126,9 +136,12 @@ public class WeaponSelect : MonoBehaviour
         }
     }
 
-    public void ButtonPress(Rigidbody2D weaponSelected)
+    public void ButtonPress(Rigidbody2D weaponSelected, Button weaponButton)
     {
+        int pointCost = 0;
+        int.TryParse(weaponButton.transform.GetChild(1).GetComponent<Text>().text, out pointCost);
         m_AimScript.GetComponent<GenericAim>().SetProjectile(weaponSelected);
+        m_Stats.points -= pointCost;
         OpenWeaponMenu();
     }
 
@@ -141,9 +154,17 @@ public class WeaponSelect : MonoBehaviour
             if (i + (showingButtons - 12) <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
-                buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                //buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+                buttons[i].transform.GetChild(0).GetComponent<Text>().text = weapon.name;
+                foreach (KeyValuePair<string, int> kvp in weaponCosts)
+                {
+                    if (kvp.Key == weapon.name)
+                    {
+                        buttons[i].transform.GetChild(1).GetComponent<Text>().text = kvp.Value.ToString();
+                    }
+                }
                 buttons[i].onClick.RemoveAllListeners();
-                buttons[i].onClick.AddListener(delegate { ButtonPress(weapon); });
+                buttons[i].onClick.AddListener(delegate { ButtonPress(weapon, buttons[i]); });
             }
             else
             {
@@ -160,9 +181,17 @@ public class WeaponSelect : MonoBehaviour
         for (int i = 0; i < 12; i++)
         {
             Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
-            buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            //buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            buttons[i].transform.GetChild(0).GetComponent<Text>().text = weapon.name;
+            foreach (KeyValuePair<string, int> kvp in weaponCosts)
+            {
+                if (kvp.Key == weapon.name)
+                {
+                    buttons[i].transform.GetChild(1).GetComponent<Text>().text = kvp.Value.ToString();
+                }
+            }
             buttons[i].onClick.RemoveAllListeners();
-            buttons[i].onClick.AddListener(delegate { ButtonPress(weapon); });
+            buttons[i].onClick.AddListener(delegate { ButtonPress(weapon, buttons[i]); });
         }
     }
 
@@ -172,5 +201,38 @@ public class WeaponSelect : MonoBehaviour
         m_AimScript = aiming.gameObject.GetComponentInChildren<GenericAim>();
         m_Crosshair = aiming.gameObject.transform.GetChild(0).gameObject;
         m_Controller = aiming.gameObject.GetComponentInChildren<TankController>();
+        m_Stats = aiming.gameObject.GetComponentInChildren<Stats>();
+    }
+
+    private void CreateHashtable()
+    {
+        //each weapon needs to be added here
+        weaponCosts = new Dictionary<string, int>
+        {
+            //weapon name (as it is writen in resource folder) , point value
+            { "BouncyBall", 1000 },
+            { "FireworkBomb", 1000 },
+            { "Grenade", 1000 },
+            { "Railgun", 1000 },
+            { "Rocket", 0 },
+            { "spikyBall", 1000 }
+        };
+    }
+
+    public void DisableWeaponButtons()
+    {
+        foreach (Button weaponButton in buttons)
+        {
+            int parsedInt = 0;
+            int.TryParse(weaponButton.transform.GetChild(1).GetComponent<Text>().text, out parsedInt);
+            if(parsedInt > m_Stats.points)
+            {
+                weaponButton.interactable = false;
+            }
+            else
+            {
+                weaponButton.interactable = true;
+            }
+        }
     }
 }

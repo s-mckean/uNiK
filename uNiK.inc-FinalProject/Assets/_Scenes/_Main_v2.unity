@@ -1142,6 +1142,11 @@ Prefab:
       propertyPath: m_Name
       value: GameTank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 82832576048474776, guid: 52da99d045d08b346a7477aa9b6b9381,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
   m_IsPrefabParent: 0
@@ -8432,24 +8437,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4520385172948662, guid: ef9c0943e8a8f0945bd6c28c07853bd2,
     type: 2}
   m_PrefabInternal: {fileID: 744151292}
---- !u!1 &749541808 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1836965555722900, guid: 52da99d045d08b346a7477aa9b6b9381,
-    type: 2}
-  m_PrefabInternal: {fileID: 1055497130}
---- !u!114 &749541811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 749541808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ad5a2f16241bc419b2e7008a0d9e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshairTransform: {fileID: 1817642125}
-  cannon: {fileID: 212101494835259096, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
 --- !u!1001 &750210183
 Prefab:
   m_ObjectHideFlags: 0
@@ -11180,11 +11167,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4398546122588436, guid: cd4201d7133b4434e95f4fb195ecb559,
     type: 2}
   m_PrefabInternal: {fileID: 1051867429}
---- !u!212 &1054678389 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212101494835259096, guid: 52da99d045d08b346a7477aa9b6b9381,
-    type: 2}
-  m_PrefabInternal: {fileID: 1055497130}
 --- !u!1001 &1054815617
 Prefab:
   m_ObjectHideFlags: 0
@@ -11328,36 +11310,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114211562807276922, guid: 52da99d045d08b346a7477aa9b6b9381,
+    - target: {fileID: 82832576048474776, guid: 52da99d045d08b346a7477aa9b6b9381,
         type: 2}
-      propertyPath: cannon
-      value: 
-      objectReference: {fileID: 1054678389}
-    - target: {fileID: 114211562807276922, guid: 52da99d045d08b346a7477aa9b6b9381,
-        type: 2}
-      propertyPath: crosshairTransform
-      value: 
-      objectReference: {fileID: 1817642125}
-    - target: {fileID: 114224121296540598, guid: 52da99d045d08b346a7477aa9b6b9381,
-        type: 2}
-      propertyPath: weaponMenu
-      value: 
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114224121296540598, guid: 52da99d045d08b346a7477aa9b6b9381,
+    - target: {fileID: 114845250195672294, guid: 52da99d045d08b346a7477aa9b6b9381,
         type: 2}
-      propertyPath: buttonPrefab
-      value: 
-      objectReference: {fileID: 114059678994618572, guid: 4b257a9555815214fbfd30f9405d1e7e,
-        type: 2}
-    - target: {fileID: 114224121296540598, guid: 52da99d045d08b346a7477aa9b6b9381,
-        type: 2}
-      propertyPath: RightScroll
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114224121296540598, guid: 52da99d045d08b346a7477aa9b6b9381,
-        type: 2}
-      propertyPath: LeftScroll
-      value: 
+      propertyPath: points
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
@@ -16976,11 +16937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponMenu: {fileID: 1384049300}
-  buttonPrefab: {fileID: 114059678994618572, guid: 4b257a9555815214fbfd30f9405d1e7e,
+  buttonPrefab: {fileID: 114465509506289678, guid: 4b257a9555815214fbfd30f9405d1e7e,
     type: 2}
-  RightScroll: {fileID: 1610684353246816, guid: 4b257a9555815214fbfd30f9405d1e7e,
+  RightScroll: {fileID: 1118455025892682, guid: 4b257a9555815214fbfd30f9405d1e7e,
     type: 2}
-  LeftScroll: {fileID: 1610684353246816, guid: 4b257a9555815214fbfd30f9405d1e7e, type: 2}
+  LeftScroll: {fileID: 1118455025892682, guid: 4b257a9555815214fbfd30f9405d1e7e, type: 2}
   turnSystem: {fileID: 494265633}
   weaponImageScaling: 75
 --- !u!4 &1593018397
@@ -19391,11 +19352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairTransform: {fileID: 1815619087}
   cannon: {fileID: 212101494835259096, guid: 52da99d045d08b346a7477aa9b6b9381, type: 2}
---- !u!4 &1817642125 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4918277411159298, guid: 52da99d045d08b346a7477aa9b6b9381,
-    type: 2}
-  m_PrefabInternal: {fileID: 1055497130}
 --- !u!1001 &1818741921
 Prefab:
   m_ObjectHideFlags: 0

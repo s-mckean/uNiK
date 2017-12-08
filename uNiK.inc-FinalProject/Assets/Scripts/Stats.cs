@@ -10,6 +10,7 @@ public class Stats : MonoBehaviour {
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
     public float origTankSpeed = 12f;
+    public int points = 1000;
     public Text dmgPopup;
     [Tooltip("Total delay is number of iterations x iteration delay")]
     public int dmgPopupIterations = 5;

@@ -213,6 +213,7 @@ public class TurnSystem : MonoBehaviour {
         {
             menuSys.ChangeActiveTank();
             menuSys.CloseMenu();
+            menuSys.DisableWeaponButtons();
         }
     }
 

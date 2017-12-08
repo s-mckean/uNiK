@@ -302,7 +302,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574151956567980}
-  m_LocalRotation: {x: -0.010207542, y: 0.7070331, z: 0.010207542, w: 0.7070331}
+  m_LocalRotation: {x: -0.095056675, y: 0.7006884, z: 0.095056675, w: 0.7006884}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -343,7 +343,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836965555722900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -86.1, y: -1.88, z: 0}
+  m_LocalPosition: {x: -84.74, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4323470554852858}
@@ -627,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FuelText: {fileID: 114480651477000416}
   m_TimerText: {fileID: 114604376730501884}
+  m_PointsText: {fileID: 114539234242177056}
 --- !u!114 &114412630762301026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,6 +878,7 @@ MonoBehaviour:
   maxHealth: 100
   maxScore: 99999
   origTankSpeed: 12
+  points: 0
   dmgPopup: {fileID: 114664470067017482}
   dmgPopupIterations: 5
   iterationDelay: 0.1
