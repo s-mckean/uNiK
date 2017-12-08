@@ -20,7 +20,14 @@ public class DestroyableMapBlock : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (!collision.CompareTag("Player") && !collision.CompareTag("PassThrough")) {
+            DestroyBlock();
+        }
+        */
+        DestroyBlocks db = collision.gameObject.GetComponent<DestroyBlocks>();
+        if (db)
+        {
             DestroyBlock();
         }
     }
