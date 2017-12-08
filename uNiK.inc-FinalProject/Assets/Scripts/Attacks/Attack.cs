@@ -7,9 +7,11 @@ public abstract class Attack : MonoBehaviour {
     [SerializeField] protected float lifetime;
     [SerializeField] protected float initialDelay;
     [SerializeField] protected int baseDamage;
+   
 
 	// Use this for initialization
 	void Start () {
+       
         StartEvent();
         Effect();
 	}
