@@ -13,7 +13,7 @@ public class WeaponSelect : MonoBehaviour
     private Dictionary<string, int> weaponCosts;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
-    [SerializeField] private string defaultWeaponName = "Rocket";
+    [SerializeField] private string defaultWeaponName = "PlasmaRocket";
     [SerializeField] private GameObject RightScroll;
     [SerializeField] private GameObject LeftScroll;
     [SerializeField] private GameObject turnSystem;
@@ -70,7 +70,7 @@ public class WeaponSelect : MonoBehaviour
         {
             weaponMenuIsOpen = true;
             m_AimScript.enabled = false;
-            m_Controller.enabled = false;
+            m_Controller.IsActive = false;
             weaponMenu.SetActive(true);
         }
         else
@@ -88,7 +88,7 @@ public class WeaponSelect : MonoBehaviour
     {
         weaponMenuIsOpen = false;
         m_AimScript.enabled = true;
-        m_Controller.enabled = true;
+        m_Controller.IsActive = true;
         weaponMenu.SetActive(false);
     }
 

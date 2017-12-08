@@ -7,6 +7,7 @@ public class Stats : MonoBehaviour {
 
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject weaponSelect;
+    public AudioClip deathboom;
 
     public int maxHealth = 100;       // Feel free to adjust the settings
     public int maxScore = 99999;
@@ -28,11 +29,15 @@ public class Stats : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        deathboom = GetComponent<AudioClip>();
+
         score = 0;
         health = maxHealth;
         alive = true;
         totalValue = 0;
         ResetTankSpeed();
+
 	}
 
     public int GetHealth()
@@ -201,6 +206,7 @@ public class Stats : MonoBehaviour {
         GetComponentInChildren<GenericAim>().enabled = false;
         GetComponentInChildren<WeaponSystem>().enabled = false;
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        
 
     }
 

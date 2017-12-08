@@ -168,6 +168,7 @@ public class TurnSystem : MonoBehaviour {
     {
         if (active)
         {
+            m_ActiveCharacter.ReFuel();
             tankController.gameObject.GetComponentInChildren<Camera>().depth = 5;
             foreach (SpriteRenderer sprite in tankController.gameObject.GetComponentsInChildren<SpriteRenderer>())
             {

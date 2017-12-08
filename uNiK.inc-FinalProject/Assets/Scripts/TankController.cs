@@ -71,7 +71,6 @@ public class TankController : MonoBehaviour {
 
     private void ResetStatus()
     {
-        m_FuelCurrent = m_FuelMax;
         m_JumpInputValue = 0;
         m_MovementInputValue = 0f;
         m_IsActive = true;
@@ -302,5 +301,10 @@ public class TankController : MonoBehaviour {
         {
             this.m_UnlimitedFuel = value;
         }
+    }
+
+    public void ReFuel()
+    {
+        m_FuelCurrent = m_FuelMax;
     }
 }
