@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour {
+public class Rocket : MonoBehaviour {
 
     public GameObject hitbox;       // Moved from ProjectileImpact to here
     private bool rotateRound;

@@ -48,7 +48,7 @@ public class HitboxController : MonoBehaviour {
 
     private int CalculateSplashDamage(Collider2D other)
     {
-        float distanceFromCenter = (GetComponent<CircleCollider2D>().transform.position - other.bounds.ClosestPoint(transform.position)).magnitude;
+        float distanceFromCenter = Vector2.Distance(GetComponent<CircleCollider2D>().transform.position, other.bounds.ClosestPoint(transform.position));
         return (int)(damage * outerDmgMod * ((radius - distanceFromCenter) / radius));
     }
 
@@ -60,17 +60,17 @@ public class HitboxController : MonoBehaviour {
         {
             if (!explosion)
             {
-                other.gameObject.GetComponent<Stats>().ModHealth(-damage);
+                pScript.ModHealth(-damage);
             }
             else
             {
                 if (other.bounds.Intersects(innerHitbox.GetComponent<CircleCollider2D>().bounds))
                 {
-                    other.gameObject.GetComponent<Stats>().ModHealth(-damage);
+                    pScript.ModHealth(-damage);
                 }
                 else if (other.bounds.Intersects(GetComponent<CircleCollider2D>().bounds))
                 {
-                    other.gameObject.GetComponent<Stats>().ModHealth(-CalculateSplashDamage(other));
+                    pScript.ModHealth(-CalculateSplashDamage(other));
                 }
             }
         }

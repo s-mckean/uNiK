@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public int playerCount;
     public int stageIndex;
     public Dictionary<Teams, int> teamInfos;
-    public Dictionary<int, string> stages;
+    public Dictionary<int, string> stages;      // Unused
 
 	// Use this for initialization
 	void Start () {
@@ -72,6 +72,6 @@ public class GameManager : MonoBehaviour {
     public void Play()
     {
         playerCount = teamInfos[Teams.RED] + teamInfos[Teams.BLUE] + teamInfos[Teams.GREEN] + teamInfos[Teams.YELLOW];
-        SceneManager.LoadScene("_Main_v2");
+        SceneManager.LoadScene("_Main_v2");         // Only 1 stage at the moment
     }
 }

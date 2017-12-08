@@ -168,7 +168,6 @@ public class GenericAim : MonoBehaviour {
         // Part of testing firing position
         Vector2 tempFiringPos = Vector2.MoveTowards(transform.position, crosshairTransform.position, firingPosOffset);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, firingPosition.rotation) as Rigidbody2D;
         Rigidbody2D formProjectile = Instantiate(projectile, tempFiringPos, Quaternion.Euler(0f, 0f, angle)) as Rigidbody2D;
         formProjectile.velocity = currentPower * CalculateAngle(direction);
 

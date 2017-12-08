@@ -90,39 +90,40 @@ public class Stats : MonoBehaviour {
         ModTankSpeed(origTankSpeed);
     }
 
-    private IEnumerator PopupDamage(int value)
-    {
-        dmgPopupPos = dmgPopup.transform;
-        dmgPopup.text = "";
-        int displayedValue = 0;
-        int targetValue = Mathf.Abs(value);
-        int remainder = targetValue % dmgPopupIterations;
+    // Unused
+    //private IEnumerator PopupDamage(int value)
+    //{
+    //    dmgPopupPos = dmgPopup.transform;
+    //    dmgPopup.text = "";
+    //    int displayedValue = 0;
+    //    int targetValue = Mathf.Abs(value);
+    //    int remainder = targetValue % dmgPopupIterations;
 
-        if (value < 0)
-        {
-            dmgPopup.color = Color.red;
-        }
-        else if (value > 0)
-        {
-            dmgPopup.color = Color.green;
-        }
+    //    if (value < 0)
+    //    {
+    //        dmgPopup.color = Color.red;
+    //    }
+    //    else if (value > 0)
+    //    {
+    //        dmgPopup.color = Color.green;
+    //    }
 
-        while (displayedValue < targetValue)
-        {
-            displayedValue += (targetValue / dmgPopupIterations);
-            if ((targetValue - displayedValue) == remainder) {
-                displayedValue += remainder;
-                remainder = 0;
-            }
-            dmgPopup.text = displayedValue.ToString();
-            //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
-            yield return new WaitForSeconds(iterationDelay);
-        }
+    //    while (displayedValue < targetValue)
+    //    {
+    //        displayedValue += (targetValue / dmgPopupIterations);
+    //        if ((targetValue - displayedValue) == remainder) {
+    //            displayedValue += remainder;
+    //            remainder = 0;
+    //        }
+    //        dmgPopup.text = displayedValue.ToString();
+    //        //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
+    //        yield return new WaitForSeconds(iterationDelay);
+    //    }
 
-        yield return new WaitForSeconds(2.0f);
+    //    yield return new WaitForSeconds(2.0f);
 
-        dmgPopup.text = "";
-    }
+    //    dmgPopup.text = "";
+    //}
 
     private IEnumerator PopupDamage2(int value)
     {
@@ -176,10 +177,7 @@ public class Stats : MonoBehaviour {
     private void Die()
     {
         alive = false;
-        //GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Rigidbody2D>().isKinematic = true;
-        //GetComponent<Collider2D>().enabled = false;
-        //Destroy(this.gameObject);
         foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.enabled = false;
