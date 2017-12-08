@@ -311,7 +311,10 @@ public class TurnSystem : MonoBehaviour {
     public void Event_ShotFired(GameObject projectile)
     {
         EndTurn();
-        m_ProjectileCamCoroutine = StartCoroutine(AdjustCamera(projectile));
+        if (!projectile.CompareTag("PassThrough"))
+        {
+            m_ProjectileCamCoroutine = StartCoroutine(AdjustCamera(projectile));
+        }
     }
 
     public void Event_ForceStopProjectileCamera()

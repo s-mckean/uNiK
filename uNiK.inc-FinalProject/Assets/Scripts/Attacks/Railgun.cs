@@ -11,7 +11,7 @@ public class Railgun : Attack {
 
     private void Update()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+        GetComponent<Rigidbody2D>().velocity *= 1.5f;
     }
 
     public override void StartEvent()
