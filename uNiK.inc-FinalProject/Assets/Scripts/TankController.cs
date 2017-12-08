@@ -20,6 +20,7 @@ public class TankController : MonoBehaviour {
     public AudioClip m_EngineDriving;
     public float m_PitchRange = 0.2f;
     */
+    private AudioSource thrusters; 
 
     private Rigidbody2D m_Rigidbody;
     private Transform m_Transform;
@@ -49,7 +50,8 @@ public class TankController : MonoBehaviour {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_Camera = GetComponentInChildren<Camera>();
         m_OrigCamOrthoSize = m_Camera.orthographicSize;
-        
+      
+        thrusters = GetComponent<AudioSource>();
 
         m_IsActive = false;
         var em = m_ThrustersObject.emission;
@@ -137,12 +139,13 @@ public class TankController : MonoBehaviour {
     private void AdjustJumpValue()
     {
         bool spaceDown = Input.GetKey(KeyCode.Space);
-        AudioSource thrusters = GetComponent<AudioSource>();
+       
         if (spaceDown)
         {
             m_JumpInputValue = m_JumpAcceleration;        // Fixes the way falling and gravity works
-            //m_JumpInputValue += m_JumpAcceleration;
             thrusters.Play();
+            //m_JumpInputValue += m_JumpAcceleration;
+
         }
         else
         {
@@ -157,16 +160,20 @@ public class TankController : MonoBehaviour {
 
     private void ActivateThrusters (bool activate)
     {
+        
         var em = m_ThrustersObject.emission;
-
+        
         if (activate && CheckFuel())
         {
             em.enabled = true;
+            
         }
         else
         {
             em.enabled = false;
+            thrusters.Stop();
         }
+        
     }
 
     void FixedUpdate()
