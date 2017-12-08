@@ -43,6 +43,7 @@ public class WeaponSelect : MonoBehaviour
         if (Input.GetKeyDown("e") && interactableMenu)
         {
             OpenWeaponMenu();
+            DisableWeaponButtons();
         }
     }
 
@@ -64,12 +65,12 @@ public class WeaponSelect : MonoBehaviour
 
     public void OpenWeaponMenu()
     {
-        ChangeActiveTank();
+        //ChangeActiveTank();
         if (!weaponMenuIsOpen)
         {
             weaponMenuIsOpen = true;
             m_AimScript.enabled = false;
-            m_Controller.enabled = false;
+            m_Controller.IsActive = false;
             weaponMenu.SetActive(true);
         }
         else
@@ -87,7 +88,7 @@ public class WeaponSelect : MonoBehaviour
     {
         weaponMenuIsOpen = false;
         m_AimScript.enabled = true;
-        m_Controller.enabled = true;
+        m_Controller.IsActive = true;
         weaponMenu.SetActive(false);
     }
 
