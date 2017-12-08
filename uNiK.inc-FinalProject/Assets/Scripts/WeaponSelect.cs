@@ -13,7 +13,7 @@ public class WeaponSelect : MonoBehaviour
     private Dictionary<string, int> weaponCosts;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
-    [SerializeField] private string defaultWeaponName = "Rocket";
+    [SerializeField] private string defaultWeaponName = "PlasmaRocket";
     [SerializeField] private GameObject RightScroll;
     [SerializeField] private GameObject LeftScroll;
     [SerializeField] private GameObject turnSystem;
@@ -224,7 +224,7 @@ public class WeaponSelect : MonoBehaviour
         m_Crosshair = aiming.gameObject.transform.GetChild(0).gameObject;
         m_Controller = aiming.gameObject.GetComponentInChildren<TankController>();
         m_Stats = aiming.gameObject.GetComponentInChildren<Stats>();
-        m_AimScript.GetComponent<GenericAim>().SetProjectile(defaultWeapon);
+        //m_AimScript.GetComponent<GenericAim>().SetProjectile(defaultWeapon);
     }
 
     private void CreateHashtable()
