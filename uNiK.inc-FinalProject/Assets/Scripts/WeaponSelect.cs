@@ -43,6 +43,7 @@ public class WeaponSelect : MonoBehaviour
         if (Input.GetKeyDown("e") && interactableMenu)
         {
             OpenWeaponMenu();
+            DisableWeaponButtons();
         }
     }
 
