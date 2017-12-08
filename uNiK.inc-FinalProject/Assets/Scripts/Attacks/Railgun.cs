@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Railgun : Attack {
-
+    private AudioSource sound;
     private void Start()
     {
+        sound = GetComponent<AudioSource>();
         StartEvent();
     }
 
@@ -16,6 +17,7 @@ public class Railgun : Attack {
 
     public override void StartEvent()
     {
+        sound.Play();
         Destroy(this.gameObject, lifetime);
     }
 
