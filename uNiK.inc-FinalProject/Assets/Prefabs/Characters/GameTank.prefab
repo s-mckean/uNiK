@@ -302,7 +302,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574151956567980}
-  m_LocalRotation: {x: -0.080767736, y: 0.7024789, z: 0.080767736, w: 0.7024789}
+  m_LocalRotation: {x: 0.045968782, y: 0.705611, z: -0.045968782, w: 0.705611}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -648,7 +648,7 @@ MonoBehaviour:
   yPosMod: 0.00015
   yScaleMax: 1
   firingPosition: {fileID: 4900117282460350}
-  projectile: {fileID: 50061830340969822, guid: 9ccb7887fce96ea4c8394d8f4ffeefad,
+  projectile: {fileID: 50698107202192004, guid: e7d8adee4be2b714491f7d56e8cf2515,
     type: 2}
   minPower: 1
   maxPower: 10
