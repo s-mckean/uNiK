@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 58693771040474634}
   - component: {fileID: 50489930140637026}
   - component: {fileID: 114355976255019790}
+  - component: {fileID: 114644525444125042}
   m_Layer: 0
   m_Name: StandardHitbox
   m_TagString: Untagged
@@ -97,3 +98,14 @@ MonoBehaviour:
   damage: 35
   explosion: 1
   lifetime: 1
+--- !u!114 &114644525444125042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396513692372550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6a6a8b4a7eea741b6304d1af8e4d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
