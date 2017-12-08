@@ -11,7 +11,7 @@ public class HealthbarsManager : MonoBehaviour
     void Start()
     {
         m_Healthbars = GetComponentsInChildren<Healthbar>();
-        Invoke("Setup", 1.2f);
+        Setup();
     }
 
     private void Setup()
