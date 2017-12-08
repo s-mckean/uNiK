@@ -13,5 +13,10 @@ public class DeathFloor : MonoBehaviour {
             //Destroy(this.gameObject);
             //gameObject.GetComponent<Stats>().ModHealth(-200);
         }
+
+        else if (collision.gameObject.CompareTag("Item"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
