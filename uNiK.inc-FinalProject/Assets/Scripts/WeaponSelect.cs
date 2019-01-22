@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class WeaponSelect : MonoBehaviour
 {
 
-    /*[SerializeField]*/ private MonoBehaviour m_AimScript;
-    /*[SerializeField]*/ private GameObject m_Crosshair;
-    /*[SerializeField]*/ private Rigidbody2D[] weaponsList;
+    private MonoBehaviour m_AimScript;
+    private GameObject m_Crosshair;
+    private Rigidbody2D[] weaponsList;
     private Rigidbody2D defaultWeapon;
     private Dictionary<string, int> weaponCosts;
     [SerializeField] private GameObject weaponMenu;
     [SerializeField] private Button buttonPrefab;
-    [SerializeField] private string defaultWeaponName = "PlasmaRocket";
+    [SerializeField] private string defaultWeaponName = "Rocket";
     [SerializeField] private GameObject RightScroll;
     [SerializeField] private GameObject LeftScroll;
     [SerializeField] private GameObject turnSystem;
@@ -39,7 +39,6 @@ public class WeaponSelect : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(m_AimScript, m_Crosshair);
         if (Input.GetKeyDown("e") && interactableMenu)
         {
             OpenWeaponMenu();
@@ -65,7 +64,6 @@ public class WeaponSelect : MonoBehaviour
 
     public void OpenWeaponMenu()
     {
-        //ChangeActiveTank();
         if (!weaponMenuIsOpen)
         {
             weaponMenuIsOpen = true;
@@ -115,8 +113,6 @@ public class WeaponSelect : MonoBehaviour
             if (i <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i];
-                //weaponImage.GetComponent<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-                //weaponImage.GetComponent<SpriteRenderer>().color = weapon.GetComponent<SpriteRenderer>().color;
                 newButton.transform.GetChild(0).GetComponent<Text>().text = weapon.name;
                 foreach (KeyValuePair<string, int> kvp in weaponCosts)
                 {
@@ -175,7 +171,6 @@ public class WeaponSelect : MonoBehaviour
             if (i + (showingButtons - 12) <= weaponsList.Length - 1)
             {
                 Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
-                //buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
                 buttons[i].transform.GetChild(0).GetComponent<Text>().text = weapon.name;
                 foreach (KeyValuePair<string, int> kvp in weaponCosts)
                 {
@@ -203,7 +198,6 @@ public class WeaponSelect : MonoBehaviour
         for (int i = 0; i < 12; i++)
         {
             Rigidbody2D weapon = weaponsList[i + (showingButtons - 12)];
-            //buttons[i].GetComponentInChildren<SpriteRenderer>().sprite = weapon.GetComponent<SpriteRenderer>().sprite;
             buttons[i].transform.GetChild(0).GetComponent<Text>().text = weapon.name;
             foreach (KeyValuePair<string, int> kvp in weaponCosts)
             {

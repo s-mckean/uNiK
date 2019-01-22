@@ -16,11 +16,6 @@ public class BeginPanCamera : MonoBehaviour {
         m_Cam = GetComponent<Camera>();
         StartCoroutine(BeginPanEvent());
     }
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
     private IEnumerator BeginPanEvent()
     {

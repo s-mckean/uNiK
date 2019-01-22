@@ -15,11 +15,6 @@ public abstract class Attack : MonoBehaviour {
         StartEvent();
         Effect();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

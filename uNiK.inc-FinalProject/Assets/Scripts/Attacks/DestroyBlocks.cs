@@ -11,11 +11,6 @@ public class DestroyBlocks : MonoBehaviour {
         m_CollisionDisableTimer = GetComponent<ParticleSystem>().main.duration;
         m_CollisionDisableTimer /= 2;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnParticleCollision(GameObject gObj)
     {

@@ -25,20 +25,6 @@ public class Healthbar : MonoBehaviour {
         StartCoroutine(UpdateHealthbar());
     }
 
-    private void Update()
-    {
-        //if (m_Character != null)
-        //{
-        //    Stats m_Stats = m_Character.GetStats();
-        //    float currHealth = (float)m_Stats.GetHealth();
-        //    float maxHealth = (float)m_Stats.GetMaxHealth();
-        //    float newValue = (currHealth / maxHealth) * m_MaxValue;
-
-        //    m_Slider.value = newValue;
-        //    CheckZero();
-        //}
-    }
-
     private IEnumerator UpdateHealthbar()
     {
         while (true)

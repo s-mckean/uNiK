@@ -15,11 +15,6 @@ public class EnergyBall : Attack {
         radius = GetComponent<CircleCollider2D>().radius * transform.localScale.x;
         StartEvent();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
 
     public override void StartEvent()
     {

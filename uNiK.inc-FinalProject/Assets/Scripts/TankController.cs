@@ -13,13 +13,6 @@ public class TankController : MonoBehaviour {
     [SerializeField] private ParticleSystem m_ThrustersObject;
     [SerializeField] private Transform m_CrosshairPosition;
 
-
-    /*
-    public AudioSource m_MovementAudio;
-    public AudioClip m_EngineIdling;
-    public AudioClip m_EngineDriving;
-    public float m_PitchRange = 0.2f;
-    */
     private AudioSource thrusters; 
 
     private Rigidbody2D m_Rigidbody;
@@ -35,12 +28,6 @@ public class TankController : MonoBehaviour {
     private Camera m_Camera;
 
     public SpriteRenderer c_SpriteRenderer;
-
-    /*     
-    private float m_OriginalPitch;
-    private string m_MovementAxisName;     
-    private float m_TurnInputValue;   
-    */
 
     private void Start()
     {
@@ -61,12 +48,7 @@ public class TankController : MonoBehaviour {
 
     private void Awake()
     {
-        
-
         Invoke("ResetStatus", 1f);
-        /*
-       m_OriginalPitch = m_MovementAudio.pitch;
-       */
     }
 
     private void ResetStatus()
@@ -99,41 +81,7 @@ public class TankController : MonoBehaviour {
             newOrthoSize = Mathf.Clamp(newOrthoSize, m_OrigCamOrthoSize, 40f);
             m_Camera.orthographicSize = newOrthoSize;
         }
-        
-        // EngineAudio();
     }
-
-    /*
-     * Tweaked from Unity's Tank Game's TankMovement.cs
-     * ~natechica
-     
-    private void EngineAudio()
-    {
-        // If there is no input (the tank is stationary)...
-        if (Mathf.Abs(m_MovementInputValue) < 0.1f)
-        {
-            // ... and if the audio source is currently playing the driving clip...
-            if (m_MovementAudio.clip == m_EngineDriving)
-            {
-                // ... change the clip to idling and play it.
-                m_MovementAudio.clip = m_EngineIdling;
-                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                m_MovementAudio.Play();
-            }
-        }
-        else if (checkFuel())
-        {
-            // Otherwise if the tank is moving and if the idling clip is currently playing...
-            if (m_MovementAudio.clip == m_EngineIdling)
-            {
-                // ... change the clip to driving and play.
-                m_MovementAudio.clip = m_EngineDriving;
-                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                m_MovementAudio.Play();
-            }
-        }
-
-     */
 
     private void AdjustJumpValue()
     {
@@ -143,8 +91,6 @@ public class TankController : MonoBehaviour {
         {
             m_JumpInputValue = m_JumpAcceleration;        // Fixes the way falling and gravity works
             thrusters.Play();
-            //m_JumpInputValue += m_JumpAcceleration;
-
         }
         else
         {
@@ -153,8 +99,6 @@ public class TankController : MonoBehaviour {
 
         ActivateThrusters(spaceDown);
         m_JumpInputValue = Mathf.Clamp(m_JumpInputValue, 0, m_JumpAccelerationMax);
-       
-
     }
 
     private void ActivateThrusters (bool activate)
@@ -196,9 +140,6 @@ public class TankController : MonoBehaviour {
         }
 
         m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, yVel);
-    
-        
-        //m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, m_JumpInputValue);
     }
 
 
@@ -213,16 +154,6 @@ public class TankController : MonoBehaviour {
         {
             return;
         }
-        /*
-        if (m_MovementInputValue > 0)
-        {
-            m_SpriteRenderer.flipX = true;
-        }
-        else if (m_MovementInputValue < 0)
-        {
-            m_SpriteRenderer.flipX = false;
-        }
-        */
 
         if (m_CrosshairPosition.position.x - m_Transform.position.x > 0)
         {

@@ -7,11 +7,6 @@ public class CannonController : MonoBehaviour {
 
     public SpriteRenderer cannon;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void FixedUpdate () {
         adjustCannon();
@@ -43,10 +38,5 @@ public class CannonController : MonoBehaviour {
             Quaternion rot = Quaternion.Euler(-angle, 90f, 180f);
             cannon.transform.rotation = rot;
         }
-        //Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-        //Quaternion rotation = Quaternion.Euler(angle - 90f, angle + 90f, 0);
-        //rotation = Mathf.Clamp(rotation, 90, -90);
-        
-        //rotation = Mathf.Clamp(rotation, 90, -90);
     }
 }

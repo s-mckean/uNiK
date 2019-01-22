@@ -30,9 +30,7 @@ public class SpikeBall : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        m_Animator.speed = Mathf.Clamp01(m_Rigidbody2D.velocity.magnitude);
-
-        
+        m_Animator.speed = Mathf.Clamp01(m_Rigidbody2D.velocity.magnitude);  
     }
 
     private void FixedUpdate()

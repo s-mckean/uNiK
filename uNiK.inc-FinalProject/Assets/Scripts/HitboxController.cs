@@ -25,11 +25,6 @@ public class HitboxController : MonoBehaviour {
         Destroy(this.gameObject, explosionDuration);
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void SetupExplosion()
     {
         SetupInnerHitbox();

@@ -10,8 +10,6 @@ public class DeathFloor : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Stats>().ModHealth(-200);
-            //Destroy(this.gameObject);
-            //gameObject.GetComponent<Stats>().ModHealth(-200);
         }
 
         else if (collision.gameObject.CompareTag("Item"))

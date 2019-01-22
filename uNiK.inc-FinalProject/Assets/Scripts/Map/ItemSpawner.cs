@@ -23,7 +23,6 @@ public class ItemSpawner : MonoBehaviour {
     {
         while (true)
         {
-            Debug.Log("Item Spawned");
             if (ctr < 10) SpawnItem(); ctr++;
             float tempX = transform.position.x;
             tempX += Random.Range(-30, 30);

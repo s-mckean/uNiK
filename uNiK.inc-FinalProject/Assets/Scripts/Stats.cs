@@ -95,41 +95,6 @@ public class Stats : MonoBehaviour {
         ModTankSpeed(origTankSpeed);
     }
 
-    // Unused
-    //private IEnumerator PopupDamage(int value)
-    //{
-    //    dmgPopupPos = dmgPopup.transform;
-    //    dmgPopup.text = "";
-    //    int displayedValue = 0;
-    //    int targetValue = Mathf.Abs(value);
-    //    int remainder = targetValue % dmgPopupIterations;
-
-    //    if (value < 0)
-    //    {
-    //        dmgPopup.color = Color.red;
-    //    }
-    //    else if (value > 0)
-    //    {
-    //        dmgPopup.color = Color.green;
-    //    }
-
-    //    while (displayedValue < targetValue)
-    //    {
-    //        displayedValue += (targetValue / dmgPopupIterations);
-    //        if ((targetValue - displayedValue) == remainder) {
-    //            displayedValue += remainder;
-    //            remainder = 0;
-    //        }
-    //        dmgPopup.text = displayedValue.ToString();
-    //        //dmgPopup.transform.position = (dmgPopupPos.position + new Vector3(0, 0.1f, 0));
-    //        yield return new WaitForSeconds(iterationDelay);
-    //    }
-
-    //    yield return new WaitForSeconds(2.0f);
-
-    //    dmgPopup.text = "";
-    //}
-
     private IEnumerator PopupDamage2(int value)
     {
         dmgPopupPos = dmgPopup.transform;

@@ -193,7 +193,6 @@ public class TurnSystem : MonoBehaviour {
     private void ActivateTankControls(TankController tankController, bool active)
     {
         tankController.IsActive = active;
-        //tankController.GetComponentInChildren<GameCharacter>().ActivatePlayerBar(active);
 
         var weapSys = tankController.GetComponentInChildren<WeaponSystem>();
         if (weapSys != null)

@@ -124,7 +124,6 @@ public class GenericAim : MonoBehaviour {
         if (aimArrow != null)
         {
             Destroy(aimArrow);
-            //mouseDown = false;
         }
     }
 

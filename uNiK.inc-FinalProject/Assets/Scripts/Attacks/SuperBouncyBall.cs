@@ -12,11 +12,6 @@ public class SuperBouncyBall : MonoBehaviour {
         Destroy(this.gameObject, m_Duration);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("DestroyableBlock"))

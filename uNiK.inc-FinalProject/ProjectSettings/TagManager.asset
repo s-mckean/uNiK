@@ -10,6 +10,8 @@ TagManager:
   - ProjectileCamera
   - GameUI
   - PassThrough
+  - Fire
+  - Item
   layers:
   - Default
   - TransparentFX

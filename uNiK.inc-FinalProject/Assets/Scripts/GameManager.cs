@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour {
         teamInfos[Teams.GREEN] = 0;
         teamInfos[Teams.YELLOW] = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void Awake()
     {
@@ -49,7 +44,6 @@ public class GameManager : MonoBehaviour {
         for (int x = 0; x < SceneManager.sceneCountInBuildSettings; x++)
         {
             stages[x] = SceneManager.GetSceneByBuildIndex(x).name;
-            Debug.Log(x + " loading " + stages[x]);
         }
     }
 
