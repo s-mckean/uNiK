@@ -33,6 +33,6 @@ Lobby: Select number of players for each team. (Issues: 8, 25)
 HUDS, Menus, GUIS: Healthbars, timers, fuel, main menu, game win graphic, etc. (Issues: 13, 10, 31)
 
 
-#Demo
+# Demo
 
 ![Image](https://user-images.githubusercontent.com/42820224/51708700-6424ac00-1fd9-11e9-9846-626b8059506b.gif)
