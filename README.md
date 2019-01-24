@@ -33,9 +33,9 @@ Lobby: Select number of players for each team. (Issues: 8, 25)
 HUDS, Menus, GUIS: Healthbars, timers, fuel, main menu, game win graphic, etc. (Issues: 13, 10, 31)
 
 
-# Demo
+# Gameplay Demo
 
 ![Image](https://user-images.githubusercontent.com/42820224/51708700-6424ac00-1fd9-11e9-9846-626b8059506b.gif)
 
-The playable game and full gameplay video can be downloaded/viewed here:
+To download just the game or view the full demo video use this link:
 https://drive.google.com/drive/folders/1_ReaPE8iMQL6pyR99RA9oyMeJqU67pWk?usp=sharing
