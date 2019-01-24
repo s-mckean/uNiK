@@ -22,7 +22,7 @@ Turn System: Game is turn-based so a system is implemented to change turns after
 
 Sounds: Game has some sounds to enhance the experience
 
-Map: Blocks are destroyable and surrounded by white blocks which are indestructible and kills player on collision. (Issues: 3, 23, 24)
+Map: Blocks are destroyable and surrounded by white blocks which are indestructible and kills player on collision.
 
 Shooting System and Stats: Projectile shoots upon mouse release and at the direction of the mouse pointer. Damage done when projectile or explosion hits tank.
 
