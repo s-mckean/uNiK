@@ -37,5 +37,5 @@ HUDS, Menus, GUIS: Healthbars, timers, fuel, main menu, game win graphic, etc. (
 
 ![Image](https://user-images.githubusercontent.com/42820224/51708700-6424ac00-1fd9-11e9-9846-626b8059506b.gif)
 
-The playable game and full gameplay video can be viewed here:
+The playable game and full gameplay video can be downloaded/viewed here:
 https://drive.google.com/drive/folders/1_ReaPE8iMQL6pyR99RA9oyMeJqU67pWk?usp=sharing
