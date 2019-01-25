@@ -39,3 +39,5 @@ HUDS, Menus, GUIS: Healthbars, timers, fuel, main menu, game win graphic, etc.
 
 To download just the game or view the full demo video use this link:
 https://drive.google.com/drive/folders/1_ReaPE8iMQL6pyR99RA9oyMeJqU67pWk?usp=sharing
+
+Note: The entire "Game Download" folder must be downloaded in order to play
